@@ -13,7 +13,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: '18.x'
       - name: Get Version
         id: version
         run: |
@@ -28,7 +28,7 @@ jobs:
       - name: Package
         run: |
           mkdir ${{ github.event.repository.name }}
-          cp main.js manifest.json README.md ${{ github.event.repository.name }}
+          cp main.js manifest.json README.md styles.css ${{ github.event.repository.name }}
           zip -r ${{ github.event.repository.name }}.zip ${{ github.event.repository.name }}
       # Create the release on github
       - name: Create Release
