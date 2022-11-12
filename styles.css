@@ -1,0 +1,9 @@
+/* Styles */
+
+.block-language-bpmn {
+    background-color: white;
+    width: 100%;
+    display: grid;
+    grid-template-rows: [row1-start] 20px [row1-end] auto;
+    cursor: pointer;
+}

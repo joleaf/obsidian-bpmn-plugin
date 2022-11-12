@@ -1,0 +1,10 @@
+{
+	"id": "obsidian-bpmn-plugin",
+	"name": "BPMN Plugin",
+	"version": "0.1.0",
+	"minAppVersion": "0.15.0",
+	"description": "This plugin enables viewing BPMN files using bpmn-js.",
+	"author": "JoLeaf",
+	"authorUrl": "https://github.com/JoLeaf",
+	"isDesktopOnly": false
+}
