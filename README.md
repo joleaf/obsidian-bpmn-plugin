@@ -30,3 +30,6 @@ Based on the [bpmn-js](https://github.com/bpmn-io/bpmn-js) library.
 2. `npm i`
 3. `npm run dev`
 4. Toggle the plugin on in the **Community Plugins** tab
+
+## Donate
+<a href='https://ko-fi.com/joleaf' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
