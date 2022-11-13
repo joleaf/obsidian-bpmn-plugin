@@ -6,7 +6,11 @@ import Modeler from "bpmn-js/lib/Modeler";
 interface BpmnNodeParameters {
     url: string;
     readonly: boolean;
+    opendiagram: boolean;
     height: number;
+    zoom: number;
+    x: number;
+    y: number;
 }
 
 export default class ObsidianBPMNPlugin extends Plugin {
@@ -36,13 +40,16 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     parameters.url = folderPath + "/" + parameters.url.substring(2, parameters.url.length);
                 }
 
-                const href = el.createEl("a", {text: "Open diagram"});
-                href.href = parameters.url;
-                href.className = "internal-link";
+                el.addClass("bpmn-view");
+                if (parameters.opendiagram) {
+                    const href = el.createEl("a", {text: "Open diagram"});
+                    href.href = parameters.url;
+                    href.className = "internal-link";
+                    el.addClass("bpmn-view-open-diagram");
+                }
 
                 const xml = await this.app.vault.adapter.read(parameters.url);
                 el.setAttribute("style", "height: " + parameters.height + "px;");
-                console.log(parameters.readonly);
                 const bpmn = parameters.readonly ?
                     new BpmnViewer({
                         container: el,
@@ -55,13 +62,16 @@ export default class ObsidianBPMNPlugin extends Plugin {
                             bindTo: window
                         }
                     });
-                console.log(parameters.readonly);
-                console.log(bpmn);
+                const p_zoom = parameters.zoom;
+                const p_x = parameters.x;
+                const p_y = parameters.y;
                 bpmn.importXML(xml).then(function (result: { warnings: any; }) {
-                    const {warnings} = result;
                     const canvas = bpmn.get('canvas');
-                    canvas.zoom('fit-viewport');
-                    // TODO ZOOM scale, ect... as parameter
+                    if (p_zoom === undefined) {
+                        canvas.zoom('fit-viewport');
+                    } else {
+                        canvas.zoom(p_zoom, {x: p_x, y: p_y});
+                    }
                 }).catch(function (err: { warnings: any; message: any; }) {
                     const {warnings, message} = err;
                     console.log('something went wrong:', warnings, message);
@@ -84,7 +94,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
 
         //Transform internal Link to external
         if (parameters.url.startsWith("[[")) {
-            parameters.url = parameters.url.substr(2, parameters.url.length - 4);
+            parameters.url = parameters.url.substring(2, parameters.url.length - 2);
             // @ts-ignore
             parameters.url = this.app.metadataCache.getFirstLinkpathDest(
                 parameters.url,
@@ -96,8 +106,20 @@ export default class ObsidianBPMNPlugin extends Plugin {
             parameters.readonly = this.settings.readonly_by_default;
         }
 
+        if (parameters.opendiagram === undefined) {
+            parameters.opendiagram = this.settings.opendiagram_by_default;
+        }
+
         if (parameters.height === undefined) {
             parameters.height = this.settings.height_by_default;
+        }
+
+        if (parameters.x === undefined) {
+            parameters.x = 0;
+        }
+
+        if (parameters.y === undefined) {
+            parameters.y = 0;
         }
 
         return parameters;

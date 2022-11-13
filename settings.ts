@@ -6,6 +6,7 @@ declare class ObsidianBpmnPlugin extends Plugin {
 
 export class ObsidianBpmnPluginSettings {
     readonly_by_default: boolean = true;
+    opendiagram_by_default: boolean = true;
     height_by_default: number = 400;
 }
 
@@ -45,6 +46,15 @@ export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
                 }).setLimits(200, 1000, 20)
                 .setDynamicTooltip()
             );
+
+        new Setting(containerEl)
+            .setName("Default show open diagram")
+            .setDesc("Set the default for showing the 'Open diagram' link")
+            .addToggle(toggle => toggle.setValue(this.plugin.settings.opendiagram_by_default)
+                .onChange((value) => {
+                    this.plugin.settings.opendiagram_by_default = value;
+                    this.plugin.saveData(this.plugin.settings);
+                }));
 
     }
 }

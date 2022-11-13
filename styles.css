@@ -1,9 +1,14 @@
 /* Styles */
 
-.block-language-bpmn {
+.bpmn-view {
     background-color: white;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+
+.bpmn-view-open-diagram {
     display: grid;
     grid-template-rows: [row1-start] 20px [row1-end] auto;
-    cursor: pointer;
 }

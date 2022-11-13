@@ -1,6 +1,6 @@
 {
   "name": "obsidian-bpmn-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Goal of this Plugin in to implement a native BPMN handling workflow",
   "main": "main.js",
   "scripts": {
