@@ -1,14 +1,21 @@
-# Obsidian-BPMN-Plugin [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/joleaf/obsidian-bpmn-plugin)](https://github.com/joleaf/obsidian-bpmn-plugin/releases) [![Release Obsidian Plugin](https://github.com/joleaf/obsidian-bpmn-plugin/actions/workflows/release.yml/badge.svg)](https://github.com/joleaf/obsidian-bpmn-plugin/actions/workflows/release.yml) ![GitHub all releases](https://img.shields.io/github/downloads/joleaf/obsidian-bpmn-plugin/total)
+# BPMN-Plugin for Obsidian [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/joleaf/obsidian-bpmn-plugin)](https://github.com/joleaf/obsidian-bpmn-plugin/releases) [![Release Obsidian Plugin](https://github.com/joleaf/obsidian-bpmn-plugin/actions/workflows/release.yml/badge.svg)](https://github.com/joleaf/obsidian-bpmn-plugin/actions/workflows/release.yml) ![GitHub all releases](https://img.shields.io/github/downloads/joleaf/obsidian-bpmn-plugin/total)
 
-This plugin lets you view BPMN models interactively in [Obsidian](https://www.obsidian.md).
-Based on the [bpmn-js](https://github.com/bpmn-io/bpmn-js) library.
+This plugin lets you view BPMN diagrams interactively in your [Obsidian](https://www.obsidian.md) notes.
+The viewer is based on the [bpmn-js](https://github.com/bpmn-io/bpmn-js) library.
 
-## How to install
+## Install ..
 
-1. Go to **Community Plugins** in your [Obsidian](https://www.obsidian.md) Settings and **disable** Safe Mode
-2. Click on **Browse** and search for "Obsidian BPMN Plugin"
+### .. automatically in Obsidian
+
+1. Go to **Community Plugins** in your Obsidian Settings and **disable** Safe Mode
+2. Click on **Browse** and search for "BPMN Plugin"
 3. Click install
 4. Toggle the plugin on in the **Community Plugins** tab
+
+### .. manually from this repo
+
+1. Download the latest [release](https://github.com/joleaf/obsidian-bpmn-plugin/releases) `*.zip` file.
+2. Unpack the zip in the `.obsidan/plugins` folder of your obsidian vault
 
 ## How to use
 
@@ -37,7 +44,7 @@ Based on the [bpmn-js](https://github.com/bpmn-io/bpmn-js) library.
 
 ### Example
 
-![Example](example/obsidian-bpmn-plugin.gif)
+![Example](example/bpmn-plugin.gif)
 
 ## How to dev
 

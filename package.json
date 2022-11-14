@@ -1,7 +1,7 @@
 {
-  "name": "obsidian-bpmn-plugin",
-  "version": "0.1.1",
-  "description": "Goal of this Plugin in to implement a native BPMN handling workflow",
+  "name": "bpmn-plugin",
+  "version": "0.1.2",
+  "description": "This plugin enables viewing BPMN diagrams using bpmn-js.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
