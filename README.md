@@ -25,19 +25,20 @@ The viewer is based on the [bpmn-js](https://github.com/bpmn-io/bpmn-js) library
 
 ````
 ```bpmn
-{
-  "url": "[[my-diagram.bpmn]]"
-}
+url: [[my-diagram.bpmn]]
 ```
 ````
 
 ### Parameter
 
+You can customize the view with the following parameters: 
+
 | Parameter   | Description                                    | Values                                                    |
 |-------------|------------------------------------------------|-----------------------------------------------------------|
-| url         | The url of the *.bpmn file.                    | Relative/Absolute path, or "[[*.bpmn]]" as markdown link. |
+| url         | The url of the *.bpmn file (required).         | Relative/Absolute path, or "[[*.bpmn]]" as markdown link. |
 | height      | The height of the rendered canvas.             | [200..1000]                                               |
-| opendiagram | Show a link to the *.bpmn file.                | true/false                                                |
+| opendiagram | Show a link to the *.bpmn file.                | True/False                                                |
+| showzoom    | Show the zoom buttons below the canvas.        | True/False                                                |
 | zoom        | Set the zoom level. Default is 'fit-viewport'. | 0.0 - 10.0                                                |
 | x           | Set the x coordinate, if a zoom value is set.  | 0 - ... (default: 0)                                      |
 | y           | Set the y coordinate, if a zoom value is set.  | 0 - ... (default: 0)                                      |

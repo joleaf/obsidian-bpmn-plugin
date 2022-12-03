@@ -2,11 +2,13 @@ import {Plugin} from "obsidian";
 import {ObsidianBpmnPluginSettings, ObsidianBpmnPluginSettingsTab} from "./settings";
 import BpmnViewer from "bpmn-js/lib/NavigatedViewer";
 import Modeler from "bpmn-js/lib/Modeler";
+import YAML from 'yaml'
 
 interface BpmnNodeParameters {
     url: string;
     readonly: boolean;
     opendiagram: boolean;
+    showzoom: boolean;
     height: number;
     zoom: number;
     x: number;
@@ -28,7 +30,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
             try {
                 parameters = this.readParameters(src);
             } catch (e) {
-                el.createEl("h2", {text: "BPMN parameters invalid: " + e.message});
+                el.createEl("h3", {text: "BPMN parameters invalid: \n" + e.message});
                 return;
             }
 
@@ -40,26 +42,27 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     parameters.url = folderPath + "/" + parameters.url.substring(2, parameters.url.length);
                 }
 
-                el.addClass("bpmn-view");
+                const rootDiv = el.createEl("div");
+
                 if (parameters.opendiagram) {
-                    const href = el.createEl("a", {text: "Open diagram"});
+                    const href = rootDiv.createEl("a", {text: "Open diagram"});
                     href.href = parameters.url;
                     href.className = "internal-link";
-                    el.addClass("bpmn-view-open-diagram");
                 }
-
+                const bpmnDiv = rootDiv.createEl("div");
+                bpmnDiv.addClass("bpmn-view");
                 const xml = await this.app.vault.adapter.read(parameters.url);
-                el.setAttribute("style", "height: " + parameters.height + "px;");
+                bpmnDiv.setAttribute("style", "height: " + parameters.height + "px;");
                 const bpmn = parameters.readonly ?
                     new BpmnViewer({
-                        container: el,
+                        container: bpmnDiv,
                         keyboard: {
-                            bindTo: window
+                            bindTo: bpmnDiv.win
                         }
                     }) : new Modeler({
-                        container: el,
+                        container: bpmnDiv,
                         keyboard: {
-                            bindTo: window
+                            bindTo: bpmnDiv.win
                         }
                     });
                 const p_zoom = parameters.zoom;
@@ -70,16 +73,24 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     if (p_zoom === undefined) {
                         canvas.zoom('fit-viewport');
                     } else {
+                        console.log({x: p_x, y: p_y});
                         canvas.zoom(p_zoom, {x: p_x, y: p_y});
                     }
                 }).catch(function (err: { warnings: any; message: any; }) {
                     const {warnings, message} = err;
                     console.log('something went wrong:', warnings, message);
                     bpmn.destroy();
-                    el.createEl("h2", {text: warnings + " " + message});
+                    rootDiv.createEl("h3", {text: warnings + " " + message});
                 });
+                if (parameters.showzoom) {
+                    const zoomDiv = rootDiv.createEl("div");
+                    const zoomInBtn = zoomDiv.createEl("button", {"text": "+"});
+                    zoomInBtn.addEventListener("click", (e: Event) => bpmn.get('zoomScroll').stepZoom(0.5));
+                    const zoomOutBtn = zoomDiv.createEl("button", {"text": "-"});
+                    zoomOutBtn.addEventListener("click", (e: Event) => bpmn.get('zoomScroll').stepZoom(-0.5));
+                }
             } catch (error) {
-                el.createEl("h2", {text: error});
+                el.createEl("h3", {text: error});
             }
         });
     }
@@ -90,7 +101,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
             jsonString = jsonString.replace("]]", ']]"');
         }
 
-        const parameters: BpmnNodeParameters = JSON.parse(jsonString);
+        const parameters: BpmnNodeParameters = YAML.parse(jsonString);
 
         //Transform internal Link to external
         if (parameters.url.startsWith("[[")) {
@@ -106,6 +117,10 @@ export default class ObsidianBPMNPlugin extends Plugin {
             parameters.readonly = this.settings.readonly_by_default;
         }
 
+        if (parameters.showzoom === undefined) {
+            parameters.showzoom = this.settings.showzoom_by_default;
+        }
+
         if (parameters.opendiagram === undefined) {
             parameters.opendiagram = this.settings.opendiagram_by_default;
         }
@@ -117,10 +132,12 @@ export default class ObsidianBPMNPlugin extends Plugin {
         if (parameters.x === undefined) {
             parameters.x = 0;
         }
+        parameters.x *= 10
 
         if (parameters.y === undefined) {
             parameters.y = 0;
         }
+        parameters.y *= 10
 
         return parameters;
     }

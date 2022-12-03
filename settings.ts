@@ -7,6 +7,7 @@ declare class ObsidianBpmnPlugin extends Plugin {
 export class ObsidianBpmnPluginSettings {
     readonly_by_default: boolean = true;
     opendiagram_by_default: boolean = true;
+    showzoom_by_default: boolean = true;
     height_by_default: number = 400;
 }
 
@@ -53,6 +54,15 @@ export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
             .addToggle(toggle => toggle.setValue(this.plugin.settings.opendiagram_by_default)
                 .onChange((value) => {
                     this.plugin.settings.opendiagram_by_default = value;
+                    this.plugin.saveData(this.plugin.settings);
+                }));
+
+        new Setting(containerEl)
+            .setName("Default show zoom buttons")
+            .setDesc("Set the default for showing the zoom buttons")
+            .addToggle(toggle => toggle.setValue(this.plugin.settings.showzoom_by_default)
+                .onChange((value) => {
+                    this.plugin.settings.showzoom_by_default = value;
                     this.plugin.saveData(this.plugin.settings);
                 }));
 

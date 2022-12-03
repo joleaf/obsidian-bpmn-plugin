@@ -7,8 +7,3 @@
     flex-wrap: wrap;
     cursor: pointer;
 }
-
-.bpmn-view-open-diagram {
-    display: grid;
-    grid-template-rows: [row1-start] 20px [row1-end] auto;
-}

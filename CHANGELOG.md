@@ -1,0 +1,25 @@
+# Changelog
+
+All changes to this plugin are listed here.
+
+## 0.2.0 (03.12.2022)
+
+### Added
+
+- Zoom buttons
+- Option to enable/disable the zoom buttons
+
+### Changed
+
+- Use YAML instead of JSON to configure the bpmn viewer
+
+### Fixed
+
+- el.win, instead of "window"
+
+## 0.1.2 (14.11.2022)
+
+### Added
+
+- Base functionality to view BPMN
+- Config with JSON
