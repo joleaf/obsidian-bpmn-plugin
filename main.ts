@@ -1,12 +1,11 @@
-import {Plugin} from "obsidian";
+import {Plugin, WorkspaceLeaf} from "obsidian";
 import {ObsidianBpmnPluginSettings, ObsidianBpmnPluginSettingsTab} from "./settings";
 import BpmnViewer from "bpmn-js/lib/NavigatedViewer";
-import Modeler from "bpmn-js/lib/Modeler";
+import {BpmnModelerView, VIEW_TYPE_BPMN} from "./bpmnModeler"
 import YAML from 'yaml'
 
 interface BpmnNodeParameters {
     url: string;
-    readonly: boolean;
     opendiagram: boolean;
     showzoom: boolean;
     height: number;
@@ -20,10 +19,18 @@ export default class ObsidianBPMNPlugin extends Plugin {
 
     async onload() {
         console.log("BPMN loading...");
-
+        // Add settings
         this.settings = Object.assign(new ObsidianBpmnPluginSettings(), await this.loadData());
         this.addSettingTab(new ObsidianBpmnPluginSettingsTab(this.app, this));
 
+        // Add modeler
+        this.registerView(
+            VIEW_TYPE_BPMN,
+            (leaf: WorkspaceLeaf) => new BpmnModelerView(leaf)
+        );
+        this.registerExtensions(["bpmn"], VIEW_TYPE_BPMN);
+
+        // Add code block extension
         this.registerMarkdownCodeBlockProcessor("bpmn", async (src, el, ctx) => {
             // Get Parameters
             let parameters: BpmnNodeParameters | null = null;
@@ -53,18 +60,12 @@ export default class ObsidianBPMNPlugin extends Plugin {
                 bpmnDiv.addClass("bpmn-view");
                 const xml = await this.app.vault.adapter.read(parameters.url);
                 bpmnDiv.setAttribute("style", "height: " + parameters.height + "px;");
-                const bpmn = parameters.readonly ?
-                    new BpmnViewer({
-                        container: bpmnDiv,
-                        keyboard: {
-                            bindTo: bpmnDiv.win
-                        }
-                    }) : new Modeler({
-                        container: bpmnDiv,
-                        keyboard: {
-                            bindTo: bpmnDiv.win
-                        }
-                    });
+                const bpmn = new BpmnViewer({
+                    container: bpmnDiv,
+                    keyboard: {
+                        bindTo: bpmnDiv.win
+                    }
+                });
                 const p_zoom = parameters.zoom;
                 const p_x = parameters.x;
                 const p_y = parameters.y;
@@ -73,7 +74,6 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     if (p_zoom === undefined) {
                         canvas.zoom('fit-viewport');
                     } else {
-                        console.log({x: p_x, y: p_y});
                         canvas.zoom(p_zoom, {x: p_x, y: p_y});
                     }
                 }).catch(function (err: { warnings: any; message: any; }) {
@@ -111,10 +111,6 @@ export default class ObsidianBPMNPlugin extends Plugin {
                 parameters.url,
                 ""
             ).path;
-        }
-
-        if (parameters.readonly === undefined) {
-            parameters.readonly = this.settings.readonly_by_default;
         }
 
         if (parameters.showzoom === undefined) {

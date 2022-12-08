@@ -2,6 +2,7 @@
 
 This plugin lets you view BPMN diagrams interactively in your [Obsidian](https://www.obsidian.md) notes.
 The viewer is based on the [bpmn-js](https://github.com/bpmn-io/bpmn-js) library.
+Furthermore, basic editing functions for BPMNs are available as well.
 
 ## Install ..
 
@@ -17,7 +18,7 @@ The viewer is based on the [bpmn-js](https://github.com/bpmn-io/bpmn-js) library
 1. Download the latest [release](https://github.com/joleaf/obsidian-bpmn-plugin/releases) `*.zip` file.
 2. Unpack the zip in the `.obsidan/plugins` folder of your obsidian vault
 
-## How to use
+## How to use (CodeBlock)
 
 1. Add a valid `*.bpmn` file to your vault (e.g., `my-diagram.bpmn`) (e.g., modeled with
    the [Camunda Modeler](https://camunda.com/de/download/modeler/))
@@ -31,7 +32,7 @@ url: [[my-diagram.bpmn]]
 
 ### Parameter
 
-You can customize the view with the following parameters: 
+You can customize the view with the following parameters:
 
 | Parameter   | Description                                    | Values                                                    |
 |-------------|------------------------------------------------|-----------------------------------------------------------|
@@ -46,6 +47,10 @@ You can customize the view with the following parameters:
 ### Example
 
 ![Example](example/bpmn-plugin.gif)
+
+## How to use (Open BPMN File)
+
+Just open the BPMN file in your obsidian vault and the BPMN will be editable in fullscreen mode.
 
 ## How to dev
 

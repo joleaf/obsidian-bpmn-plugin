@@ -235,14 +235,14 @@ balanced-match@^1.0.0:
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-bpmn-js@^11.0.1:
-  version "11.0.1"
-  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-11.0.1.tgz"
-  integrity sha512-ZY7XXfjuY1U3XOmiOrAVr4Whv0ENh1Z5tKyd11/gpgEWRr6r/Zo/zg8/s1TYXbw+iv5IdeBTZ64hH6b1sVMe8w==
+bpmn-js@^11.0.5:
+  version "11.0.5"
+  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-11.0.5.tgz"
+  integrity sha512-sm1fEyokRzHZlR2f3Noknqxarf1/neoI/GCROy2b1TX60Ny8kGR6sSRqXvc3PZJ5jd1vBkNv68p7rbATWRmdLQ==
   dependencies:
     bpmn-moddle "^8.0.0"
     css.escape "^1.5.1"
-    diagram-js "^11.1.1"
+    diagram-js "^11.3.0"
     diagram-js-direct-editing "^2.0.0"
     ids "^1.0.0"
     inherits-browser "^0.1.0"
@@ -354,10 +354,10 @@ diagram-js-direct-editing@^2.0.0:
     min-dash "^4.0.0"
     min-dom "^4.0.2"
 
-diagram-js@*, diagram-js@^11.1.1:
-  version "11.1.1"
-  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-11.1.1.tgz"
-  integrity sha512-T2xzwQLeMfqT66Dup7cluozGbZ8R2Pmt3DXjLhaGAdjqpBoxg6huUTdpLEgP4uRUos3mhZqtTm8NOpAKSJg5pA==
+diagram-js@*, diagram-js@^11.3.0:
+  version "11.3.0"
+  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-11.3.0.tgz"
+  integrity sha512-+k3mkt6dQLjBF67K7oNcZuI+lSczX1L/52+clH2RLVwimVb/YkhEmtqTCEpqRRCIVZR09sfdj3+PgjAoIVoZyQ==
   dependencies:
     "@bpmn-io/diagram-js-ui" "^0.2.0"
     clsx "^1.2.1"

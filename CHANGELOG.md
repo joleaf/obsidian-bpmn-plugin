@@ -2,6 +2,12 @@
 
 All changes to this plugin are listed here.
 
+## 0.3.0 (09.12.2022)
+
+### Added
+
+- Basic functionality for editing BPMNs inside Obsidian (#1)
+
 ## 0.2.0 (03.12.2022)
 
 ### Added
