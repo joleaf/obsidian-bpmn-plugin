@@ -12,6 +12,7 @@ interface BpmnNodeParameters {
     zoom: number;
     x: number;
     y: number;
+    forcewhitebackground: boolean;
 }
 
 export default class ObsidianBPMNPlugin extends Plugin {
@@ -56,8 +57,19 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     href.href = parameters.url;
                     href.className = "internal-link";
                 }
-                const bpmnDiv = rootDiv.createEl("div");
-                bpmnDiv.addClass("bpmn-view");
+                const bpmnDiv = rootDiv.createEl("div", {cls: "bpmn-view"});
+                if (parameters.forcewhitebackground) {
+                    bpmnDiv.addClass("bpmn-view-white-background");
+                } else {
+                    // @ts-ignore
+                    const theme = app.getTheme();
+                    if (theme === 'obsidian') {
+                        bpmnDiv.addClass("bpmn-view-obsidian-theme");
+                    } else if (theme === 'moonstone') {
+                        bpmnDiv.addClass("bpmn-view-moonstone-theme");
+                    }
+                }
+                bpmnDiv.addClass();
                 const xml = await this.app.vault.adapter.read(parameters.url);
                 bpmnDiv.setAttribute("style", "height: " + parameters.height + "px;");
                 const bpmn = new BpmnViewer({
@@ -134,6 +146,10 @@ export default class ObsidianBPMNPlugin extends Plugin {
             parameters.y = 0;
         }
         parameters.y *= 10
+
+        if (parameters.forcewhitebackground === undefined) {
+            parameters.forcewhitebackground = this.settings.force_white_background_by_default;
+        }
 
         return parameters;
     }

@@ -1,11 +1,30 @@
 /* Styles */
 
 .bpmn-view {
-    background-color: white;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     cursor: pointer;
+}
+
+/* Dark mode from system */
+@media (prefers-color-scheme: dark) {
+    .bpmn-view {
+        filter: invert(85%);
+    }
+}
+
+.bpmn-view-white-background {
+    background-color: white !important;
+    filter: invert(0%) !important;
+}
+
+.bpmn-view-obsidian-theme {
+    filter: invert(85%);
+}
+
+.bpmn-view-moonstone-theme {
+    filter: invert(0%) !important;
 }
 
 .bpmn-fullscreen {

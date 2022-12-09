@@ -2,6 +2,12 @@
 
 All changes to this plugin are listed here.
 
+## 0.3.1 (09.12.2022)
+
+### Added
+
+- Adapt the background to the current theme (#2)
+
 ## 0.3.0 (09.12.2022)
 
 ### Added

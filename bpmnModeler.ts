@@ -31,6 +31,8 @@ export class BpmnModelerView extends TextFileView {
                 bindTo: this.bpmnDiv.win
             }
         });
+        this.bpmnDiv.addClass("bpmn-view-white-background");
+
         const bpmnModeler = this.bpmnModeler
         const thisRef = this;
         this.bpmnModeler.on("commandStack.changed", function () {
