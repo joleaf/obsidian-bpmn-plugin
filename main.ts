@@ -69,7 +69,6 @@ export default class ObsidianBPMNPlugin extends Plugin {
                         bpmnDiv.addClass("bpmn-view-moonstone-theme");
                     }
                 }
-                bpmnDiv.addClass();
                 const xml = await this.app.vault.adapter.read(parameters.url);
                 bpmnDiv.setAttribute("style", "height: " + parameters.height + "px;");
                 const bpmn = new BpmnViewer({
