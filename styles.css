@@ -35,13 +35,16 @@
     left: 15px !important;
 }
 
-/* ALL FOLLOWING CSS ARE IMPORTED FROM
-https://unpkg.com/bpmn-js@11.0.5/dist/assets/diagram-js.css
-https://unpkg.com/bpmn-js@11.0.5/dist/assets/bpmn-js.css
-https://unpkg.com/bpmn-js@11.0.5/dist/assets/bpmn-font/css/bpmn-embedded.css
- */
+/* IMPORTANT
 
-/* /**
+ALL FOLLOWING CSS ARE IMPORTED.
+DELETE ALL CONTENT FOLLOWING THIS COMMENT AND THEN RUN:
+
+curl https://unpkg.com/bpmn-js@11.1.0/dist/assets/diagram-js.css >> styles.css && \
+curl https://unpkg.com/bpmn-js@11.1.0/dist/assets/bpmn-js.css >> styles.css && \
+curl https://unpkg.com/bpmn-js@11.1.0/dist/assets/bpmn-font/css/bpmn-embedded.css >> styles.css
+ */
+/**
  * color definitions
  */
 .djs-parent {
@@ -1171,7 +1174,6 @@ marker.djs-dragger tspan {
     height: 20px;
     width: 20px;
 }
-
 
 @font-face {
     font-family: 'bpmn';

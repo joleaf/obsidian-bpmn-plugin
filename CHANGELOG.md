@@ -1,6 +1,10 @@
 # Changelog
 
 All changes to this plugin are listed here.
+## 0.3.2 (25.12.2022)
+
+### Changed
+- Update bpmn-js version 11.0.5 -> 11.1.0
 
 ## 0.3.1 (09.12.2022)
 
