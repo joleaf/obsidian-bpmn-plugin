@@ -1,8 +1,7 @@
-import {Plugin, WorkspaceLeaf} from "obsidian";
+import {Plugin, WorkspaceLeaf, parseYaml} from "obsidian";
 import {ObsidianBpmnPluginSettings, ObsidianBpmnPluginSettingsTab} from "./settings";
 import BpmnViewer from "bpmn-js/lib/NavigatedViewer";
 import {BpmnModelerView, VIEW_TYPE_BPMN} from "./bpmnModeler"
-import YAML from 'yaml'
 
 interface BpmnNodeParameters {
     url: string;
@@ -112,7 +111,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
             jsonString = jsonString.replace("]]", ']]"');
         }
 
-        const parameters: BpmnNodeParameters = YAML.parse(jsonString);
+        const parameters: BpmnNodeParameters = parseYaml(jsonString);
 
         //Transform internal Link to external
         if (parameters.url.startsWith("[[")) {
