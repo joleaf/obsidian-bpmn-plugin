@@ -102,7 +102,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     }
                 }).catch(function (err: { warnings: any; message: any; }) {
                     const {warnings, message} = err;
-                    console.log('something went wrong:', warnings, message);
+                    console.error('something went wrong:', warnings, message);
                     bpmn.destroy();
                     rootDiv.createEl("h3", {text: warnings + " " + message});
                 });
@@ -115,6 +115,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
                 }
             } catch (error) {
                 el.createEl("h3", {text: error});
+                console.error(error);
             }
         });
         // Add icon
@@ -128,13 +129,11 @@ export default class ObsidianBPMNPlugin extends Plugin {
             // search for new non-existing file
             for (let i = 1; i < 99; i++) {
                 const newPath = path + "_" + i + ".bpmn";
-                console.log(newPath);
                 if (!(await this.app.vault.adapter.exists(newPath))) {
                     path = newPath;
                     break;
                 }
             }
-            console.log(path);
             let newBpmnContent = emptyBpmn;
             // replace Process ID and Definition ID
             const randomId = (Math.random() + 1).toString(36).substring(7);

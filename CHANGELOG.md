@@ -2,6 +2,11 @@
 
 All changes to this plugin are listed here.
 
+## 0.4.1 (xxxx-xx-xx)
+
+### Changed
+- Optimize logging
+
 ## 0.4.0 (2022-12-31)
 
 ### New
