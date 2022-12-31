@@ -3,6 +3,8 @@
 All changes to this plugin are listed here.
 
 ## 0.4.1 (xxxx-xx-xx)
+### New
+- Modeler: Add Undo & Redo button
 
 ### Changed
 - Optimize logging

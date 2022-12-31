@@ -24,6 +24,8 @@ export class BpmnModelerView extends TextFileView {
 
     async onOpen() {
         let bpmnSave = this.contentEl.createEl("button", {text: "Save"});
+        let bpmnUndo = this.contentEl.createEl("button", {text: "Undo"});
+        let bpmnRedo = this.contentEl.createEl("button", {text: "Redo"});
         this.bpmnDiv = this.contentEl.createEl("div", {cls: "bpmn-view bpmn-fullscreen"});
         this.bpmnModeler = new Modeler({
             container: this.bpmnDiv,
@@ -43,6 +45,12 @@ export class BpmnModelerView extends TextFileView {
         });
         bpmnSave.addEventListener("click", function (e: Event) {
             thisRef.save();
+        });
+        bpmnUndo.addEventListener("click", function (e: Event) {
+            bpmnModeler.get("commandStack").undo();
+        });
+        bpmnRedo.addEventListener("click", function (e: Event) {
+            bpmnModeler.get("commandStack").redo();
         });
     }
 
