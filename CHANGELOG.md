@@ -7,6 +7,7 @@ All changes to this plugin are listed here.
 ### New
 
 - Modeler: Add Undo & Redo button
+- New file: Instant open the new created file in the modeler
 
 ### Changed
 

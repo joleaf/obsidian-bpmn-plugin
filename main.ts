@@ -141,7 +141,11 @@ export default class ObsidianBPMNPlugin extends Plugin {
                 .replace("Process_1", "Process_" + randomId)
                 .replace("BPMNDiagram_1", "BPMNDiagram_" + randomId)
                 .replace("BPMNPlane_1", "BPMNPlane_" + randomId);
-            await this.app.vault.create(path, newBpmnContent);
+            let newBpmnFile = await this.app.vault.create(path, newBpmnContent);
+            let leaf = this.app.workspace.getMostRecentLeaf();
+            if (leaf != null) {
+                await leaf.openFile(newBpmnFile);
+            }
         });
     }
 
