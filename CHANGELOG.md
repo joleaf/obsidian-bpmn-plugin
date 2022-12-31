@@ -3,15 +3,19 @@
 All changes to this plugin are listed here.
 
 ## 0.4.1 (xxxx-xx-xx)
+
 ### New
+
 - Modeler: Add Undo & Redo button
 
 ### Changed
+
 - Optimize logging
 
 ## 0.4.0 (2022-12-31)
 
 ### New
+
 - Ribbon actions for creating a new empty BPMN file
 
 ### Changed
@@ -21,6 +25,7 @@ All changes to this plugin are listed here.
 ## 0.3.2 (2022-12-25)
 
 ### Changed
+
 - Update bpmn-js version 11.0.5 -> 11.1.0
 
 ## 0.3.1 (2022-12-09)
