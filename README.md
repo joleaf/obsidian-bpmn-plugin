@@ -20,8 +20,9 @@ Furthermore, basic editing functions for BPMNs are available as well.
 
 ## How to use (CodeBlock)
 
-1. Add a valid `*.bpmn` file to your vault (e.g., `my-diagram.bpmn`) (e.g., modeled with
-   the [Camunda Modeler](https://camunda.com/de/download/modeler/))
+1. Add a valid `*.bpmn` file to your vault
+    1. E.g. modeled with the [Camunda Modeler](https://camunda.com/de/download/modeler/)
+    2. Create a new BPMN file with the ribbon action icon
 2. Add the BPMN diagram to your note:
 
 ````

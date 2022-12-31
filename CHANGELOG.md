@@ -2,7 +2,10 @@
 
 All changes to this plugin are listed here.
 
-## 0.3.3 (xx.xx.202x)
+## 0.x.x (xx.xx.202x)
+
+### New
+- Ribbon actions for creating a new empty BPMN file
 
 ### Changed
 

@@ -14,6 +14,20 @@ interface BpmnNodeParameters {
     forcewhitebackground: boolean;
 }
 
+const emptyBpmn = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn">\n' +
+    '  <bpmn2:process id="Process_1" isExecutable="false">\n' +
+    '    <bpmn2:startEvent id="StartEvent_1"/>\n' +
+    '  </bpmn2:process>\n' +
+    '  <bpmndi:BPMNDiagram id="BPMNDiagram_1">\n' +
+    '    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">\n' +
+    '      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">\n' +
+    '        <dc:Bounds height="36.0" width="36.0" x="412.0" y="240.0"/>\n' +
+    '      </bpmndi:BPMNShape>\n' +
+    '    </bpmndi:BPMNPlane>\n' +
+    '  </bpmndi:BPMNDiagram>\n' +
+    '</bpmn2:definitions>'
+
 export default class ObsidianBPMNPlugin extends Plugin {
     settings: ObsidianBpmnPluginSettings;
 
@@ -28,8 +42,8 @@ export default class ObsidianBPMNPlugin extends Plugin {
             VIEW_TYPE_BPMN,
             (leaf: WorkspaceLeaf) => new BpmnModelerView(leaf)
         );
+        // Register bpmn extension
         this.registerExtensions(["bpmn"], VIEW_TYPE_BPMN);
-
         // Add code block extension
         this.registerMarkdownCodeBlockProcessor("bpmn", async (src, el, ctx) => {
             // Get Parameters
@@ -102,6 +116,33 @@ export default class ObsidianBPMNPlugin extends Plugin {
             } catch (error) {
                 el.createEl("h3", {text: error});
             }
+        });
+        // Add icon
+        this.addRibbonIcon("file-input", "New BPMN", async () => {
+            let path = "/";
+            const currentFile = this.app.workspace.getActiveFile();
+            if (currentFile != null) {
+                path = currentFile.parent.path + "/";
+            }
+            path += "model";
+            // search for new non-existing file
+            for (let i = 1; i < 99; i++) {
+                const newPath = path + "_" + i + ".bpmn";
+                console.log(newPath);
+                if (!(await this.app.vault.adapter.exists(newPath))) {
+                    path = newPath;
+                    break;
+                }
+            }
+            console.log(path);
+            let newBpmnContent = emptyBpmn;
+            // replace Process ID and Definition ID
+            const randomId = (Math.random() + 1).toString(36).substring(7);
+            newBpmnContent = newBpmnContent
+                .replace("Process_1", "Process_" + randomId)
+                .replace("BPMNDiagram_1", "BPMNDiagram_" + randomId)
+                .replace("BPMNPlane_1", "BPMNPlane_" + randomId);
+            await this.app.vault.create(path, newBpmnContent);
         });
     }
 
