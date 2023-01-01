@@ -40,7 +40,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
         // Add modeler
         this.registerView(
             VIEW_TYPE_BPMN,
-            (leaf: WorkspaceLeaf) => new BpmnModelerView(leaf)
+            (leaf: WorkspaceLeaf) => new BpmnModelerView(leaf, this.settings)
         );
         // Register bpmn extension
         this.registerExtensions(["bpmn"], VIEW_TYPE_BPMN);

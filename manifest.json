@@ -1,7 +1,7 @@
 {
 	"id": "bpmn-plugin",
 	"name": "BPMN Plugin",
-	"version": "0.4.0",
+	"version": "0.5.0",
 	"minAppVersion": "0.15.0",
 	"description": "This plugin enables viewing/editing BPMN diagrams using bpmn-js.",
 	"author": "JoLeaf",

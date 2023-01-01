@@ -2,12 +2,13 @@
 
 All changes to this plugin are listed here.
 
-## 0.4.1 (xxxx-xx-xx)
+## 0.5.0 (2023-01-01)
 
 ### New
 
 - Modeler: Add Undo & Redo button
 - New file: Instant open the new created file in the modeler
+- Properties panel for BPMN modeler
 
 ### Changed
 
