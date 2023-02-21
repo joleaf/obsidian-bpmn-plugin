@@ -79,6 +79,7 @@ export class BpmnModelerView extends TextFileView {
     }
 
     async onClose() {
+        await this.save();
         this.contentEl.empty();
     }
 

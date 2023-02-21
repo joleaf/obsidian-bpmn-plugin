@@ -1,12 +1,14 @@
 import {Plugin, WorkspaceLeaf, parseYaml} from "obsidian";
 import {ObsidianBpmnPluginSettings, ObsidianBpmnPluginSettingsTab} from "./settings";
-import BpmnViewer from "bpmn-js/lib/NavigatedViewer";
+import NavigatedViewer from "bpmn-js/lib/NavigatedViewer";
+import BpmnViewer from "bpmn-js/lib/Viewer";
 import {BpmnModelerView, VIEW_TYPE_BPMN} from "./bpmnModeler"
 
 interface BpmnNodeParameters {
     url: string;
     opendiagram: boolean;
     showzoom: boolean;
+    enablepanzoom: boolean;
     height: number;
     zoom: number;
     x: number;
@@ -84,12 +86,16 @@ export default class ObsidianBPMNPlugin extends Plugin {
                 }
                 const xml = await this.app.vault.adapter.read(parameters.url);
                 bpmnDiv.setAttribute("style", "height: " + parameters.height + "px;");
-                const bpmn = new BpmnViewer({
-                    container: bpmnDiv,
-                    keyboard: {
-                        bindTo: bpmnDiv.win
-                    }
-                });
+                const bpmn = parameters.enablepanzoom ?
+                    new NavigatedViewer({
+                        container: bpmnDiv,
+                        keyboard: {
+                            bindTo: bpmnDiv.win
+                        }
+                    }) :
+                    new BpmnViewer({
+                        container: bpmnDiv,
+                    });
                 const p_zoom = parameters.zoom;
                 const p_x = parameters.x;
                 const p_y = parameters.y;
@@ -106,7 +112,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     bpmn.destroy();
                     rootDiv.createEl("h3", {text: warnings + " " + message});
                 });
-                if (parameters.showzoom) {
+                if (parameters.showzoom && parameters.enablepanzoom) {
                     const zoomDiv = rootDiv.createEl("div");
                     const zoomInBtn = zoomDiv.createEl("button", {"text": "+"});
                     zoomInBtn.addEventListener("click", (e: Event) => bpmn.get('zoomScroll').stepZoom(0.5));
@@ -169,6 +175,10 @@ export default class ObsidianBPMNPlugin extends Plugin {
 
         if (parameters.showzoom === undefined) {
             parameters.showzoom = this.settings.showzoom_by_default;
+        }
+
+        if (parameters.enablepanzoom === undefined) {
+            parameters.enablepanzoom = this.settings.enablepanzoom_by_default;
         }
 
         if (parameters.opendiagram === undefined) {

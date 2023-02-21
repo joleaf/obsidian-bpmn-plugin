@@ -41,6 +41,7 @@ You can customize the view with the following parameters:
 | height               | The height of the rendered canvas.             | [200..1000]                                               |
 | opendiagram          | Show a link to the *.bpmn file.                | True/False                                                |
 | showzoom             | Show the zoom buttons below the canvas.        | True/False                                                |
+| enablepanzoom        | Enable pan and zoom in the codeblock view.     | True/False                                                |
 | zoom                 | Set the zoom level. Default is 'fit-viewport'. | 0.0 - 10.0                                                |
 | x                    | Set the x coordinate, if a zoom value is set.  | 0 - ... (default: 0)                                      |
 | y                    | Set the y coordinate, if a zoom value is set.  | 0 - ... (default: 0)                                      |

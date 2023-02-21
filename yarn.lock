@@ -195,10 +195,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@bpmn-io/diagram-js-ui@^0.2.0":
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/@bpmn-io/diagram-js-ui/-/diagram-js-ui-0.2.1.tgz"
-  integrity sha512-8opVJ0MTc2T6T0/8mVSmnBvdIyYjygSahLZ394A9YprjuCoqnfhxQ4TKZ/M/oN2ynvGt6N2mQv6SOGnRhqUovA==
+"@bpmn-io/diagram-js-ui@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.npmjs.org/@bpmn-io/diagram-js-ui/-/diagram-js-ui-0.2.2.tgz"
+  integrity sha512-IgOIxOwoqsFB2mMPdXtcbPVPjdYkZ3huW7ipowYLhg5jdRGHlBronQ+LER+lfWro6sPtzEsw7qX8D8Yq9M2S5g==
   dependencies:
     htm "^3.1.1"
     preact "^10.11.2"
@@ -874,19 +874,19 @@ bpmn-js-properties-panel@^1.9.0:
     preact-markup "^2.1.1"
     semver-compare "^1.0.0"
 
-bpmn-js@^11.1.0, "bpmn-js@>= 8", "bpmn-js@>= 9":
-  version "11.1.0"
-  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-11.1.0.tgz"
-  integrity sha512-E4jepvYHxEwCVBppi6DYidwvCa0yu94Ho22js5H5a/AKuC4xBf2uoTSzCrEgQP0vwRD3nDMuvsO2B/vLDeEc0w==
+bpmn-js@^11.4.1, "bpmn-js@>= 8", "bpmn-js@>= 9":
+  version "11.4.1"
+  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-11.4.1.tgz"
+  integrity sha512-nTnC7aw81kLet5AUIAsWO6X6nbNFY250x7mC1BLbVCSEg4+LNO5MXpmP6eQHW41j03UuqOIpvmR+a/0w2+FQjQ==
   dependencies:
     bpmn-moddle "^8.0.0"
     css.escape "^1.5.1"
-    diagram-js "^11.4.1"
+    diagram-js "^11.9.1"
     diagram-js-direct-editing "^2.0.0"
     ids "^1.0.0"
     inherits-browser "^0.1.0"
     min-dash "^4.0.0"
-    min-dom "^4.0.2"
+    min-dom "^4.0.3"
     object-refs "^0.3.0"
     tiny-svg "^3.0.0"
 
@@ -1082,12 +1082,12 @@ diagram-js-direct-editing@^2.0.0:
     min-dash "^4.0.0"
     min-dom "^4.0.2"
 
-diagram-js@*, diagram-js@^11.4.1, "diagram-js@>= 7":
-  version "11.4.1"
-  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-11.4.1.tgz"
-  integrity sha512-JYVNwoGZY1Zi/2LoXpPUBLu9dGgEzWNqK4yH6nnGNDfqrtfALK3RaMXFMVrKdmX5XV/DmSMf4qFpu/U/8s7VDw==
+diagram-js@*, diagram-js@^11.9.1, "diagram-js@>= 7":
+  version "11.9.1"
+  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-11.9.1.tgz"
+  integrity sha512-qhqNSCq1k4ftHMJy0czNPlA5rFyccv/TakXrDYOtSpdrPJ0zHqWzZdw9/Of5UpixxPsMkoeu6U7Ox1sXLKRp3Q==
   dependencies:
-    "@bpmn-io/diagram-js-ui" "^0.2.0"
+    "@bpmn-io/diagram-js-ui" "^0.2.2"
     clsx "^1.2.1"
     css.escape "^1.5.1"
     didi "^9.0.0"
@@ -1374,15 +1374,7 @@ find-cache-dir@^3.3.2:
     make-dir "^3.0.2"
     pkg-dir "^4.1.0"
 
-find-up@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/find-up/-/find-up-4.1.0.tgz"
-  integrity sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==
-  dependencies:
-    locate-path "^5.0.0"
-    path-exists "^4.0.0"
-
-find-up@^4.1.0:
+find-up@^4.0.0, find-up@^4.1.0:
   version "4.1.0"
   resolved "https://registry.npmjs.org/find-up/-/find-up-4.1.0.tgz"
   integrity sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==
@@ -2062,12 +2054,7 @@ semver-compare@^1.0.0:
   resolved "https://registry.npmjs.org/semver-compare/-/semver-compare-1.0.0.tgz"
   integrity sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==
 
-semver@^6.0.0:
-  version "6.3.0"
-  resolved "https://registry.npmjs.org/semver/-/semver-6.3.0.tgz"
-  integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
-
-semver@^6.3.0:
+semver@^6.0.0, semver@^6.3.0:
   version "6.3.0"
   resolved "https://registry.npmjs.org/semver/-/semver-6.3.0.tgz"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==

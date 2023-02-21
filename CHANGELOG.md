@@ -2,6 +2,14 @@
 
 All changes to this plugin are listed here.
 
+## 0.6.0 (2023-02-21)
+
+### New
+
+- Update bpmn-js to 11.4.2
+- #3 Autosave on exit editor
+- #4 Add an option to disable pan and zoom when embedding a diagram
+
 ## 0.5.0 (2023-01-01)
 
 ### New

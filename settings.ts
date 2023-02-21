@@ -7,6 +7,7 @@ declare class ObsidianBpmnPlugin extends Plugin {
 export class ObsidianBpmnPluginSettings {
     opendiagram_by_default: boolean = true;
     showzoom_by_default: boolean = true;
+    enablepanzoom_by_default: boolean = true;
     height_by_default: number = 400;
     force_white_background_by_default: boolean = true;
 }
@@ -52,7 +53,14 @@ export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
                     this.plugin.settings.showzoom_by_default = value;
                     this.plugin.saveData(this.plugin.settings);
                 }));
-
+        new Setting(containerEl)
+            .setName("Default enable pan zoom")
+            .setDesc("Set the default for enable pan & zoom")
+            .addToggle(toggle => toggle.setValue(this.plugin.settings.enablepanzoom_by_default)
+                .onChange((value) => {
+                    this.plugin.settings.enablepanzoom_by_default = value;
+                    this.plugin.saveData(this.plugin.settings);
+                }));
         new Setting(containerEl)
             .setName("Default force white background")
             .setDesc("Set the default for forcing a white background")
