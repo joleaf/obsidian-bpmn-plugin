@@ -9,7 +9,7 @@ Furthermore, basic editing functions for BPMNs are available as well.
 ### .. automatically in Obsidian
 
 1. Go to **Community Plugins** in your Obsidian Settings and **disable** Safe Mode
-2. Click on **Browse** and search for "BPMN Plugin"
+2. Click on **Browse** and search for "[BPMN Plugin](obsidian://show-plugin?id=bpmn-plugin)"
 3. Click install
 4. Toggle the plugin on in the **Community Plugins** tab
 
