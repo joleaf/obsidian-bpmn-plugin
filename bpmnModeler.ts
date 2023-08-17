@@ -2,6 +2,7 @@ import Modeler from "bpmn-js/lib/Modeler";
 import {BpmnPropertiesPanelModule, BpmnPropertiesProviderModule} from 'bpmn-js-properties-panel';
 import {TextFileView, WorkspaceLeaf} from "obsidian";
 import {ObsidianBpmnPluginSettings} from "./settings";
+import {SaveSVGResult} from "bpmn-js/lib/BaseViewer";
 
 export const VIEW_TYPE_BPMN = "bpmn-view";
 
@@ -36,6 +37,8 @@ export class BpmnModelerView extends TextFileView {
         let bpmnUndo = this.contentEl.createEl("button", {text: "Undo"});
         let bpmnRedo = this.contentEl.createEl("button", {text: "Redo"});
         let bpmnProperties = this.contentEl.createEl("button", {text: "Properties"});
+        let bpmnSaveSvg = this.contentEl.createEl("button", {text: "Export SVG"});
+        let bpmnSavePng = this.contentEl.createEl("button", {text: "Export PNG"});
         this.bpmnDiv = this.contentEl.createEl("div", {cls: "bpmn-view bpmn-fullscreen"});
         let propertyPanel = this.contentEl.createEl("div", {cls: "bpmn-properties-panel hide"});
         this.bpmnModeler = new Modeler({
@@ -76,6 +79,39 @@ export class BpmnModelerView extends TextFileView {
         bpmnProperties.addEventListener("click", function (e: Event) {
             propertyPanel.classList.toggle("hide");
         });
+        bpmnSaveSvg.addEventListener("click", async function (e: Event) {
+            let result: SaveSVGResult = await bpmnModeler.saveSVG();
+            await thisRef.saveImageFile(result.svg, "svg");
+        });
+
+        // PNG is not working for now
+        bpmnSavePng.addEventListener("click", async function (e: Event) {
+            const svg = (await bpmnModeler.saveSVG()).svg;
+            const pngString = undefined;
+            if (pngString !== undefined) {
+                await thisRef.saveImageFile(pngString, "png");
+            }
+
+        });
+        // HIDE PNG BUTTON, as it is not working right now...
+        bpmnSavePng.hide();
+    }
+
+    async saveImageFile(data: string, format: string) {
+        let path = "/";
+        const currentFile = this.app.workspace.getActiveFile();
+        if (currentFile != null) {
+            path = currentFile.path.replace(".bpmn", "." + format);
+        }
+        const existingFile = await this.app.vault.getAbstractFileByPath(path);
+        if (existingFile !== null) {
+            await this.app.vault.delete(existingFile);
+        }
+        let newFile = await this.app.vault.create(path, data);
+        let leaf = this.app.workspace.getMostRecentLeaf();
+        if (leaf != null) {
+            await leaf.openFile(newFile);
+        }
     }
 
     async onClose() {

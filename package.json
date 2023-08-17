@@ -1,6 +1,6 @@
 {
   "name": "bpmn-plugin",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "This plugin enables viewing/editing BPMN diagrams using bpmn-js.",
   "main": "main.js",
   "scripts": {

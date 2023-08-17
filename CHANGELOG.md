@@ -2,6 +2,17 @@
 
 All changes to this plugin are listed here.
 
+## 0.7.0 (2023-08-17)
+
+### New
+
+- Add "Export to SVG" (#5)
+
+### Updated
+
+- Update bpmn-js to 13.2.2
+- Update colors in dark mode
+
 ## 0.6.1 (2023-05-21)
 
 ### Updated

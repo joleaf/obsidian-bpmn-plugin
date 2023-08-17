@@ -55,6 +55,10 @@ You can customize the view with the following parameters:
 
 Just open the BPMN file in your obsidian vault and the BPMN will be editable in fullscreen mode.
 
+### Features
+- Update properties
+- Export SVG
+
 ## How to dev
 
 1. Clone this repo into the plugin folder of a (non-productive) vault (`.obsidian/plugins/`)
