@@ -2,6 +2,12 @@
 
 All changes to this plugin are listed here.
 
+## 0.7.1 (2023-08-22)
+
+### Updated
+
+- Load css from node module
+
 ## 0.7.0 (2023-08-17)
 
 ### New
