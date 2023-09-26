@@ -119,6 +119,8 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     zoomInBtn.addEventListener("click", (e: Event) => bpmn.get('zoomScroll').stepZoom(0.5));
                     const zoomOutBtn = zoomDiv.createEl("button", {"text": "-"});
                     zoomOutBtn.addEventListener("click", (e: Event) => bpmn.get('zoomScroll').stepZoom(-0.5));
+                    setIcon(zoomInBtn, "zoom-in");
+                    setIcon(zoomOutBtn, "zoom-out");
                 }
             } catch (error) {
                 el.createEl("h3", {text: error});
