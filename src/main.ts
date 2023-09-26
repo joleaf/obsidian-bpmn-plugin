@@ -1,4 +1,4 @@
-import {Plugin, WorkspaceLeaf, parseYaml} from "obsidian";
+import {Plugin, WorkspaceLeaf, parseYaml, setIcon} from "obsidian";
 import {ObsidianBpmnPluginSettings, ObsidianBpmnPluginSettingsTab} from "./settings";
 import NavigatedViewer from "bpmn-js/lib/NavigatedViewer";
 import BpmnViewer from "bpmn-js/lib/Viewer";
@@ -71,6 +71,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     const href = rootDiv.createEl("a", {text: "Open diagram"});
                     href.href = parameters.url;
                     href.className = "internal-link";
+                    setIcon(href, "file-edit");
                 }
                 const bpmnDiv = rootDiv.createEl("div", {cls: "bpmn-view"});
                 if (parameters.forcewhitebackground) {
@@ -128,7 +129,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
         this.addRibbonIcon("file-input", "New BPMN", async () => {
             let path = "/";
             const currentFile = this.app.workspace.getActiveFile();
-            if (currentFile != null) {
+            if (currentFile != null && currentFile.parent != null) {
                 path = currentFile.parent.path + "/";
             }
             path += "model";
