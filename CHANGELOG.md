@@ -2,6 +2,17 @@
 
 All changes to this plugin are listed here.
 
+## 0.8.0 (2023-09-26)
+
+### Updated
+
+- Update bpmn-js to 14.0.0
+- New icons
+
+### Fixed
+
+- #6 - Plugin changed CSS of the new obsidian properties feature
+
 ## 0.7.1 (2023-08-22)
 
 ### Updated
