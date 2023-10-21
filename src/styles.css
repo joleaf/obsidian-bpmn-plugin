@@ -2,6 +2,7 @@
 @import "bpmn-js/dist/assets/bpmn-js.css";
 @import "bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
 @import "bpmn-js-properties-panel/dist/assets/properties-panel.css";
+@import "bpmn-js-properties-panel/dist/assets/element-templates.css";
 /* Styles */
 
 .bpmn-view {
@@ -19,7 +20,7 @@
         color: black !important;
     }
 
-    .bpmn-view > textarea, .bpmn-view > input.metadata-input-text, .bpmn-view > input[type='date'], .bpmn-view > input[type='datetime-local'], .bpmn-view > input[type='text'], .bpmn-view > input[type='search'], .bpmn-view > input[type='email'], .bpmn-view > input[type='password'], .bpmn-view > input[type='number'], .bpmn-view > .bio-properties-panel-input {
+    .bio-properties-panel-input, .bpmn-view textarea, .bpmn-view input.metadata-input-text, .bpmn-view input[type='date'], .bpmn-view input[type='datetime-local'], .bpmn-view input[type='text'], .bpmn-view input[type='search'], .bpmn-view input[type='email'], .bpmn-view input[type='password'], .bpmn-view input[type='number'], .bpmn-view .bio-properties-panel-input {
         background-color: white !important;
         color: black !important;
     }
@@ -47,6 +48,11 @@
     left: 15px !important;
 }
 
+.bpmn-view .djs-popup {
+    top: 0px !important;
+    left: 0px !important;
+}
+
 .bpmn-properties-panel {
     width: 400px;
     position: absolute;
@@ -62,12 +68,12 @@
 
 @font-face {
     font-family: 'bpmn';
-    src: url('https://unpkg.com/bpmn-js@13.2.2/dist/assets/bpmn-font/font/bpmn.eot?21877404');
-    src: url('https://unpkg.com/bpmn-js@13.2.2/dist/assets/bpmn-font/font/bpmn.eot?21877404#iefix') format('embedded-opentype'),
-    url('https://unpkg.com/bpmn-js@13.2.2/dist/assets/bpmn-font/font/bpmn.woff2?21877404') format('woff2'),
-    url('https://unpkg.com/bpmn-js@13.2.2/dist/assets/bpmn-font/font/bpmn.woff?21877404') format('woff'),
-    url('https://unpkg.com/bpmn-js@13.2.2/dist/assets/bpmn-font/font/bpmn.ttf?21877404') format('truetype'),
-    url('https://unpkg.com/bpmn-js@13.2.2/dist/assets/bpmn-font/font/bpmn.svg?21877404#bpmn') format('svg');
+    src: url('https://unpkg.com/bpmn-js@14.0.0/dist/assets/bpmn-font/font/bpmn.eot?21877404');
+    src: url('https://unpkg.com/bpmn-js@14.0.0/dist/assets/bpmn-font/font/bpmn.eot?21877404#iefix') format('embedded-opentype'),
+    url('https://unpkg.com/bpmn-js@14.0.0/dist/assets/bpmn-font/font/bpmn.woff2?21877404') format('woff2'),
+    url('https://unpkg.com/bpmn-js@14.0.0/dist/assets/bpmn-font/font/bpmn.woff?21877404') format('woff'),
+    url('https://unpkg.com/bpmn-js@14.0.0/dist/assets/bpmn-font/font/bpmn.ttf?21877404') format('truetype'),
+    url('https://unpkg.com/bpmn-js@14.0.0/dist/assets/bpmn-font/font/bpmn.svg?21877404#bpmn') format('svg');
     font-weight: normal;
     font-style: normal;
 }

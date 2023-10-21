@@ -2,6 +2,14 @@
 
 All changes to this plugin are listed here.
 
+## 0.9.0 (2023-10-21)
+
+### Updated
+
+- Bump new versions
+- New icons
+- Optional add the Zeebe property panel
+
 ## 0.8.0 (2023-09-26)
 
 ### Updated

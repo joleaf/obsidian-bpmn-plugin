@@ -10,6 +10,7 @@ export class ObsidianBpmnPluginSettings {
     enablepanzoom_by_default: boolean = true;
     height_by_default: number = 400;
     force_white_background_by_default: boolean = true;
+    enable_zeebe_properties: boolean = false;
 }
 
 export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
@@ -67,6 +68,14 @@ export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
             .addToggle(toggle => toggle.setValue(this.plugin.settings.force_white_background_by_default)
                 .onChange((value) => {
                     this.plugin.settings.force_white_background_by_default = value;
+                    this.plugin.saveData(this.plugin.settings);
+                }));
+        new Setting(containerEl)
+            .setName("Enable Zeebe properties")
+            .setDesc("Add the Zeebe properties in the property box. (Warning: Beta)")
+            .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_zeebe_properties)
+                .onChange((value) => {
+                    this.plugin.settings.enable_zeebe_properties = value;
                     this.plugin.saveData(this.plugin.settings);
                 }));
     }

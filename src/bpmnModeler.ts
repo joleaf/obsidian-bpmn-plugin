@@ -1,6 +1,10 @@
 import Modeler from "bpmn-js/lib/Modeler";
-import {BpmnPropertiesPanelModule, BpmnPropertiesProviderModule} from 'bpmn-js-properties-panel';
-import {TextFileView, WorkspaceLeaf} from "obsidian";
+import {
+    BpmnPropertiesPanelModule,
+    BpmnPropertiesProviderModule,
+    ZeebePropertiesProviderModule
+} from 'bpmn-js-properties-panel';
+import {setIcon, TextFileView, WorkspaceLeaf} from "obsidian";
 import {ObsidianBpmnPluginSettings} from "./settings";
 import {SaveSVGResult} from "bpmn-js/lib/BaseViewer";
 
@@ -33,14 +37,30 @@ export class BpmnModelerView extends TextFileView {
     }
 
     async onOpen() {
-        let bpmnSave = this.contentEl.createEl("button", {text: "Save"});
-        let bpmnUndo = this.contentEl.createEl("button", {text: "Undo"});
-        let bpmnRedo = this.contentEl.createEl("button", {text: "Redo"});
-        let bpmnProperties = this.contentEl.createEl("button", {text: "Properties"});
-        let bpmnSaveSvg = this.contentEl.createEl("button", {text: "Export SVG"});
-        let bpmnSavePng = this.contentEl.createEl("button", {text: "Export PNG"});
+        let bpmnSave = this.contentEl.createEl("button", {text: "Save", attr: {"aria-label": "Save"}});
+        let bpmnUndo = this.contentEl.createEl("button", {text: "Undo", attr: {"aria-label": "Undo"}});
+        let bpmnRedo = this.contentEl.createEl("button", {text: "Redo", attr: {"aria-label": "Redo"}});
+        let bpmnProperties = this.contentEl.createEl("button", {
+            text: "Properties",
+            attr: {"aria-label": "Show properties"}
+        });
+        let bpmnSaveSvg = this.contentEl.createEl("button", {
+            text: "Export SVG",
+            attr: {"aria-label": "Export as SVG"}
+        });
+        let bpmnSavePng = this.contentEl.createEl("button", {
+            text: "Export PNG",
+            attr: {"aria-label": "Export as PNG"}
+        });
         this.bpmnDiv = this.contentEl.createEl("div", {cls: "bpmn-view bpmn-fullscreen"});
         let propertyPanel = this.contentEl.createEl("div", {cls: "bpmn-properties-panel hide"});
+        let modules = [
+            BpmnPropertiesPanelModule,
+            BpmnPropertiesProviderModule
+        ];
+        if (this.settings.enable_zeebe_properties) {
+            modules.push(ZeebePropertiesProviderModule)
+        }
         this.bpmnModeler = new Modeler({
             container: this.bpmnDiv,
             keyboard: {
@@ -49,11 +69,7 @@ export class BpmnModelerView extends TextFileView {
             propertiesPanel: {
                 parent: propertyPanel
             },
-            additionalModules: [
-                BpmnPropertiesPanelModule,
-                BpmnPropertiesProviderModule
-                // TODO: Add camunda properties (if requested?) https://github.com/bpmn-io/bpmn-js-examples/tree/master/properties-panel
-            ]
+            additionalModules: modules
         });
         if (this.settings.force_white_background_by_default) {
             this.bpmnDiv.addClass("bpmn-view-white-background");
@@ -70,19 +86,24 @@ export class BpmnModelerView extends TextFileView {
         bpmnSave.addEventListener("click", function (e: Event) {
             thisRef.save();
         });
+        setIcon(bpmnSave, "save");
         bpmnUndo.addEventListener("click", function (e: Event) {
             bpmnModeler.get("commandStack").undo();
         });
+        setIcon(bpmnUndo, "undo");
         bpmnRedo.addEventListener("click", function (e: Event) {
             bpmnModeler.get("commandStack").redo();
         });
+        setIcon(bpmnRedo, "redo");
         bpmnProperties.addEventListener("click", function (e: Event) {
             propertyPanel.classList.toggle("hide");
         });
+        setIcon(bpmnProperties, "settings");
         bpmnSaveSvg.addEventListener("click", async function (e: Event) {
             let result: SaveSVGResult = await bpmnModeler.saveSVG();
             await thisRef.saveImageFile(result.svg, "svg");
         });
+        setIcon(bpmnSaveSvg, "image");
 
         // PNG is not working for now
         bpmnSavePng.addEventListener("click", async function (e: Event) {
