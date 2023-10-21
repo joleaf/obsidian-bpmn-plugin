@@ -24,6 +24,6 @@
   "dependencies": {
     "bpmn-js": "^14.0.0",
     "@bpmn-io/properties-panel": "^3.7.1",
-    "bpmn-js-properties-panel": "^4.0.2"
+    "bpmn-js-properties-panel": "^5.6.0"
   }
 }
