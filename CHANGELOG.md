@@ -2,6 +2,12 @@
 
 All changes to this plugin are listed here.
 
+## 0.9.2 (2023-11-01)
+
+### Updated
+
+- Bump bpmn-js to 15.0.0
+
 ## 0.9.1 (2023-10-21)
 
 ### Updated
