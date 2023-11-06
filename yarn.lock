@@ -412,13 +412,13 @@ bpmn-js-properties-panel@^5.6.0:
     semver-compare "^1.0.0"
     uuid "^9.0.0"
 
-bpmn-js@^15.0.0:
-  version "15.0.0"
-  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-15.0.0.tgz"
-  integrity sha512-Pu5snPjo3UBFVu0HIveqLjlM3AfL8ZKiazHhs32Z32yGY0lOdWsSsToGsf/+J8rNfxKOXCme2Dc0ajPCU+dyxA==
+bpmn-js@^15.1.2:
+  version "15.1.2"
+  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-15.1.2.tgz#a151f7bc3464bb19178660f706efe59e66579e97"
+  integrity sha512-6VVBQnz+WRuJqz7UJ8cBi7Twu5UF8gGKuF/RO51/f9NjNTy62S7Ro606TT6jhNs74Drhsk6SPiBJakv6UzuHwQ==
   dependencies:
     bpmn-moddle "^8.0.1"
-    diagram-js "^12.6.0"
+    diagram-js "^12.7.1"
     diagram-js-direct-editing "^2.0.0"
     ids "^1.0.5"
     inherits-browser "^0.1.0"
@@ -483,10 +483,10 @@ diagram-js-direct-editing@^2.0.0:
     min-dash "^4.0.0"
     min-dom "^4.0.2"
 
-diagram-js@^12.6.0:
-  version "12.7.0"
-  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-12.7.0.tgz"
-  integrity sha512-w/FGYFEpA6QqBBUah2mrJkTKpxxWCeH+fW4kV7vEQLPj0ChNwm49gbKVX+0zRhJhakBmjgbX2zfpvEJbEcuU2g==
+diagram-js@^12.7.1:
+  version "12.7.1"
+  resolved "https://registry.yarnpkg.com/diagram-js/-/diagram-js-12.7.1.tgz#8cf8f1b1e265256855dfa5d51831a659eda067b7"
+  integrity sha512-g5TqtbrTTIMepyrIXuRy7xS6paHnvnQajclm/rMJxGZp7/9kAK5zxELmvS0r+Z2S18h17eaDRxtsmosBVuOTcQ==
   dependencies:
     "@bpmn-io/diagram-js-ui" "^0.2.2"
     clsx "^2.0.0"
