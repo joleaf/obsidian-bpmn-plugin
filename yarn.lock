@@ -434,10 +434,10 @@ array-union@^2.1.0:
   resolved "https://registry.npmjs.org/array-union/-/array-union-2.1.0.tgz"
   integrity sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==
 
-bpmn-js-properties-panel@^5.6.1:
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/bpmn-js-properties-panel/-/bpmn-js-properties-panel-5.6.1.tgz#764c2413836dd2d29cc22ff8588ab11a5949af0e"
-  integrity sha512-UzW2/O7HsBNoYYSDA0Rc9CWnyTfMmxliwlsA3aTPVwvVQAkCiU2O3OBsX+XiX5INK2/0RLF7hfNRlO3Ef2h5bw==
+bpmn-js-properties-panel@^5.7.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/bpmn-js-properties-panel/-/bpmn-js-properties-panel-5.7.0.tgz#19412ba53e4bd0e9a82b78c77ac97303cdcb2cea"
+  integrity sha512-6dbMf69FthXP+J3rLzN0ot88n55fyoVLMFO0vX2/yI1fgzhvi14TTOvZEYGi7KVvJIQDPV5YYtxSytUL3t0B9A==
   dependencies:
     "@bpmn-io/extract-process-variables" "^0.8.0"
     array-move "^3.0.1"
