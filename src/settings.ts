@@ -10,6 +10,7 @@ export class ObsidianBpmnPluginSettings {
     enablepanzoom_by_default: boolean = true;
     height_by_default: number = 400;
     force_white_background_by_default: boolean = true;
+    enable_token_simulator: boolean = true;
     enable_zeebe_properties: boolean = false;
 }
 
@@ -68,6 +69,14 @@ export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
             .addToggle(toggle => toggle.setValue(this.plugin.settings.force_white_background_by_default)
                 .onChange((value) => {
                     this.plugin.settings.force_white_background_by_default = value;
+                    this.plugin.saveData(this.plugin.settings);
+                }));
+        new Setting(containerEl)
+            .setName("Enable Token Simulator")
+            .setDesc("Add a token simulator to the BPMN modeler.")
+            .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_token_simulator)
+                .onChange((value) => {
+                    this.plugin.settings.enable_token_simulator = value;
                     this.plugin.saveData(this.plugin.settings);
                 }));
         new Setting(containerEl)

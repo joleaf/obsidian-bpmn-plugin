@@ -1,6 +1,6 @@
 {
   "name": "bpmn",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This plugin enables viewing/editing BPMN diagrams using bpmn-js.",
   "main": "main.js",
   "scripts": {
@@ -22,8 +22,9 @@
     "typescript": "5.3.3"
   },
   "dependencies": {
-    "bpmn-js": "^16.4.0",
     "@bpmn-io/properties-panel": "^3.16.0",
-    "bpmn-js-properties-panel": "^5.7.0"
+    "bpmn-js": "^16.4.0",
+    "bpmn-js-properties-panel": "^5.7.0",
+    "bpmn-js-token-simulation": "^0.33.0"
   }
 }

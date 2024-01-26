@@ -3,6 +3,7 @@
 @import "bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
 @import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
 @import '@bpmn-io/properties-panel/assets/properties-panel.css';
+@import 'bpmn-js-token-simulation/assets/css/bpmn-js-token-simulation.css';
 /* Styles */
 
 .bpmn-view {
@@ -46,6 +47,7 @@
 
 .bjs-powered-by {
     left: 15px !important;
+    display: inline-table;
 }
 
 .bpmn-view .djs-popup {

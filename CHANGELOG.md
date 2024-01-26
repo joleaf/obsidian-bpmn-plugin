@@ -2,6 +2,12 @@
 
 All changes to this plugin are listed here.
 
+## 1.1.0 (2024-01-26)
+
+### New
+
+- Token Simulation 
+
 ## 1.0.0 (2024-01-26)
 
 ### Updated

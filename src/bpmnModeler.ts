@@ -7,6 +7,7 @@ import {
 import {setIcon, TextFileView, WorkspaceLeaf} from "obsidian";
 import {ObsidianBpmnPluginSettings} from "./settings";
 import {SaveSVGResult} from "bpmn-js/lib/BaseViewer";
+import TokenSimulationModule from "bpmn-js-token-simulation";
 
 export const VIEW_TYPE_BPMN = "bpmn-view";
 
@@ -52,14 +53,17 @@ export class BpmnModelerView extends TextFileView {
             text: "Export PNG",
             attr: {"aria-label": "Export as PNG"}
         });
-        this.bpmnDiv = this.contentEl.createEl("div", {cls: "bpmn-view bpmn-fullscreen"});
+        this.bpmnDiv = this.contentEl.createEl("div", {cls: "bpmn-view"});
         let propertyPanel = this.contentEl.createEl("div", {cls: "bpmn-properties-panel hide"});
         let modules = [
             BpmnPropertiesPanelModule,
-            BpmnPropertiesProviderModule
+            BpmnPropertiesProviderModule,
         ];
         if (this.settings.enable_zeebe_properties) {
-            modules.push(ZeebePropertiesProviderModule)
+            modules.push(ZeebePropertiesProviderModule);
+        }
+        if (this.settings.enable_token_simulator) {
+            modules.push(TokenSimulationModule);
         }
         this.bpmnModeler = new Modeler({
             container: this.bpmnDiv,
