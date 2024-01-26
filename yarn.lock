@@ -355,9 +355,9 @@ bpmn-js-properties-panel@^5.7.0:
     min-dash "^4.1.1"
     min-dom "^4.1.0"
 
-bpmn-js@^16.3.0:
-  version "16.3.0"
-  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-16.3.0.tgz"
+bpmn-js@^16.4.0:
+  version "16.4.0"
+  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-16.4.0.tgz#127aa90188e1348312446ea5b81f97089047664f"
   dependencies:
     bpmn-moddle "^8.1.0"
     diagram-js "^13.4.0"
