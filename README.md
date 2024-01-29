@@ -2,14 +2,16 @@
 
 This plugin lets you view BPMN diagrams interactively in your [Obsidian](https://www.obsidian.md) notes.
 The viewer is based on the [bpmn-js](https://github.com/bpmn-io/bpmn-js) library.
-Furthermore, basic editing functions for BPMNs are available as well.
+Furthermore, basic editing functions for BPMNs are available as well. 
+
+**NEW Feature:** Token Simulation!
 
 ## Install ..
 
 ### .. automatically in Obsidian
 
 1. Go to **Community Plugins** in your Obsidian Settings and **disable** Safe Mode
-2. Click on **Browse** and search for "[BPMN Plugin](obsidian://show-plugin?id=bpmn-plugin)"
+2. Click on **Browse** and search for "[BPMN](obsidian://show-plugin?id=bpmn-plugin)"
 3. Click install
 4. Toggle the plugin on in the **Community Plugins** tab
 
