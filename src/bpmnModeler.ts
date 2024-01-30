@@ -9,6 +9,8 @@ import {ObsidianBpmnPluginSettings} from "./settings";
 import {SaveSVGResult} from "bpmn-js/lib/BaseViewer";
 import TokenSimulationModule from "bpmn-js-token-simulation";
 import BpmnColorPickerModule from "bpmn-js-color-picker";
+// @ts-ignore
+import gridModule from 'diagram-js-grid';
 
 export const VIEW_TYPE_BPMN = "bpmn-view";
 
@@ -56,12 +58,13 @@ export class BpmnModelerView extends TextFileView {
             text: "Export PNG",
             attr: {"aria-label": "Export as PNG"}
         });
-        this.bpmnDiv = contentEl.createEl("div", {cls: "bpmn-view"});
+        this.bpmnDiv = contentEl.createEl("div", {cls: "bpmn-view bpmn-view-modeler"});
         let propertyPanel = contentEl.createEl("div", {cls: "bpmn-properties-panel hide"});
         let modules = [
             BpmnPropertiesPanelModule,
             BpmnPropertiesProviderModule,
-            BpmnColorPickerModule
+            BpmnColorPickerModule,
+            gridModule
         ];
         if (this.settings.enable_zeebe_properties) {
             modules.push(ZeebePropertiesProviderModule);

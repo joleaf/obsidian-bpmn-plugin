@@ -18,7 +18,11 @@
 .bpmn-view {
     cursor: pointer;
     width: 100%;
+}
+
+.bpmn-view-modeler {
     flex: 1;
+    border: 1px dashed #212121;
 }
 
 /* Dark mode from system */

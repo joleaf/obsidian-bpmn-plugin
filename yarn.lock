@@ -556,6 +556,14 @@
     "min-dash" "^4.0.0"
     "min-dom" "^4.0.2"
 
+"diagram-js-grid@^1.0.0":
+  "integrity" "sha512-h3fCeoRnjNXaa4DW2upsKZv4xZvrI29zdSQwYb//nngNpAl1BgxTTI3Wb++AFmDFi1RydVH+TzRmpWvVyl4u8Q=="
+  "resolved" "https://registry.npmjs.org/diagram-js-grid/-/diagram-js-grid-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "min-dash" "^4.1.1"
+    "tiny-svg" "^3.0.1"
+
 "diagram-js@*", "diagram-js@^13.4.0", "diagram-js@>= 11.9":
   "integrity" "sha512-JI6UI74J3TgRcgBhuZZJso//bUdh22rcVu9XSf1EBVisKPt9c+woKzOrr/79OutXvft+1NOLNEiBg58kZ8p7+Q=="
   "resolved" "https://registry.npmjs.org/diagram-js/-/diagram-js-13.4.0.tgz"
