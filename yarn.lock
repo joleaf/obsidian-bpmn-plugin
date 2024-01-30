@@ -564,6 +564,16 @@
     "min-dash" "^4.1.1"
     "tiny-svg" "^3.0.1"
 
+"diagram-js-minimap@^4.1.0":
+  "integrity" "sha512-osuQ7ETbhmlqoMU2g7OsXRYEeyXJihGbhv5WtcsSAN4vvxSrqZm7ndwXoHPV1Q1j3e2kfOuBRU2X4WUG0qewig=="
+  "resolved" "https://registry.npmjs.org/diagram-js-minimap/-/diagram-js-minimap-4.1.0.tgz"
+  "version" "4.1.0"
+  dependencies:
+    "hammerjs" "^2.0.8"
+    "min-dash" "^4.0.0"
+    "min-dom" "^4.1.0"
+    "tiny-svg" "^3.0.0"
+
 "diagram-js@*", "diagram-js@^13.4.0", "diagram-js@>= 11.9":
   "integrity" "sha512-JI6UI74J3TgRcgBhuZZJso//bUdh22rcVu9XSf1EBVisKPt9c+woKzOrr/79OutXvft+1NOLNEiBg58kZ8p7+Q=="
   "resolved" "https://registry.npmjs.org/diagram-js/-/diagram-js-13.4.0.tgz"
@@ -924,7 +934,7 @@
   "resolved" "https://registry.npmjs.org/graphemer/-/graphemer-1.4.0.tgz"
   "version" "1.4.0"
 
-"hammerjs@^2.0.1":
+"hammerjs@^2.0.1", "hammerjs@^2.0.8":
   "integrity" "sha512-tSQXBXS/MWQOn/RKckawJ61vvsDpCom87JgxiYdGwHdOa0ht0vzUWDlfioofFCRU0L+6NGDt6XzbgoJvZkMeRQ=="
   "resolved" "https://registry.npmjs.org/hammerjs/-/hammerjs-2.0.8.tgz"
   "version" "2.0.8"

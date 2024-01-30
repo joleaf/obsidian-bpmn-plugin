@@ -11,6 +11,7 @@ import TokenSimulationModule from "bpmn-js-token-simulation";
 import BpmnColorPickerModule from "bpmn-js-color-picker";
 // @ts-ignore
 import gridModule from 'diagram-js-grid';
+import minimapModule from 'diagram-js-minimap';
 
 export const VIEW_TYPE_BPMN = "bpmn-view";
 
@@ -64,7 +65,8 @@ export class BpmnModelerView extends TextFileView {
             BpmnPropertiesPanelModule,
             BpmnPropertiesProviderModule,
             BpmnColorPickerModule,
-            gridModule
+            gridModule,
+            minimapModule
         ];
         if (this.settings.enable_zeebe_properties) {
             modules.push(ZeebePropertiesProviderModule);
