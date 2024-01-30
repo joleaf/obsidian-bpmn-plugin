@@ -39,23 +39,25 @@ export class BpmnModelerView extends TextFileView {
     }
 
     async onOpen() {
-        let bpmnSave = this.contentEl.createEl("button", {text: "Save", attr: {"aria-label": "Save"}});
-        let bpmnUndo = this.contentEl.createEl("button", {text: "Undo", attr: {"aria-label": "Undo"}});
-        let bpmnRedo = this.contentEl.createEl("button", {text: "Redo", attr: {"aria-label": "Redo"}});
-        let bpmnProperties = this.contentEl.createEl("button", {
+        let contentEl = this.contentEl.createEl("div", {cls: "bpmn-content"});
+        let buttonbar = contentEl.createEl("div");
+        let bpmnSave = buttonbar.createEl("button", {text: "Save", attr: {"aria-label": "Save"}});
+        let bpmnUndo = buttonbar.createEl("button", {text: "Undo", attr: {"aria-label": "Undo"}});
+        let bpmnRedo = buttonbar.createEl("button", {text: "Redo", attr: {"aria-label": "Redo"}});
+        let bpmnProperties = buttonbar.createEl("button", {
             text: "Properties",
             attr: {"aria-label": "Show properties"}
         });
-        let bpmnSaveSvg = this.contentEl.createEl("button", {
+        let bpmnSaveSvg = buttonbar.createEl("button", {
             text: "Export SVG",
             attr: {"aria-label": "Export as SVG"}
         });
-        let bpmnSavePng = this.contentEl.createEl("button", {
+        let bpmnSavePng = buttonbar.createEl("button", {
             text: "Export PNG",
             attr: {"aria-label": "Export as PNG"}
         });
-        this.bpmnDiv = this.contentEl.createEl("div", {cls: "bpmn-view"});
-        let propertyPanel = this.contentEl.createEl("div", {cls: "bpmn-properties-panel hide"});
+        this.bpmnDiv = contentEl.createEl("div", {cls: "bpmn-view"});
+        let propertyPanel = contentEl.createEl("div", {cls: "bpmn-properties-panel hide"});
         let modules = [
             BpmnPropertiesPanelModule,
             BpmnPropertiesProviderModule,

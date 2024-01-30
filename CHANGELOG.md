@@ -8,6 +8,10 @@ All changes to this plugin are listed here.
 
 - Color picker for BPMN elements
 
+### Fixes
+
+- Fixes the scroll problem in the modeler
+
 ## 1.1.0 (2024-01-26)
 
 ### New
