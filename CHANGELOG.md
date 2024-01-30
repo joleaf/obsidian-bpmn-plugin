@@ -2,6 +2,12 @@
 
 All changes to this plugin are listed here.
 
+## 1.2.0 (2024-01-30)
+
+### New
+
+- Color picker for BPMN elements
+
 ## 1.1.0 (2024-01-26)
 
 ### New

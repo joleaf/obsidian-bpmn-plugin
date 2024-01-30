@@ -395,6 +395,11 @@
   "resolved" "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
   "version" "1.0.2"
 
+"bpmn-js-color-picker@^0.7.0":
+  "integrity" "sha512-oS/cmyDpOUWuoZxmf3g+seFKFa+uAmbwW7PHWtX6AQjl2J0l2XJsIOf40UVdesG8LISTHr+ENxWykyOKbe2Rbw=="
+  "resolved" "https://registry.npmjs.org/bpmn-js-color-picker/-/bpmn-js-color-picker-0.7.0.tgz"
+  "version" "0.7.0"
+
 "bpmn-js-properties-panel@^5.8.0":
   "integrity" "sha512-aHBB6FFpCP7dv+M98C9zoioq0qVary5x7w+6ZPiLM4WJSuHheFoaJnnzb001CVt5y/SPwP4ICBKBm07MfVU2LA=="
   "resolved" "https://registry.npmjs.org/bpmn-js-properties-panel/-/bpmn-js-properties-panel-5.11.0.tgz"
@@ -416,7 +421,7 @@
     "min-dom" "^4.0.3"
     "randomcolor" "^0.6.2"
 
-"bpmn-js@^16.4.0", "bpmn-js@>= 11.5", "bpmn-js@>= 9":
+"bpmn-js@^16.4.0", "bpmn-js@>= 11.5", "bpmn-js@>= 14", "bpmn-js@>= 9":
   "integrity" "sha512-5hkEvQqOaujZqG+BvY2WULCJVmqA5vDbL9NE9LhMpOCfaSdAKaKBo/WzLP+AGF2XwLRjjD2pjh3eZlA1D7kikg=="
   "resolved" "https://registry.npmjs.org/bpmn-js/-/bpmn-js-16.4.0.tgz"
   "version" "16.4.0"

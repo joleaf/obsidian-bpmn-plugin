@@ -8,6 +8,7 @@ import {setIcon, TextFileView, WorkspaceLeaf} from "obsidian";
 import {ObsidianBpmnPluginSettings} from "./settings";
 import {SaveSVGResult} from "bpmn-js/lib/BaseViewer";
 import TokenSimulationModule from "bpmn-js-token-simulation";
+import BpmnColorPickerModule from "bpmn-js-color-picker";
 
 export const VIEW_TYPE_BPMN = "bpmn-view";
 
@@ -58,6 +59,7 @@ export class BpmnModelerView extends TextFileView {
         let modules = [
             BpmnPropertiesPanelModule,
             BpmnPropertiesProviderModule,
+            BpmnColorPickerModule
         ];
         if (this.settings.enable_zeebe_properties) {
             modules.push(ZeebePropertiesProviderModule);
