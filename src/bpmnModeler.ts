@@ -66,13 +66,15 @@ export class BpmnModelerView extends TextFileView {
             BpmnPropertiesProviderModule,
             BpmnColorPickerModule,
             gridModule,
-            minimapModule
         ];
         if (this.settings.enable_zeebe_properties) {
             modules.push(ZeebePropertiesProviderModule);
         }
         if (this.settings.enable_token_simulator) {
             modules.push(TokenSimulationModule);
+        }
+        if (this.settings.enable_minimap) {
+            modules.push(minimapModule);
         }
         this.bpmnModeler = new Modeler({
             container: this.bpmnDiv,
