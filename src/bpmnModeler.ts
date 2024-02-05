@@ -65,7 +65,6 @@ export class BpmnModelerView extends TextFileView {
             BpmnPropertiesPanelModule,
             BpmnPropertiesProviderModule,
             BpmnColorPickerModule,
-            gridModule,
         ];
         if (this.settings.enable_zeebe_properties) {
             modules.push(ZeebePropertiesProviderModule);
@@ -75,6 +74,9 @@ export class BpmnModelerView extends TextFileView {
         }
         if (this.settings.enable_minimap) {
             modules.push(minimapModule);
+        }
+        if (this.settings.enable_grid) {
+            modules.push(gridModule);
         }
         this.bpmnModeler = new Modeler({
             container: this.bpmnDiv,

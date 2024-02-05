@@ -2,7 +2,7 @@
 
 This plugin lets you view BPMN diagrams interactively in your [Obsidian](https://www.obsidian.md) notes.
 The viewer is based on the [bpmn-js](https://github.com/bpmn-io/bpmn-js) library.
-Furthermore, basic editing functions for BPMNs are available as well. 
+Furthermore, basic editing functions for BPMNs are available as well.
 
 **NEW Feature:** Token Simulation!
 
@@ -39,11 +39,11 @@ You can customize the view with the following parameters:
 
 | Parameter            | Description                                    | Values                                                    |
 |----------------------|------------------------------------------------|-----------------------------------------------------------|
-| url                  | The url of the *.bpmn file (required).         | Relative/Absolute path, or "[[*.bpmn]]" as markdown link. |
+| url                  | The url of the *.bpmn file (required).         | Relative/Absolute path, or as "[[*.bpmn]]" markdown link. |
 | height               | The height of the rendered canvas.             | [200..1000]                                               |
 | opendiagram          | Show a link to the *.bpmn file.                | True/False                                                |
 | showzoom             | Show the zoom buttons below the canvas.        | True/False                                                |
-| enablepanzoom        | Enable pan and zoom in the codeblock view.     | True/False                                                |
+| enablepanzoom        | Enable pan and zoom.                           | True/False                                                |
 | zoom                 | Set the zoom level. Default is 'fit-viewport'. | 0.0 - 10.0                                                |
 | x                    | Set the x coordinate, if a zoom value is set.  | 0 - ... (default: 0)                                      |
 | y                    | Set the y coordinate, if a zoom value is set.  | 0 - ... (default: 0)                                      |
@@ -58,6 +58,7 @@ You can customize the view with the following parameters:
 Just open the BPMN file in your obsidian vault and the BPMN will be editable in fullscreen mode.
 
 ### Features
+
 - Update properties
 - Export SVG
 
