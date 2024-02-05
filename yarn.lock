@@ -23,41 +23,41 @@
   dependencies:
     min-dash "^4.0.0"
 
-"@bpmn-io/feel-editor@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/@bpmn-io/feel-editor/-/feel-editor-1.1.0.tgz"
+"@bpmn-io/feel-editor@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@bpmn-io/feel-editor/-/feel-editor-1.2.0.tgz#b0434f697cd8059f7d3deb55c4e45b01885e6175"
   dependencies:
-    "@bpmn-io/feel-lint" "^1.1.0"
-    "@codemirror/autocomplete" "^6.3.2"
-    "@codemirror/commands" "^6.3.2"
-    "@codemirror/language" "^6.3.1"
+    "@bpmn-io/feel-lint" "^1.2.0"
+    "@codemirror/autocomplete" "^6.12.0"
+    "@codemirror/commands" "^6.3.3"
+    "@codemirror/language" "^6.10.0"
     "@codemirror/lint" "^6.4.2"
-    "@codemirror/state" "^6.3.3"
-    "@codemirror/view" "^6.5.1"
+    "@codemirror/state" "^6.4.0"
+    "@codemirror/view" "^6.23.0"
     "@lezer/highlight" "^1.2.0"
     lang-feel "^2.0.0"
     min-dom "^4.1.0"
 
-"@bpmn-io/feel-lint@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/@bpmn-io/feel-lint/-/feel-lint-1.1.0.tgz"
+"@bpmn-io/feel-lint@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@bpmn-io/feel-lint/-/feel-lint-1.2.0.tgz#58c5c693e4985d3e621659648dffb89e2043999d"
   dependencies:
     "@codemirror/language" "^6.8.0"
-    lezer-feel "^1.2.0"
+    lezer-feel "^1.2.3"
 
-"@bpmn-io/properties-panel@^3.16.0":
-  version "3.16.0"
-  resolved "https://registry.npmjs.org/@bpmn-io/properties-panel/-/properties-panel-3.16.0.tgz"
+"@bpmn-io/properties-panel@^3.18.1":
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/@bpmn-io/properties-panel/-/properties-panel-3.18.1.tgz#56c0ed44fd9f130fda3edb94cb7495498458b6a7"
   dependencies:
-    "@bpmn-io/feel-editor" "^1.1.0"
+    "@bpmn-io/feel-editor" "^1.2.0"
     "@codemirror/view" "^6.14.0"
     classnames "^2.3.1"
-    feelers "^1.2.0"
+    feelers "^1.3.0"
     focus-trap "^7.5.2"
     min-dash "^4.1.1"
     min-dom "^4.0.3"
 
-"@codemirror/autocomplete@^6.10.1", "@codemirror/autocomplete@^6.3.2", "@codemirror/autocomplete@^6.9.1":
+"@codemirror/autocomplete@^6.10.1", "@codemirror/autocomplete@^6.9.1":
   version "6.10.2"
   resolved "https://registry.npmjs.org/@codemirror/autocomplete/-/autocomplete-6.10.2.tgz"
   dependencies:
@@ -66,12 +66,30 @@
     "@codemirror/view" "^6.17.0"
     "@lezer/common" "^1.0.0"
 
-"@codemirror/commands@^6.3.0", "@codemirror/commands@^6.3.2":
+"@codemirror/autocomplete@^6.12.0":
+  version "6.12.0"
+  resolved "https://registry.yarnpkg.com/@codemirror/autocomplete/-/autocomplete-6.12.0.tgz#3fa620a8a3f42ded7751749916e8375f6bbbb333"
+  dependencies:
+    "@codemirror/language" "^6.0.0"
+    "@codemirror/state" "^6.0.0"
+    "@codemirror/view" "^6.17.0"
+    "@lezer/common" "^1.0.0"
+
+"@codemirror/commands@^6.3.0":
   version "6.3.2"
   resolved "https://registry.npmjs.org/@codemirror/commands/-/commands-6.3.2.tgz"
   dependencies:
     "@codemirror/language" "^6.0.0"
     "@codemirror/state" "^6.2.0"
+    "@codemirror/view" "^6.0.0"
+    "@lezer/common" "^1.1.0"
+
+"@codemirror/commands@^6.3.3":
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/@codemirror/commands/-/commands-6.3.3.tgz#03face5bf5f3de0fc4e09b177b3c91eda2ceb7e9"
+  dependencies:
+    "@codemirror/language" "^6.0.0"
+    "@codemirror/state" "^6.4.0"
     "@codemirror/view" "^6.0.0"
     "@lezer/common" "^1.1.0"
 
@@ -86,6 +104,17 @@
     "@lezer/lr" "^1.0.0"
     style-mod "^4.0.0"
 
+"@codemirror/language@^6.10.0":
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/@codemirror/language/-/language-6.10.1.tgz#428c932a158cb75942387acfe513c1ece1090b05"
+  dependencies:
+    "@codemirror/state" "^6.0.0"
+    "@codemirror/view" "^6.23.0"
+    "@lezer/common" "^1.1.0"
+    "@lezer/highlight" "^1.0.0"
+    "@lezer/lr" "^1.0.0"
+    style-mod "^4.0.0"
+
 "@codemirror/lint@^6.4.2":
   version "6.4.2"
   resolved "https://registry.npmjs.org/@codemirror/lint/-/lint-6.4.2.tgz"
@@ -94,15 +123,19 @@
     "@codemirror/view" "^6.0.0"
     crelt "^1.0.5"
 
-"@codemirror/state@^6.0.0", "@codemirror/state@^6.1.4", "@codemirror/state@^6.2.0", "@codemirror/state@^6.2.1", "@codemirror/state@^6.3.0", "@codemirror/state@^6.3.3":
+"@codemirror/state@^6.0.0", "@codemirror/state@^6.2.0", "@codemirror/state@^6.2.1", "@codemirror/state@^6.3.0":
   version "6.3.3"
   resolved "https://registry.npmjs.org/@codemirror/state/-/state-6.3.3.tgz"
 
-"@codemirror/view@^6.0.0", "@codemirror/view@^6.14.0", "@codemirror/view@^6.17.0", "@codemirror/view@^6.21.0", "@codemirror/view@^6.21.3", "@codemirror/view@^6.5.1":
-  version "6.22.3"
-  resolved "https://registry.npmjs.org/@codemirror/view/-/view-6.22.3.tgz"
+"@codemirror/state@^6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@codemirror/state/-/state-6.4.0.tgz#8bc3e096c84360b34525a84696a84f86b305363a"
+
+"@codemirror/view@^6.0.0", "@codemirror/view@^6.14.0", "@codemirror/view@^6.17.0", "@codemirror/view@^6.21.0", "@codemirror/view@^6.21.3", "@codemirror/view@^6.23.0", "@codemirror/view@^6.5.1":
+  version "6.23.1"
+  resolved "https://registry.yarnpkg.com/@codemirror/view/-/view-6.23.1.tgz#1ce3039a588d6b93f153b7c4c035c2075ede34a6"
   dependencies:
-    "@codemirror/state" "^6.1.4"
+    "@codemirror/state" "^6.4.0"
     style-mod "^4.1.0"
     w3c-keyname "^2.2.4"
 
@@ -552,12 +585,12 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.4"
 
-feelers@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/feelers/-/feelers-1.2.0.tgz"
+feelers@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/feelers/-/feelers-1.3.0.tgz#7afc03f14e65a4b886008e5a3d3eb9692e5ce3c5"
   dependencies:
     "@bpmn-io/cm-theme" "^0.1.0-alpha.2"
-    "@bpmn-io/feel-lint" "^1.1.0"
+    "@bpmn-io/feel-lint" "^1.2.0"
     "@codemirror/autocomplete" "^6.10.1"
     "@codemirror/commands" "^6.3.0"
     "@codemirror/language" "^6.9.1"
@@ -568,13 +601,13 @@ feelers@^1.2.0:
     "@lezer/highlight" "^1.1.6"
     "@lezer/lr" "^1.3.13"
     "@lezer/markdown" "^1.1.0"
-    feelin "^2.3.0"
-    lezer-feel "^1.2.0"
+    feelin "^3.0.0"
+    lezer-feel "^1.2.4"
     min-dom "^4.1.0"
 
-feelin@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.npmjs.org/feelin/-/feelin-2.3.0.tgz"
+feelin@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/feelin/-/feelin-3.0.0.tgz#7c827b039b2d89c32d63d3cd832ac929748697bd"
   dependencies:
     "@lezer/lr" "^1.3.9"
     lezer-feel "^1.2.0"
@@ -661,6 +694,13 @@ lang-feel@^2.0.0:
 lezer-feel@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/lezer-feel/-/lezer-feel-1.2.0.tgz"
+  dependencies:
+    "@lezer/highlight" "^1.1.6"
+    "@lezer/lr" "^1.3.12"
+
+lezer-feel@^1.2.3, lezer-feel@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/lezer-feel/-/lezer-feel-1.2.4.tgz#de25f9bcc1d7b97321e7302e9a10d133ee245a2b"
   dependencies:
     "@lezer/highlight" "^1.1.6"
     "@lezer/lr" "^1.3.12"
