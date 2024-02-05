@@ -27,6 +27,9 @@ export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
         let {containerEl} = this;
 
         containerEl.empty();
+        new Setting(containerEl)
+            .setName("BPMN Block")
+            .setHeading();
 
         new Setting(containerEl)
             .setName("Default height")
@@ -64,6 +67,10 @@ export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
                     this.plugin.settings.enablepanzoom_by_default = value;
                     this.plugin.saveData(this.plugin.settings);
                 }));
+        new Setting(containerEl)
+            .setName("BPMN Modeler")
+            .setHeading();
+
         new Setting(containerEl)
             .setName("Default force white background")
             .setDesc("Set the default for forcing a white background")
