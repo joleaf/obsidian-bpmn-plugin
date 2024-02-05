@@ -368,9 +368,9 @@ bpmn-js-token-simulation@^0.33.0:
     min-dom "^4.0.3"
     randomcolor "^0.6.2"
 
-bpmn-js@^16.4.0:
-  version "16.4.0"
-  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-16.4.0.tgz"
+bpmn-js@^16.5.0:
+  version "16.5.0"
+  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-16.5.0.tgz#8fd119ed7a364e4008e5eac08af4a27fb961bf9d"
   dependencies:
     bpmn-moddle "^8.1.0"
     diagram-js "^13.4.0"
