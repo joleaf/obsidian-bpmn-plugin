@@ -2,6 +2,14 @@
 
 All changes to this plugin are listed here.
 
+## 7.0.0 (2024-02-05)
+
+### New
+
+- Grid for the BPMN modeler
+- Minimap for the BPMN modeler
+- Settings are sorted now
+
 ## 1.2.0 (2024-01-30)
 
 ### New
@@ -16,7 +24,7 @@ All changes to this plugin are listed here.
 
 ### New
 
-- Token Simulation 
+- Token Simulation
 
 ## 1.0.0 (2024-01-26)
 
