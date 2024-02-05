@@ -101,7 +101,7 @@ export class BpmnModelerView extends TextFileView {
             });
         });
         bpmnSave.addEventListener("click", function (e: Event) {
-            thisRef.save();
+            thisRef.requestSave();
         });
         setIcon(bpmnSave, "save");
         bpmnUndo.addEventListener("click", function (e: Event) {
