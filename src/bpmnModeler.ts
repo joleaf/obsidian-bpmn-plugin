@@ -8,10 +8,14 @@ import {setIcon, TextFileView, WorkspaceLeaf} from "obsidian";
 import {ObsidianBpmnPluginSettings} from "./settings";
 import {SaveSVGResult} from "bpmn-js/lib/BaseViewer";
 import TokenSimulationModule from "bpmn-js-token-simulation";
+import SimulationSupportModule from 'bpmn-js-token-simulation/lib/simulation-support';
 import BpmnColorPickerModule from "bpmn-js-color-picker";
 // @ts-ignore
 import gridModule from 'diagram-js-grid';
 import minimapModule from 'diagram-js-minimap';
+import HeatMap, {DataPoint} from "heatmap-ts";
+import {DEFAULT_LABEL_SIZE} from "bpmn-js/lib/util/LabelUtil";
+import height = DEFAULT_LABEL_SIZE.height;
 
 export const VIEW_TYPE_BPMN = "bpmn-view";
 
@@ -71,6 +75,7 @@ export class BpmnModelerView extends TextFileView {
         }
         if (this.settings.enable_token_simulator) {
             modules.push(TokenSimulationModule);
+            modules.push(SimulationSupportModule);
         }
         if (this.settings.enable_minimap) {
             modules.push(minimapModule);
@@ -92,7 +97,8 @@ export class BpmnModelerView extends TextFileView {
             this.bpmnDiv.addClass("bpmn-view-white-background");
         }
 
-        const bpmnModeler = this.bpmnModeler
+        const bpmnModeler = this.bpmnModeler;
+        const canvas = bpmnModeler.get('canvas');
         const thisRef = this;
         this.bpmnModeler.on("commandStack.changed", function () {
             bpmnModeler.saveXML({format: true}).then(function (data: any) {
@@ -100,6 +106,69 @@ export class BpmnModelerView extends TextFileView {
                 thisRef.data = xml;
             });
         });
+        // Heatmap for token simulation
+        const currentHistory: Map<String, number> = new Map();
+        let last_index = 0;
+        if (this.settings.enable_token_simulator) {
+            const heatMap = new HeatMap({
+                container: this.bpmnDiv,
+                maxOpacity: .8,
+                radius: 50,
+                blur: 0.80,
+                width: this.bpmnDiv.innerWidth,
+                height: this.bpmnDiv.innerHeight
+            });
+
+
+            const simulationTrace = bpmnModeler.get('simulationTrace');
+            const registry = bpmnModeler.get('elementRegistry');
+            const simulationSupport = bpmnModeler.get('simulationSupport');
+
+
+            simulationTrace.start();
+            const intervalID = setInterval(myCallback, 500);
+
+            function myCallback() {
+                let history: Array<String> = simulationSupport.getHistory();
+                for (let i = last_index; i < history.length; i++) {
+                    currentHistory.set(history[i], (currentHistory.get(history[i]) || 0) + 1)
+                    last_index = i + 1;
+                }
+                let data: Array<DataPoint> = [];
+                const x_off = canvas.viewbox().x;
+                const y_off = canvas.viewbox().y;
+                for (const [key, value] of currentHistory) {
+                    const element = registry.get(key);
+                    const centerx = element.x + (element.width / 2) - x_off;
+                    const centery = element.y + (element.height / 2) - y_off;
+                    data.push({
+                        x: centerx,
+                        y: centery,
+                        value: value * 4
+                    });
+
+                    heatMap.setData({
+                        data: data
+                    });
+                }
+            }
+
+            this.bpmnModeler.on("tokenSimulation.toggleMode", function () {
+                console.log(canvas.viewbox());
+                simulationTrace.stop();
+                simulationTrace._events = [];
+                let data: Array<DataPoint> = [];
+                heatMap.setData({
+                    data: data
+                });
+                currentHistory.clear();
+                last_index = 0;
+                simulationTrace.start();
+            });
+        }
+
+        console.log(this.bpmnModeler.get('eventBus'));
+        // Button Controller
         bpmnSave.addEventListener("click", function (e: Event) {
             thisRef.requestSave();
         });
