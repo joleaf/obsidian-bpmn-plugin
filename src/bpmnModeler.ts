@@ -24,6 +24,7 @@ export class BpmnModelerView extends TextFileView {
     bpmnDiv: HTMLElement;
     // @ts-ignore
     bpmnModeler: Modeler;
+    intervalId: NodeJS.Timeout;
 
     constructor(
         public leaf: WorkspaceLeaf,
@@ -107,9 +108,9 @@ export class BpmnModelerView extends TextFileView {
             });
         });
         // Heatmap for token simulation
-        const currentHistory: Map<String, number> = new Map();
-        let last_index = 0;
-        if (this.settings.enable_token_simulator) {
+        if (this.settings.enable_token_simulator && this.settings.enable_simulation_heatmap) {
+            const currentHistory: Map<String, number> = new Map();
+            let last_index = 0;
             const heatMap = new HeatMap({
                 container: this.bpmnDiv,
                 maxOpacity: .8,
@@ -124,11 +125,9 @@ export class BpmnModelerView extends TextFileView {
             const registry = bpmnModeler.get('elementRegistry');
             const simulationSupport = bpmnModeler.get('simulationSupport');
 
-
             simulationTrace.start();
-            const intervalID = setInterval(myCallback, 500);
-
-            function myCallback() {
+            this.intervalId = setInterval(updateHeatmap, 500);
+            function updateHeatmap() {
                 let history: Array<String> = simulationSupport.getHistory();
                 for (let i = last_index; i < history.length; i++) {
                     currentHistory.set(history[i], (currentHistory.get(history[i]) || 0) + 1)
@@ -154,7 +153,6 @@ export class BpmnModelerView extends TextFileView {
             }
 
             this.bpmnModeler.on("tokenSimulation.toggleMode", function () {
-                console.log(canvas.viewbox());
                 simulationTrace.stop();
                 simulationTrace._events = [];
                 let data: Array<DataPoint> = [];
@@ -167,7 +165,6 @@ export class BpmnModelerView extends TextFileView {
             });
         }
 
-        console.log(this.bpmnModeler.get('eventBus'));
         // Button Controller
         bpmnSave.addEventListener("click", function (e: Event) {
             thisRef.requestSave();
@@ -224,6 +221,7 @@ export class BpmnModelerView extends TextFileView {
     async onClose() {
         await this.save();
         this.contentEl.empty();
+        clearInterval(this.intervalId);
     }
 
     clear() {
