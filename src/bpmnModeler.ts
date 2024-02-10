@@ -14,8 +14,6 @@ import BpmnColorPickerModule from "bpmn-js-color-picker";
 import gridModule from 'diagram-js-grid';
 import minimapModule from 'diagram-js-minimap';
 import HeatMap, {DataPoint} from "heatmap-ts";
-import {DEFAULT_LABEL_SIZE} from "bpmn-js/lib/util/LabelUtil";
-import height = DEFAULT_LABEL_SIZE.height;
 
 export const VIEW_TYPE_BPMN = "bpmn-view";
 
@@ -126,30 +124,34 @@ export class BpmnModelerView extends TextFileView {
             const simulationSupport = bpmnModeler.get('simulationSupport');
 
             simulationTrace.start();
-            this.intervalId = setInterval(updateHeatmap, 500);
+            this.intervalId = setInterval(updateHeatmap, 1000);
+
             function updateHeatmap() {
                 let history: Array<String> = simulationSupport.getHistory();
                 for (let i = last_index; i < history.length; i++) {
-                    currentHistory.set(history[i], (currentHistory.get(history[i]) || 0) + 1)
+                    if (!history[i].startsWith("Flow")) {
+                        currentHistory.set(history[i], (currentHistory.get(history[i]) || 0) + 1);
+                    }
                     last_index = i + 1;
                 }
                 let data: Array<DataPoint> = [];
-                const x_off = canvas.viewbox().x;
-                const y_off = canvas.viewbox().y;
+                const viewbox = canvas.viewbox();
+                const x_off = viewbox.x;
+                const y_off = viewbox.y;
+                const scale = viewbox.scale; // TODO: Why is it not rendered when zooming in/or out?
                 for (const [key, value] of currentHistory) {
                     const element = registry.get(key);
-                    const centerx = element.x + (element.width / 2) - x_off;
-                    const centery = element.y + (element.height / 2) - y_off;
+                    const centerx = scale * (element.x + (element.width / 2) - x_off);
+                    const centery = scale * (element.y + (element.height / 2) - y_off);
                     data.push({
                         x: centerx,
                         y: centery,
                         value: value * 4
                     });
-
-                    heatMap.setData({
-                        data: data
-                    });
                 }
+                heatMap.setData({
+                    data: data
+                });
             }
 
             this.bpmnModeler.on("tokenSimulation.toggleMode", function () {
@@ -163,6 +165,7 @@ export class BpmnModelerView extends TextFileView {
                 last_index = 0;
                 simulationTrace.start();
             });
+            setIcon(bpmnSave, "save");
         }
 
         // Button Controller
