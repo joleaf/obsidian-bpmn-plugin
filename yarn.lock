@@ -401,12 +401,12 @@ bpmn-js-token-simulation@^0.33.0:
     min-dom "^4.0.3"
     randomcolor "^0.6.2"
 
-bpmn-js@^16.5.0:
-  version "16.5.0"
-  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-16.5.0.tgz#8fd119ed7a364e4008e5eac08af4a27fb961bf9d"
+bpmn-js@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-17.0.2.tgz#9668a4b01933fe33ac5ac2df9d40d446885b15a0"
   dependencies:
     bpmn-moddle "^8.1.0"
-    diagram-js "^13.4.0"
+    diagram-js "^14.0.0"
     diagram-js-direct-editing "^2.1.1"
     ids "^1.0.5"
     inherits-browser "^0.1.0"
@@ -477,14 +477,13 @@ diagram-js-minimap@^4.1.0:
     min-dom "^4.1.0"
     tiny-svg "^3.0.0"
 
-diagram-js@^13.4.0:
-  version "13.4.0"
-  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-13.4.0.tgz"
+diagram-js@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/diagram-js/-/diagram-js-14.0.0.tgz#4357404e7b958b94a7fa2f96d64be680ca65142a"
   dependencies:
     "@bpmn-io/diagram-js-ui" "^0.2.2"
     clsx "^2.0.0"
     didi "^10.0.1"
-    hammerjs "^2.0.1"
     inherits-browser "^0.1.0"
     min-dash "^4.1.0"
     min-dom "^4.1.0"
@@ -646,7 +645,7 @@ globby@^11.1.0:
     merge2 "^1.4.1"
     slash "^3.0.0"
 
-hammerjs@^2.0.1, hammerjs@^2.0.8:
+hammerjs@^2.0.8:
   version "2.0.8"
   resolved "https://registry.npmjs.org/hammerjs/-/hammerjs-2.0.8.tgz"
 
