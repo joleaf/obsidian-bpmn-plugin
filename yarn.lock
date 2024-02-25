@@ -244,7 +244,7 @@
   "resolved" "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.13.tgz"
   "version" "7.0.13"
 
-"@types/node@^20.11.17":
+"@types/node@^20.11.19":
   "integrity" "sha512-7/rR21OS+fq8IyHTgtLkDK949uzsa6n8BkziAKtPVpugIkO6D+/ooXMvzXxDnZrmtXVfjb1bKQafYpb8s89LOg=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-20.11.20.tgz"
   "version" "20.11.20"
@@ -942,6 +942,11 @@
   "integrity" "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ=="
   "resolved" "https://registry.npmjs.org/has-flag/-/has-flag-4.0.0.tgz"
   "version" "4.0.0"
+
+"heatmap-ts@^0.0.5":
+  "integrity" "sha512-u75dNVbKFTC8sdcWxr0HdQ0ceb4hkgqDlzI8vv76gX9clZBdzOJyAKDfh+vDuha9TkD+pe5iQPkuD4iY3hadng=="
+  "resolved" "https://registry.npmjs.org/heatmap-ts/-/heatmap-ts-0.0.5.tgz"
+  "version" "0.0.5"
 
 "htm@^3.1.1":
   "integrity" "sha512-983Vyg8NwUE7JkZ6NmOqpCZ+sh1bKv2iYTlUkzlWmA5JD2acKoxd4KVxbMmxX/85mtfdnDmTFoNKcg5DGAvxNQ=="

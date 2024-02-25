@@ -2,6 +2,16 @@
 
 All changes to this plugin are listed here.
 
+## 7.1.0 (2024-02-25)
+
+### New
+
+- Heatmap for token simulation
+
+### Updated
+
+- Bump bpmn-js to 17.0.2
+
 ## 7.0.0 (2024-02-05)
 
 ### New

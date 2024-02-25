@@ -1,6 +1,6 @@
 {
   "name": "bpmn",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "This plugin enables viewing/editing/simulating BPMNs using bpmn-js.",
   "main": "main.js",
   "scripts": {
