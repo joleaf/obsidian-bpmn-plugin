@@ -82,12 +82,12 @@
 
 @font-face {
     font-family: 'bpmn';
-    src: url('https://unpkg.com/bpmn-js@16.5.0/dist/assets/bpmn-font/font/bpmn.eot?21877404');
-    src: url('https://unpkg.com/bpmn-js@16.5.0/dist/assets/bpmn-font/font/bpmn.eot?21877404#iefix') format('embedded-opentype'),
-    url('https://unpkg.com/bpmn-js@16.5.0/dist/assets/bpmn-font/font/bpmn.woff2?21877404') format('woff2'),
-    url('https://unpkg.com/bpmn-js@16.5.0/dist/assets/bpmn-font/font/bpmn.woff?21877404') format('woff'),
-    url('https://unpkg.com/bpmn-js@16.5.0/dist/assets/bpmn-font/font/bpmn.ttf?21877404') format('truetype'),
-    url('https://unpkg.com/bpmn-js@16.5.0/dist/assets/bpmn-font/font/bpmn.svg?21877404#bpmn') format('svg');
+    src: url('https://unpkg.com/bpmn-js@17.0.2/dist/assets/bpmn-font/font/bpmn.eot?21877404');
+    src: url('https://unpkg.com/bpmn-js@17.0.2/dist/assets/bpmn-font/font/bpmn.eot?21877404#iefix') format('embedded-opentype'),
+    url('https://unpkg.com/bpmn-js@17.0.2/dist/assets/bpmn-font/font/bpmn.woff2?21877404') format('woff2'),
+    url('https://unpkg.com/bpmn-js@17.0.2/dist/assets/bpmn-font/font/bpmn.woff?21877404') format('woff'),
+    url('https://unpkg.com/bpmn-js@117.0.2/dist/assets/bpmn-font/font/bpmn.ttf?21877404') format('truetype'),
+    url('https://unpkg.com/bpmn-js@17.0.2/dist/assets/bpmn-font/font/bpmn.svg?21877404#bpmn') format('svg');
     font-weight: normal;
     font-style: normal;
 }

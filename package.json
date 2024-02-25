@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@bpmn-io/properties-panel": "^3.18.1",
-    "bpmn-js": "^16.5.0",
+    "bpmn-js": "^17.0.2",
     "bpmn-js-color-picker": "^0.7.0",
     "bpmn-js-properties-panel": "^5.11.1",
     "bpmn-js-token-simulation": "^0.33.0",
