@@ -11,6 +11,7 @@ export class ObsidianBpmnPluginSettings {
     height_by_default: number = 400;
     force_white_background_by_default: boolean = true;
     enable_token_simulator: boolean = true;
+    enable_simulation_heatmap: boolean = false;
     enable_minimap: boolean = true;
     enable_zeebe_properties: boolean = false;
     enable_grid: boolean = true;
@@ -141,8 +142,18 @@ export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
                     this.plugin.settings.enable_token_simulator = value;
                     this.plugin.saveData(this.plugin.settings);
                 }));
+
         new Setting(containerEl)
-            .setName("Enable Minimap")
+            .setName("Enable heatmap")
+            .setDesc("Add a heatmap to the token simulation (Attention: Beta feature!)")
+            .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_simulation_heatmap)
+                .onChange((value) => {
+                    this.plugin.settings.enable_simulation_heatmap = value;
+                    this.plugin.saveData(this.plugin.settings);
+                }));
+
+        new Setting(containerEl)
+            .setName("Enable minimap")
             .setDesc("Add a minimap to the BPMN modeler.")
             .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_minimap)
                 .onChange((value) => {

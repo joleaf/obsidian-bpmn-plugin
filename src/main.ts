@@ -78,7 +78,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     bpmnDiv.addClass("bpmn-view-white-background");
                 } else {
                     // @ts-ignore
-                    const theme = app.getTheme();
+                    const theme = this.app.getTheme();
                     if (theme === 'obsidian') {
                         bpmnDiv.addClass("bpmn-view-obsidian-theme");
                     } else if (theme === 'moonstone') {

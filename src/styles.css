@@ -91,3 +91,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
+.bpmn-view > canvas {
+    pointer-events: none;
+}
