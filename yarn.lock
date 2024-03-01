@@ -359,9 +359,9 @@ bpmn-js-properties-panel@^5.12.0:
     min-dash "^4.2.1"
     min-dom "^4.1.0"
 
-bpmn-js-token-simulation@^0.33.0:
-  version "0.33.0"
-  resolved "https://registry.npmjs.org/bpmn-js-token-simulation/-/bpmn-js-token-simulation-0.33.0.tgz"
+bpmn-js-token-simulation@^0.33.1:
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/bpmn-js-token-simulation/-/bpmn-js-token-simulation-0.33.1.tgz#6ece45041e817da3b3222b1306843f0d822ca5ba"
   dependencies:
     inherits-browser "^0.1.0"
     min-dash "^4.0.0"
