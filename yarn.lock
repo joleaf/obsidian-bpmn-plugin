@@ -818,9 +818,9 @@ tsutils@^3.21.0:
   dependencies:
     tslib "^1.8.1"
 
-typescript@5.3.3:
-  version "5.3.3"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-5.3.3.tgz"
+typescript@5.4.2:
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.2.tgz#0ae9cebcfae970718474fe0da2c090cad6577372"
 
 undici-types@~5.26.4:
   version "5.26.5"
