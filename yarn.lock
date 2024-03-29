@@ -10,9 +10,9 @@
     "@codemirror/view" "^6.5.1"
     "@lezer/highlight" "^1.1.4"
 
-"@bpmn-io/diagram-js-ui@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.npmjs.org/@bpmn-io/diagram-js-ui/-/diagram-js-ui-0.2.2.tgz"
+"@bpmn-io/diagram-js-ui@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@bpmn-io/diagram-js-ui/-/diagram-js-ui-0.2.3.tgz#7ace8aadb1b701eb770d0b34595dc1d1fb4c327c"
   dependencies:
     htm "^3.1.1"
     preact "^10.11.2"
@@ -368,13 +368,13 @@ bpmn-js-token-simulation@^0.33.2:
     min-dom "^4.0.3"
     randomcolor "^0.6.2"
 
-bpmn-js@^17.0.2:
-  version "17.0.2"
-  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-17.0.2.tgz"
+bpmn-js@^17.2.1:
+  version "17.2.1"
+  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-17.2.1.tgz#a856aa35f0721e33eee402cd61efc574d1100d36"
   dependencies:
     bpmn-moddle "^8.1.0"
-    diagram-js "^14.0.0"
-    diagram-js-direct-editing "^2.1.1"
+    diagram-js "^14.3.1"
+    diagram-js-direct-editing "^2.1.2"
     ids "^1.0.5"
     inherits-browser "^0.1.0"
     min-dash "^4.1.1"
@@ -421,9 +421,9 @@ debug@^4.3.4:
   dependencies:
     ms "2.1.2"
 
-diagram-js-direct-editing@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.npmjs.org/diagram-js-direct-editing/-/diagram-js-direct-editing-2.1.1.tgz"
+diagram-js-direct-editing@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/diagram-js-direct-editing/-/diagram-js-direct-editing-2.1.2.tgz#1d561ef9ff8c61615bb8a1c8168cc3186d7f5992"
   dependencies:
     min-dash "^4.0.0"
     min-dom "^4.0.2"
@@ -444,13 +444,13 @@ diagram-js-minimap@^4.1.0:
     min-dom "^4.1.0"
     tiny-svg "^3.0.0"
 
-diagram-js@^14.0.0:
-  version "14.1.0"
-  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-14.1.0.tgz"
+diagram-js@^14.3.1:
+  version "14.3.1"
+  resolved "https://registry.yarnpkg.com/diagram-js/-/diagram-js-14.3.1.tgz#45ce299a8bc3d4bc3fd2f00e7d7c36f76c1ff514"
   dependencies:
-    "@bpmn-io/diagram-js-ui" "^0.2.2"
+    "@bpmn-io/diagram-js-ui" "^0.2.3"
     clsx "^2.1.0"
-    didi "^10.0.1"
+    didi "^10.2.2"
     inherits-browser "^0.1.0"
     min-dash "^4.1.0"
     min-dom "^4.1.0"
@@ -458,9 +458,9 @@ diagram-js@^14.0.0:
     path-intersection "^3.0.0"
     tiny-svg "^3.0.1"
 
-didi@^10.0.1:
-  version "10.0.1"
-  resolved "https://registry.npmjs.org/didi/-/didi-10.0.1.tgz"
+didi@^10.2.2:
+  version "10.2.2"
+  resolved "https://registry.yarnpkg.com/didi/-/didi-10.2.2.tgz#438741b8281be97cdedd8da2a42c307a918b9706"
 
 dir-glob@^3.0.1:
   version "3.0.1"
