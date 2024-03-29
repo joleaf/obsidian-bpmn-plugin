@@ -1,30 +1,15 @@
 # BPMN-Plugin for Obsidian [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/joleaf/obsidian-bpmn-plugin)](https://github.com/joleaf/obsidian-bpmn-plugin/releases) [![Release Obsidian Plugin](https://github.com/joleaf/obsidian-bpmn-plugin/actions/workflows/release.yml/badge.svg)](https://github.com/joleaf/obsidian-bpmn-plugin/actions/workflows/release.yml) [![Obsidian downloads](https://img.shields.io/badge/dynamic/json?logo=obsidian&color=%238b6cef&label=downloads&query=%24%5B%22bpmn-plugin%22%5D.downloads&url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json)](https://obsidian.md/plugins?id=bpmn-plugin)
 
-This plugin lets you view BPMN diagrams interactively in your [Obsidian](https://www.obsidian.md) notes.
-The viewer is based on the [bpmn-js](https://github.com/bpmn-io/bpmn-js) library.
-Furthermore, basic editing functions for BPMNs are available as well.
+This plugin lets you view BPMN diagrams interactively in your [Obsidian](https://www.obsidian.md) notes with an `bpmn`
+code-block.
+Furthermore, a BPMN modeler lets you edit your BPMNs directly in Obsidian.
+The plugin is based on the [bpmn-js](https://github.com/bpmn-io/bpmn-js) library.
 
 **NEW Feature:** Token Simulation!
-
-## Install ..
-
-### .. automatically in Obsidian
-
-1. Go to **Community Plugins** in your Obsidian Settings and **disable** Safe Mode
-2. Click on **Browse** and search for "[BPMN](obsidian://show-plugin?id=bpmn-plugin)"
-3. Click install
-4. Toggle the plugin on in the **Community Plugins** tab
-
-### .. manually from this repo
-
-1. Download the latest [release](https://github.com/joleaf/obsidian-bpmn-plugin/releases) `*.zip` file.
-2. Unpack the zip in the `.obsidan/plugins` folder of your obsidian vault
 
 ## How to use (CodeBlock)
 
 1. Add a valid `*.bpmn` file to your vault
-    1. E.g. modeled with the [Camunda Modeler](https://camunda.com/de/download/modeler/)
-    2. Create a new BPMN file with the ribbon action icon
 2. Add the BPMN diagram to your note:
 
 ````
@@ -53,14 +38,29 @@ You can customize the view with the following parameters:
 
 ![Example](example/bpmn-plugin.gif)
 
-## How to use (Open BPMN File)
+## How to edit the BPMN
 
 Just open the BPMN file in your obsidian vault and the BPMN will be editable in fullscreen mode.
 
 ### Features
 
+- Token simulation
 - Update properties
 - Export SVG
+
+## Install ..
+
+### .. automatically in Obsidian
+
+1. Go to **Community Plugins** in your Obsidian Settings and **disable** Safe Mode
+2. Click on **Browse** and search for "[BPMN](obsidian://show-plugin?id=bpmn-plugin)"
+3. Click install
+4. Toggle the plugin on in the **Community Plugins** tab
+
+### .. manually from this repo
+
+1. Download the latest [release](https://github.com/joleaf/obsidian-bpmn-plugin/releases) `*.zip` file.
+2. Unpack the zip in the `.obsidan/plugins` folder of your obsidian vault
 
 ## How to dev
 

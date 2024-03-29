@@ -2,6 +2,12 @@
 
 All changes to this plugin are listed here.
 
+## 7.1.1 (2024-03-29)
+
+### Fixed
+
+- Fixed #75: Clearing of the BPMN modeler view
+
 ## 7.1.0 (2024-02-25)
 
 ### New
