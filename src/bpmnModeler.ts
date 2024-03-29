@@ -37,10 +37,8 @@ export class BpmnModelerView extends TextFileView {
 
     setViewData(data: string, clear: boolean) {
         this.bpmnXml = data;
-        const thisRef = this;
         this.bpmnModeler.importXML(this.bpmnXml).catch(function (err: { warnings: any; message: string; }) {
-            thisRef.clear();
-            thisRef.contentEl.createEl("div", {text: err.message});
+            console.error(err);
         });
     }
 
@@ -228,7 +226,7 @@ export class BpmnModelerView extends TextFileView {
     }
 
     clear() {
-        this.contentEl.empty();
+        // nothing to clear
     }
 
     getViewType() {
