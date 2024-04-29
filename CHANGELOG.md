@@ -8,6 +8,12 @@ All changes to this plugin are listed here.
 
 - Fixed #75: Clearing of the BPMN modeler view
 
+## 7.1.2 (2024-04-29)
+
+### Updated
+
+- Bump bpmn-js to 17.5.0
+
 ## 7.1.0 (2024-02-25)
 
 ### New
