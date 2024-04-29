@@ -26,7 +26,7 @@
     "bpmn-js": "^17.2.1",
     "bpmn-js-color-picker": "^0.7.0",
     "bpmn-js-properties-panel": "^5.13.0",
-    "bpmn-js-token-simulation": "^0.33.2",
+    "bpmn-js-token-simulation": "^0.34.0",
     "diagram-js-grid": "^1.0.0",
     "diagram-js-minimap": "^4.1.0",
     "heatmap-ts": "^0.0.5"
