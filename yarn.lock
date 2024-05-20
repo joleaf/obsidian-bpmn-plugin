@@ -345,9 +345,9 @@ array-union@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/array-union/-/array-union-2.1.0.tgz"
 
-bpmn-js-color-picker@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.npmjs.org/bpmn-js-color-picker/-/bpmn-js-color-picker-0.7.0.tgz"
+bpmn-js-color-picker@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/bpmn-js-color-picker/-/bpmn-js-color-picker-0.7.1.tgz#523c19aeb878832d2ab4fadd750935cef5bd8023"
 
 bpmn-js-properties-panel@^5.13.0:
   version "5.15.0"
