@@ -395,9 +395,9 @@ braces@^3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-builtin-modules@3.3.0:
-  version "3.3.0"
-  resolved "https://registry.npmjs.org/builtin-modules/-/builtin-modules-3.3.0.tgz"
+builtin-modules@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-4.0.0.tgz#348db54ec0e6b197494423d26845f1674025ee46"
 
 classnames@^2.3.1:
   version "2.3.2"
