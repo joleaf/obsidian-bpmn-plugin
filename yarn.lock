@@ -253,9 +253,9 @@
   version "7.0.13"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.13.tgz"
 
-"@types/node@^20.12.12":
-  version "20.12.12"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.12.12.tgz#7cbecdf902085cec634fdb362172dfe12b8f2050"
+"@types/node@^20.14.8":
+  version "20.14.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.14.8.tgz#45c26a2a5de26c3534a9504530ddb3b27ce031ac"
   dependencies:
     undici-types "~5.26.4"
 
