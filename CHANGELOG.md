@@ -2,6 +2,16 @@
 
 All changes to this plugin are listed here.
 
+## 7.2.0 (2024-07-10)
+
+### New
+
+- Sketch visualization
+
+### Updated
+
+- Bump bpmn-js to 17.9.0
+
 ## 7.1.1 (2024-03-29)
 
 ### Fixed
