@@ -372,18 +372,18 @@ bpmn-js-token-simulation@^0.34.2:
     min-dom "^5.0.0"
     randomcolor "^0.6.2"
 
-bpmn-js@^17.6.4:
-  version "17.6.4"
-  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-17.6.4.tgz#6d95e7d2f4db37b710b21541240a24d672c02f22"
+bpmn-js@^17.9.1:
+  version "17.9.1"
+  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-17.9.1.tgz#9a0ebd0ff4acfae45632f02af69345d916ed155b"
   dependencies:
     bpmn-moddle "^8.1.0"
-    diagram-js "^14.5.4"
+    diagram-js "^14.7.2"
     diagram-js-direct-editing "^3.0.1"
     ids "^1.0.5"
     inherits-browser "^0.1.0"
     min-dash "^4.1.1"
-    min-dom "^4.0.3"
-    tiny-svg "^3.0.0"
+    min-dom "^4.2.1"
+    tiny-svg "^3.1.2"
 
 bpmn-moddle@^8.1.0:
   version "8.1.0"
@@ -448,19 +448,19 @@ diagram-js-minimap@^4.1.0:
     min-dom "^4.1.0"
     tiny-svg "^3.0.0"
 
-diagram-js@^14.5.4:
-  version "14.5.4"
-  resolved "https://registry.yarnpkg.com/diagram-js/-/diagram-js-14.5.4.tgz#f3a32b60470d2502a61a4bcdb4f71ce2da807277"
+diagram-js@^14.7.2:
+  version "14.8.0"
+  resolved "https://registry.yarnpkg.com/diagram-js/-/diagram-js-14.8.0.tgz#90942faf7c9d0b727a8a4d28ffc88c08140f8e6c"
   dependencies:
     "@bpmn-io/diagram-js-ui" "^0.2.3"
     clsx "^2.1.0"
     didi "^10.2.2"
     inherits-browser "^0.1.0"
     min-dash "^4.1.0"
-    min-dom "^4.1.0"
+    min-dom "^4.2.1"
     object-refs "^0.4.0"
     path-intersection "^3.0.0"
-    tiny-svg "^3.0.1"
+    tiny-svg "^3.1.2"
 
 didi@^10.2.2:
   version "10.2.2"
@@ -702,13 +702,13 @@ min-dash@^4.0.0, min-dash@^4.1.0, min-dash@^4.1.1, min-dash@^4.2.1:
   version "4.2.1"
   resolved "https://registry.npmjs.org/min-dash/-/min-dash-4.2.1.tgz"
 
-min-dom@^4.0.2, min-dom@^4.0.3, min-dom@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/min-dom/-/min-dom-4.1.0.tgz"
+min-dom@^4.0.2, min-dom@^4.0.3, min-dom@^4.1.0, min-dom@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/min-dom/-/min-dom-4.2.1.tgz#7154cd30f48bd81222e1d55eef437be9ca9f505e"
   dependencies:
     component-event "^0.2.1"
     domify "^1.4.1"
-    min-dash "^4.0.0"
+    min-dash "^4.2.1"
 
 min-dom@^5.0.0:
   version "5.0.0"
@@ -810,9 +810,9 @@ tabbable@^6.2.0:
   version "6.2.0"
   resolved "https://registry.npmjs.org/tabbable/-/tabbable-6.2.0.tgz"
 
-tiny-svg@^3.0.0, tiny-svg@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/tiny-svg/-/tiny-svg-3.0.1.tgz"
+tiny-svg@^3.0.0, tiny-svg@^3.0.1, tiny-svg@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/tiny-svg/-/tiny-svg-3.1.2.tgz#bb033527497ba68f647cdb29bf6a35af56cfc2d1"
 
 to-regex-range@^5.0.1:
   version "5.0.1"
