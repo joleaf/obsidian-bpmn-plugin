@@ -353,15 +353,15 @@ bpmn-js-color-picker@^0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/bpmn-js-color-picker/-/bpmn-js-color-picker-0.7.1.tgz#523c19aeb878832d2ab4fadd750935cef5bd8023"
 
-bpmn-js-properties-panel@^5.13.0:
-  version "5.15.0"
-  resolved "https://registry.npmjs.org/bpmn-js-properties-panel/-/bpmn-js-properties-panel-5.15.0.tgz"
+bpmn-js-properties-panel@^5.18.0:
+  version "5.18.0"
+  resolved "https://registry.yarnpkg.com/bpmn-js-properties-panel/-/bpmn-js-properties-panel-5.18.0.tgz#fa9b7c71c2ce59ce57b046bd60081659941ae31f"
   dependencies:
     "@bpmn-io/extract-process-variables" "^0.8.0"
     array-move "^4.0.0"
     ids "^1.0.5"
     min-dash "^4.2.1"
-    min-dom "^4.1.0"
+    min-dom "^4.2.1"
 
 bpmn-js-token-simulation@^0.34.2:
   version "0.34.2"
@@ -702,13 +702,13 @@ min-dash@^4.0.0, min-dash@^4.1.0, min-dash@^4.1.1, min-dash@^4.2.1:
   version "4.2.1"
   resolved "https://registry.npmjs.org/min-dash/-/min-dash-4.2.1.tgz"
 
-min-dom@^4.0.2, min-dom@^4.0.3, min-dom@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/min-dom/-/min-dom-4.1.0.tgz"
+min-dom@^4.0.2, min-dom@^4.0.3, min-dom@^4.1.0, min-dom@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/min-dom/-/min-dom-4.2.1.tgz#7154cd30f48bd81222e1d55eef437be9ca9f505e"
   dependencies:
     component-event "^0.2.1"
     domify "^1.4.1"
-    min-dash "^4.0.0"
+    min-dash "^4.2.1"
 
 min-dom@^5.0.0:
   version "5.0.0"
