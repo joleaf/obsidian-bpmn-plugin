@@ -2,7 +2,10 @@ import {Plugin, WorkspaceLeaf, parseYaml, setIcon} from "obsidian";
 import {ObsidianBpmnPluginSettings, ObsidianBpmnPluginSettingsTab} from "./settings";
 import NavigatedViewer from "bpmn-js/lib/NavigatedViewer";
 import BpmnViewer from "bpmn-js/lib/Viewer";
+import sketchyRendererModule from 'bpmn-js-sketchy';
 import {BpmnModelerView, VIEW_TYPE_BPMN} from "./bpmnModeler"
+import {BpmnPropertiesPanelModule, BpmnPropertiesProviderModule} from "bpmn-js-properties-panel";
+import BpmnColorPickerModule from "bpmn-js-color-picker";
 
 interface BpmnNodeParameters {
     url: string;
@@ -73,7 +76,8 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     href.className = "internal-link";
                     setIcon(href, "file-edit");
                 }
-                const bpmnDiv = rootDiv.createEl("div", {cls: "bpmn-view"});
+                let bpmn_view_classes = "bpmn-view"
+                const bpmnDiv = rootDiv.createEl("div", {cls: bpmn_view_classes});
                 if (parameters.forcewhitebackground) {
                     bpmnDiv.addClass("bpmn-view-white-background");
                 } else {
@@ -87,15 +91,39 @@ export default class ObsidianBPMNPlugin extends Plugin {
                 }
                 const xml = await this.app.vault.adapter.read(parameters.url);
                 bpmnDiv.setAttribute("style", "height: " + parameters.height + "px;");
+                let modules = [];
+                if (this.settings.enable_sketchy) {
+                    modules.push(sketchyRendererModule);
+                }
+                let textRenderer = undefined;
+                if (this.settings.enable_sketchy) {
+                    modules.push(sketchyRendererModule);
+                    textRenderer = {
+                        defaultStyle: {
+                            fontFamily: '"Comic Sans MS"',
+                            fontWeight: 'normal',
+                            fontSize: 14,
+                            lineHeight: 1.1
+                        },
+                        externalStyle: {
+                            fontSize: 14,
+                            lineHeight: 1.1
+                        }
+                    };
+                }
                 const bpmn = parameters.enablepanzoom ?
                     new NavigatedViewer({
                         container: bpmnDiv,
                         keyboard: {
                             bindTo: bpmnDiv.win
-                        }
+                        },
+                        additionalModules: modules,
+                        textRenderer: textRenderer
                     }) :
                     new BpmnViewer({
                         container: bpmnDiv,
+                        additionalModules: modules,
+                        textRenderer: textRenderer
                     });
                 const p_zoom = parameters.zoom;
                 const p_x = parameters.x;

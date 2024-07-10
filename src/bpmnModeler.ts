@@ -13,6 +13,7 @@ import BpmnColorPickerModule from "bpmn-js-color-picker";
 // @ts-ignore
 import gridModule from 'diagram-js-grid';
 import minimapModule from 'diagram-js-minimap';
+import sketchyRendererModule from 'bpmn-js-sketchy';
 import HeatMap, {DataPoint} from "heatmap-ts";
 
 export const VIEW_TYPE_BPMN = "bpmn-view";
@@ -60,7 +61,8 @@ export class BpmnModelerView extends TextFileView {
             text: "Export PNG",
             attr: {"aria-label": "Export as PNG"}
         });
-        this.bpmnDiv = contentEl.createEl("div", {cls: "bpmn-view bpmn-view-modeler"});
+        let bpmn_view_classes = "bpmn-view bpmn-view-modeler"
+        this.bpmnDiv = contentEl.createEl("div", {cls: bpmn_view_classes});
         let propertyPanel = contentEl.createEl("div", {cls: "bpmn-properties-panel hide"});
         let modules = [
             BpmnPropertiesPanelModule,
@@ -80,6 +82,22 @@ export class BpmnModelerView extends TextFileView {
         if (this.settings.enable_grid) {
             modules.push(gridModule);
         }
+        let textRenderer = undefined;
+        if (this.settings.enable_sketchy) {
+            modules.push(sketchyRendererModule);
+            textRenderer = {
+                defaultStyle: {
+                    fontFamily: '"Comic Sans MS"',
+                    fontWeight: 'normal',
+                    fontSize: 14,
+                    lineHeight: 1.1
+                },
+                externalStyle: {
+                    fontSize: 14,
+                    lineHeight: 1.1
+                }
+            };
+        }
         this.bpmnModeler = new Modeler({
             container: this.bpmnDiv,
             keyboard: {
@@ -88,7 +106,8 @@ export class BpmnModelerView extends TextFileView {
             propertiesPanel: {
                 parent: propertyPanel
             },
-            additionalModules: modules
+            additionalModules: modules,
+            textRenderer: textRenderer,
         });
         if (this.settings.force_white_background_by_default) {
             this.bpmnDiv.addClass("bpmn-view-white-background");

@@ -15,6 +15,7 @@ export class ObsidianBpmnPluginSettings {
     enable_minimap: boolean = true;
     enable_zeebe_properties: boolean = false;
     enable_grid: boolean = true;
+    enable_sketchy: boolean = false;
 }
 
 export class BPMNParameterInfoModal extends Modal {
@@ -71,6 +72,15 @@ export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
             .addToggle(toggle => toggle.setValue(this.plugin.settings.force_white_background_by_default)
                 .onChange((value) => {
                     this.plugin.settings.force_white_background_by_default = value;
+                    this.plugin.saveData(this.plugin.settings);
+                }));
+
+        new Setting(containerEl)
+            .setName("Use sketchy visualization")
+            .setDesc("The visualization of the BPMN is like a sketch.")
+            .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_sketchy)
+                .onChange((value) => {
+                    this.plugin.settings.enable_sketchy = value;
                     this.plugin.saveData(this.plugin.settings);
                 }));
 
