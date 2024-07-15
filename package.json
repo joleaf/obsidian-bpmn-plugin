@@ -18,7 +18,7 @@
     "builtin-modules": "4.0.0",
     "esbuild": "0.23.0",
     "obsidian": "latest",
-    "tslib": "2.6.2",
+    "tslib": "2.6.3",
     "typescript": "5.4.5"
   },
   "dependencies": {
