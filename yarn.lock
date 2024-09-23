@@ -753,8 +753,8 @@ object-refs@^0.4.0:
   resolved "https://registry.npmjs.org/object-refs/-/object-refs-0.4.0.tgz"
 
 obsidian@latest:
-  version "1.4.11"
-  resolved "https://registry.npmjs.org/obsidian/-/obsidian-1.4.11.tgz"
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/obsidian/-/obsidian-1.7.2.tgz#2d989288742ae7a65760fd87a953d1ff2a402808"
   dependencies:
     "@types/codemirror" "5.60.8"
     moment "2.29.4"
