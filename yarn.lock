@@ -427,13 +427,13 @@ bpmn-js-sketchy@^0.7.2:
     roughjs "^4.5.2"
     tiny-svg "^3.0.0"
 
-bpmn-js-token-simulation@^0.34.2:
-  version "0.34.2"
-  resolved "https://registry.npmjs.org/bpmn-js-token-simulation/-/bpmn-js-token-simulation-0.34.2.tgz"
+bpmn-js-token-simulation@^0.35.0:
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/bpmn-js-token-simulation/-/bpmn-js-token-simulation-0.35.0.tgz#11c709c347d4401be1b27de620d51a5ca48eeb84"
   dependencies:
     inherits-browser "^0.1.0"
     min-dash "^4.0.0"
-    min-dom "^5.0.0"
+    min-dom "^4.2.1"
     randomcolor "^0.6.2"
 
 bpmn-js@^17.9.1:
