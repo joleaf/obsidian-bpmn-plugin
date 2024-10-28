@@ -436,12 +436,12 @@ bpmn-js-token-simulation@^0.34.2:
     min-dom "^5.0.0"
     randomcolor "^0.6.2"
 
-bpmn-js@^17.9.1:
-  version "17.9.1"
-  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-17.9.1.tgz"
+bpmn-js@^17.11.1:
+  version "17.11.1"
+  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-17.11.1.tgz#d429bfd084aba446fd108f32ebb8ea1abb864c0d"
   dependencies:
     bpmn-moddle "^8.1.0"
-    diagram-js "^14.7.2"
+    diagram-js "^14.10.0"
     diagram-js-direct-editing "^3.0.1"
     ids "^1.0.5"
     inherits-browser "^0.1.0"
@@ -511,9 +511,9 @@ diagram-js-minimap@^5.1.0:
     min-dom "^4.2.1"
     tiny-svg "^3.1.2"
 
-diagram-js@^14.7.2:
-  version "14.8.0"
-  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-14.8.0.tgz"
+diagram-js@^14.10.0:
+  version "14.11.3"
+  resolved "https://registry.yarnpkg.com/diagram-js/-/diagram-js-14.11.3.tgz#13ac06a415627880d2ae343c1e9600868428562a"
   dependencies:
     "@bpmn-io/diagram-js-ui" "^0.2.3"
     clsx "^2.1.0"
