@@ -436,26 +436,26 @@ bpmn-js-token-simulation@^0.36.0:
     min-dom "^4.2.1"
     randomcolor "^0.6.2"
 
-bpmn-js@^17.9.1:
-  version "17.9.1"
-  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-17.9.1.tgz"
+bpmn-js@^18.0.0:
+  version "18.0.0"
+  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-18.0.0.tgz#732a244c86a410d66971f67ef677954d2d405beb"
   dependencies:
-    bpmn-moddle "^8.1.0"
-    diagram-js "^14.7.2"
-    diagram-js-direct-editing "^3.0.1"
+    bpmn-moddle "^9.0.1"
+    diagram-js "^15.1.0"
+    diagram-js-direct-editing "^3.2.0"
     ids "^1.0.5"
     inherits-browser "^0.1.0"
     min-dash "^4.1.1"
     min-dom "^4.2.1"
     tiny-svg "^3.1.2"
 
-bpmn-moddle@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.npmjs.org/bpmn-moddle/-/bpmn-moddle-8.1.0.tgz"
+bpmn-moddle@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/bpmn-moddle/-/bpmn-moddle-9.0.1.tgz#3b36883fd6151d8067372e3fe5c7769e427246cc"
   dependencies:
-    min-dash "^4.0.0"
-    moddle "^6.2.3"
-    moddle-xml "^10.1.0"
+    min-dash "^4.2.1"
+    moddle "^7.0.0"
+    moddle-xml "^11.0.0"
 
 braces@^3.0.3:
   version "3.0.3"
@@ -489,12 +489,12 @@ debug@^4.3.4:
   dependencies:
     ms "2.1.2"
 
-diagram-js-direct-editing@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/diagram-js-direct-editing/-/diagram-js-direct-editing-3.0.1.tgz"
+diagram-js-direct-editing@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/diagram-js-direct-editing/-/diagram-js-direct-editing-3.2.0.tgz#63502c6929a624f44a2959efc95e75f01b293c15"
   dependencies:
     min-dash "^4.0.0"
-    min-dom "^4.0.2"
+    min-dom "^4.2.1"
 
 diagram-js-grid@^1.0.0:
   version "1.0.0"
@@ -511,9 +511,9 @@ diagram-js-minimap@^5.1.0:
     min-dom "^4.2.1"
     tiny-svg "^3.1.2"
 
-diagram-js@^14.7.2:
-  version "14.8.0"
-  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-14.8.0.tgz"
+diagram-js@^15.1.0:
+  version "15.2.2"
+  resolved "https://registry.yarnpkg.com/diagram-js/-/diagram-js-15.2.2.tgz#f4cd652b69f71c382af80f9406d601ea17375a5d"
   dependencies:
     "@bpmn-io/diagram-js-ui" "^0.2.3"
     clsx "^2.1.0"
@@ -772,7 +772,7 @@ min-dash@^4.0.0, min-dash@^4.1.0, min-dash@^4.1.1, min-dash@^4.2.1:
   version "4.2.1"
   resolved "https://registry.npmjs.org/min-dash/-/min-dash-4.2.1.tgz"
 
-min-dom@^4.0.2, min-dom@^4.0.3, min-dom@^4.2.1:
+min-dom@^4.0.3, min-dom@^4.2.1:
   version "4.2.1"
   resolved "https://registry.npmjs.org/min-dom/-/min-dom-4.2.1.tgz"
   dependencies:
@@ -787,19 +787,18 @@ min-dom@^5.0.0:
     domify "^2.0.0"
     min-dash "^4.2.1"
 
-moddle-xml@^10.1.0:
-  version "10.1.0"
-  resolved "https://registry.npmjs.org/moddle-xml/-/moddle-xml-10.1.0.tgz"
+moddle-xml@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/moddle-xml/-/moddle-xml-11.0.0.tgz#4f6084e7bc09181844f292b795e8752eac93eb9a"
   dependencies:
     min-dash "^4.0.0"
-    moddle "^6.0.0"
-    saxen "^8.1.2"
+    saxen "^10.0.0"
 
-moddle@^6.0.0, moddle@^6.2.3:
-  version "6.2.3"
-  resolved "https://registry.npmjs.org/moddle/-/moddle-6.2.3.tgz"
+moddle@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/moddle/-/moddle-7.0.0.tgz#d543e2816a98ed83c516af817dd639b13eeca8c5"
   dependencies:
-    min-dash "^4.0.0"
+    min-dash "^4.2.1"
 
 moment@2.29.4:
   version "2.29.4"
@@ -882,9 +881,9 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-saxen@^8.1.2:
-  version "8.1.2"
-  resolved "https://registry.npmjs.org/saxen/-/saxen-8.1.2.tgz"
+saxen@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/saxen/-/saxen-10.0.0.tgz#d7d235bcea1b461c6aab8cb413e0e115304f1c9c"
 
 semver@^7.3.7:
   version "7.5.4"
