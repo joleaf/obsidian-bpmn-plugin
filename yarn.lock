@@ -19,10 +19,10 @@
     htm "^3.1.1"
     preact "^10.11.2"
 
-"@bpmn-io/extract-process-variables@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.npmjs.org/@bpmn-io/extract-process-variables/-/extract-process-variables-0.8.0.tgz"
-  integrity sha512-yAS7ZYX+D56K+luC36u96eRMLb4VHcPUwTUqMZ/Z/Je2gou2DJLRbuBTHAB4jjKt4wFCHSG4B8Y+TrBciEYf4w==
+"@bpmn-io/extract-process-variables@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@bpmn-io/extract-process-variables/-/extract-process-variables-1.0.0.tgz#77d179a808be1a2375855beef47d3064a8dac6c9"
+  integrity sha512-4EpxKwsV1h1ttlFywo8Af+JBhGzmmv63C8x2Fu5traH8z/4VJbPa2AncIU2GFHj7LYeZlygEDYWPB0QRYoQWKg==
   dependencies:
     min-dash "^4.0.0"
 
@@ -412,12 +412,12 @@ bpmn-js-color-picker@^0.7.1:
   resolved "https://registry.npmjs.org/bpmn-js-color-picker/-/bpmn-js-color-picker-0.7.1.tgz"
   integrity sha512-SsDKewfopMPFTETAS1ZUWNKZvnQ7OBsODVcFEL2GzrQusW1VtnoCB2wc2vOtcafLAUPoUaRnVx5gZNtvywnJQA==
 
-bpmn-js-properties-panel@^5.18.0:
-  version "5.18.0"
-  resolved "https://registry.npmjs.org/bpmn-js-properties-panel/-/bpmn-js-properties-panel-5.18.0.tgz"
-  integrity sha512-5+BD4E/nG0z8kVd3Rr4DTrSNz6jw7Brc6dnvhsOY0El5TJTo1BKh+71QZPwfbeEnE0Byykoax9gB9Dn/1m/13Q==
+bpmn-js-properties-panel@^5.26.0:
+  version "5.26.0"
+  resolved "https://registry.yarnpkg.com/bpmn-js-properties-panel/-/bpmn-js-properties-panel-5.26.0.tgz#f248e2f7e30e1d6076117c74766626d661956e06"
+  integrity sha512-xL6+sohIP81Ptj2Dk+EfgQommYW+1TFCKLq6XyWJoJTsPtHKxgJArq6vL2mSbWC8XE1/n1HCuypUTEsX/A1B/w==
   dependencies:
-    "@bpmn-io/extract-process-variables" "^0.8.0"
+    "@bpmn-io/extract-process-variables" "^1.0.0"
     array-move "^4.0.0"
     ids "^1.0.5"
     min-dash "^4.2.1"

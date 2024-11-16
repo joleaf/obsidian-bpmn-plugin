@@ -25,7 +25,7 @@
     "@bpmn-io/properties-panel": "^3.24.1",
     "bpmn-js": "^18.0.0",
     "bpmn-js-color-picker": "^0.7.1",
-    "bpmn-js-properties-panel": "^5.18.0",
+    "bpmn-js-properties-panel": "^5.26.0",
     "bpmn-js-sketchy": "^0.7.2",
     "bpmn-js-token-simulation": "^0.36.0",
     "diagram-js-grid": "^1.1.0",
