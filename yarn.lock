@@ -412,10 +412,10 @@ bpmn-js-color-picker@^0.7.1:
   resolved "https://registry.npmjs.org/bpmn-js-color-picker/-/bpmn-js-color-picker-0.7.1.tgz"
   integrity sha512-SsDKewfopMPFTETAS1ZUWNKZvnQ7OBsODVcFEL2GzrQusW1VtnoCB2wc2vOtcafLAUPoUaRnVx5gZNtvywnJQA==
 
-bpmn-js-properties-panel@^5.26.0:
-  version "5.26.0"
-  resolved "https://registry.yarnpkg.com/bpmn-js-properties-panel/-/bpmn-js-properties-panel-5.26.0.tgz#f248e2f7e30e1d6076117c74766626d661956e06"
-  integrity sha512-xL6+sohIP81Ptj2Dk+EfgQommYW+1TFCKLq6XyWJoJTsPtHKxgJArq6vL2mSbWC8XE1/n1HCuypUTEsX/A1B/w==
+bpmn-js-properties-panel@^5.28.0:
+  version "5.28.0"
+  resolved "https://registry.yarnpkg.com/bpmn-js-properties-panel/-/bpmn-js-properties-panel-5.28.0.tgz#ad442a589d5f8e3d7034433a65f755843f2320bb"
+  integrity sha512-956x47mVDEg/CavqI73QzabbpsyhEXa6z434X3H3soxSGUrqSqOG59UHIjyNa8wlETI+JGz9wEX8cNk2z0jz6A==
   dependencies:
     "@bpmn-io/extract-process-variables" "^1.0.0"
     array-move "^4.0.0"
