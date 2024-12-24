@@ -112,9 +112,6 @@ export default class ObsidianBPMNPlugin extends Plugin {
                 const bpmn = parameters.enablepanzoom ?
                     new NavigatedViewer({
                         container: bpmnDiv,
-                        keyboard: {
-                            bindTo: bpmnDiv.win
-                        },
                         additionalModules: modules,
                         textRenderer: textRenderer
                     }) :

@@ -1,8 +1,7 @@
 import Modeler from "bpmn-js/lib/Modeler";
 import {
     BpmnPropertiesPanelModule,
-    BpmnPropertiesProviderModule,
-    ZeebePropertiesProviderModule
+    BpmnPropertiesProviderModule
 } from 'bpmn-js-properties-panel';
 import {setIcon, TextFileView, WorkspaceLeaf} from "obsidian";
 import {ObsidianBpmnPluginSettings} from "./settings";
@@ -69,9 +68,6 @@ export class BpmnModelerView extends TextFileView {
             BpmnPropertiesProviderModule,
             BpmnColorPickerModule,
         ];
-        if (this.settings.enable_zeebe_properties) {
-            modules.push(ZeebePropertiesProviderModule);
-        }
         if (this.settings.enable_token_simulator) {
             modules.push(TokenSimulationModule);
             modules.push(SimulationSupportModule);
@@ -100,9 +96,6 @@ export class BpmnModelerView extends TextFileView {
         }
         this.bpmnModeler = new Modeler({
             container: this.bpmnDiv,
-            keyboard: {
-                bindTo: this.bpmnDiv.win
-            },
             propertiesPanel: {
                 parent: propertyPanel
             },

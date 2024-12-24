@@ -13,7 +13,6 @@ export class ObsidianBpmnPluginSettings {
     enable_token_simulator: boolean = true;
     enable_simulation_heatmap: boolean = false;
     enable_minimap: boolean = true;
-    enable_zeebe_properties: boolean = false;
     enable_grid: boolean = true;
     enable_sketchy: boolean = false;
 }
@@ -176,14 +175,6 @@ export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
             .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_grid)
                 .onChange((value) => {
                     this.plugin.settings.enable_grid = value;
-                    this.plugin.saveData(this.plugin.settings);
-                }));
-        new Setting(containerEl)
-            .setName("Enable Zeebe properties")
-            .setDesc("Add the Zeebe properties in the property box. (Warning: Beta)")
-            .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_zeebe_properties)
-                .onChange((value) => {
-                    this.plugin.settings.enable_zeebe_properties = value;
                     this.plugin.saveData(this.plugin.settings);
                 }));
     }
