@@ -4,8 +4,6 @@ import NavigatedViewer from "bpmn-js/lib/NavigatedViewer";
 import BpmnViewer from "bpmn-js/lib/Viewer";
 import sketchyRendererModule from 'bpmn-js-sketchy';
 import {BpmnModelerView, VIEW_TYPE_BPMN} from "./bpmnModeler"
-import {BpmnPropertiesPanelModule, BpmnPropertiesProviderModule} from "bpmn-js-properties-panel";
-import BpmnColorPickerModule from "bpmn-js-color-picker";
 
 interface BpmnNodeParameters {
     url: string;
