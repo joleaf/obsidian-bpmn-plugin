@@ -19,7 +19,7 @@
     "esbuild": "0.25.0",
     "obsidian": "latest",
     "tslib": "2.8.1",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "dependencies": {
     "@bpmn-io/properties-panel": "^3.26.3",
