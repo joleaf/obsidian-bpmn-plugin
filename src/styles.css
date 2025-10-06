@@ -9,89 +9,99 @@
 /* Styles */
 
 .bpmn-content {
-    display: flex;
-    flex-wrap: wrap;
-    flex-flow: column;
-    row-gap: 5px;
-    height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: column;
+  row-gap: 5px;
+  height: 100%;
 }
 
 .bpmn-view {
-    cursor: pointer;
-    width: 100%;
+  cursor: pointer;
+  width: 100%;
 }
 
 .bpmn-view-modeler {
-    flex: 1;
-    border: 1px dashed #212121;
+  flex: 1;
+  border: 1px dashed #212121;
 }
 
 /* Dark mode from system */
 @media (prefers-color-scheme: dark) {
-    .bpmn-view {
-        filter: invert(85%);
-        color: black !important;
-    }
+  .bpmn-view {
+    filter: invert(85%);
+    color: black !important;
+  }
 
-    .bio-properties-panel-input, .bpmn-view textarea, .bpmn-view input.metadata-input-text, .bpmn-view input[type='date'], .bpmn-view input[type='datetime-local'], .bpmn-view input[type='text'], .bpmn-view input[type='search'], .bpmn-view input[type='email'], .bpmn-view input[type='password'], .bpmn-view input[type='number'], .bpmn-view .bio-properties-panel-input {
-        background-color: white !important;
-        color: black !important;
-    }
+  .bio-properties-panel-input,
+  .bpmn-view textarea,
+  .bpmn-view input.metadata-input-text,
+  .bpmn-view input[type='date'],
+  .bpmn-view input[type='datetime-local'],
+  .bpmn-view input[type='text'],
+  .bpmn-view input[type='search'],
+  .bpmn-view input[type='email'],
+  .bpmn-view input[type='password'],
+  .bpmn-view input[type='number'],
+  .bpmn-view .bio-properties-panel-input {
+    background-color: white !important;
+    color: black !important;
+  }
 }
 
 
 .bpmn-view-white-background {
-    background-color: white !important;
-    filter: invert(0%) !important;
+  background-color: white !important;
+  filter: invert(0%) !important;
 }
 
 .bpmn-view-obsidian-theme {
-    filter: invert(85%);
+  filter: invert(85%);
 }
 
 .bpmn-view-moonstone-theme {
-    filter: invert(0%) !important;
+  filter: invert(0%) !important;
 }
 
 .bpmn-fullscreen {
-    height: 100%;
+  height: 100%;
 }
 
 .bjs-powered-by {
-    left: 15px !important;
-    display: inline-table;
+  left: 15px !important;
+  display: inline-table;
 }
 
 .bpmn-view .djs-popup {
-    top: 0px !important;
-    left: 0px !important;
+  top: 0px !important;
+  left: 0px !important;
 }
 
 .bpmn-properties-panel {
-    width: 400px;
-    position: absolute;
-    bottom: 30px;
-    right: 20px;
-    border: black 2px dashed;
-    border-radius: 4px;
+  width: 400px;
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  border: black 2px dashed;
+  border-radius: 4px;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 @font-face {
-    font-family: 'bpmn';
-    src: url('https://unpkg.com/bpmn-js@18.3.1/dist/assets/bpmn-font/font/bpmn.eot?21877404');
-    src: url('https://unpkg.com/bpmn-js@18.3.1/dist/assets/bpmn-font/font/bpmn.eot?21877404#iefix') format('embedded-opentype'),
-    url('https://unpkg.com/bpmn-js@18.3.1/dist/assets/bpmn-font/font/bpmn.woff2?21877404') format('woff2'),
-    url('https://unpkg.com/bpmn-js@18.3.1/dist/assets/bpmn-font/font/bpmn.woff?21877404') format('woff'),
-    url('https://unpkg.com/bpmn-js@18.3.1/dist/assets/bpmn-font/font/bpmn.ttf?21877404') format('truetype'),
-    url('https://unpkg.com/bpmn-js@18.3.1/dist/assets/bpmn-font/font/bpmn.svg?21877404#bpmn') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'bpmn';
+  src: url('https://unpkg.com/bpmn-js@18.7.0/dist/assets/bpmn-font/font/bpmn.eot?21877404');
+  src: url('https://unpkg.com/bpmn-js@18.7.0/dist/assets/bpmn-font/font/bpmn.eot?21877404#iefix') format('embedded-opentype'),
+    url('https://unpkg.com/bpmn-js@18.7.0/dist/assets/bpmn-font/font/bpmn.woff2?21877404') format('woff2'),
+    url('https://unpkg.com/bpmn-js@18.7.0/dist/assets/bpmn-font/font/bpmn.woff?21877404') format('woff'),
+    url('https://unpkg.com/bpmn-js@18.7.0/dist/assets/bpmn-font/font/bpmn.ttf?21877404') format('truetype'),
+    url('https://unpkg.com/bpmn-js@18.7.0/dist/assets/bpmn-font/font/bpmn.svg?21877404#bpmn') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.bpmn-view > canvas {
-    pointer-events: none;
+.bpmn-view>canvas {
+  pointer-events: none;
 }
