@@ -181,13 +181,13 @@ export default class ObsidianBPMNPlugin extends Plugin {
         });
     }
 
-    private readParameters(jsonString: string) {
-        if (jsonString.contains("[[") && !jsonString.contains('"[[')) {
-            jsonString = jsonString.replace("[[", '"[[');
-            jsonString = jsonString.replace("]]", ']]"');
+    private readParameters(yamlString: string) {
+        if (yamlString.contains("[[") && !jsonString.contains('"[[')) {
+            yamlString = yamlString.replace("[[", '"[[');
+            yamlString = yamlString.replace("]]", ']]"');
         }
 
-        const parameters: BpmnNodeParameters = parseYaml(jsonString);
+        const parameters: BpmnNodeParameters = parseYaml(yamlString);
 
         //Transform internal Link to external
         if (parameters.url.startsWith("[[")) {
