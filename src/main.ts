@@ -1,4 +1,4 @@
-import {Plugin, WorkspaceLeaf, parseYaml, setIcon} from "obsidian";
+import {Plugin, WorkspaceLeaf, parseYaml, setIcon, MarkdownPostProcessorContext, TFile } from "obsidian";
 import {ObsidianBpmnPluginSettings, ObsidianBpmnPluginSettingsTab} from "./settings";
 import NavigatedViewer from "bpmn-js/lib/NavigatedViewer";
 import BpmnViewer from "bpmn-js/lib/Viewer";
@@ -57,99 +57,30 @@ export default class ObsidianBPMNPlugin extends Plugin {
                 el.createEl("h3", {text: "BPMN parameters invalid: \n" + e.message});
                 return;
             }
-
-            console.log("Try to render a BPMN")
-            try {
-                if (parameters.url.startsWith("./")) {
-                    const filePath = ctx.sourcePath;
-                    const folderPath = filePath.substring(0, filePath.lastIndexOf("/"));
-                    parameters.url = folderPath + "/" + parameters.url.substring(2, parameters.url.length);
-                }
-
-                const rootDiv = el.createEl("div");
-
-                if (parameters.opendiagram) {
-                    const href = rootDiv.createEl("a", {text: "Open diagram"});
-                    href.href = parameters.url;
-                    href.className = "internal-link";
-                    setIcon(href, "file-edit");
-                }
-                let bpmn_view_classes = "bpmn-view"
-                const bpmnDiv = rootDiv.createEl("div", {cls: bpmn_view_classes});
-                if (parameters.forcewhitebackground) {
-                    bpmnDiv.addClass("bpmn-view-white-background");
-                } else {
-                    // @ts-ignore
-                    const theme = this.app.getTheme();
-                    if (theme === 'obsidian') {
-                        bpmnDiv.addClass("bpmn-view-obsidian-theme");
-                    } else if (theme === 'moonstone') {
-                        bpmnDiv.addClass("bpmn-view-moonstone-theme");
-                    }
-                }
-                const xml = await this.app.vault.adapter.read(parameters.url);
-                bpmnDiv.setAttribute("style", "height: " + parameters.height + "px;");
-                let modules = [];
-                if (this.settings.enable_sketchy) {
-                    modules.push(sketchyRendererModule);
-                }
-                let textRenderer = undefined;
-                if (this.settings.enable_sketchy) {
-                    modules.push(sketchyRendererModule);
-                    textRenderer = {
-                        defaultStyle: {
-                            fontFamily: '"Comic Sans MS"',
-                            fontWeight: 'normal',
-                            fontSize: 14,
-                            lineHeight: 1.1
-                        },
-                        externalStyle: {
-                            fontSize: 14,
-                            lineHeight: 1.1
-                        }
-                    };
-                }
-                const bpmn = parameters.enablepanzoom ?
-                    new NavigatedViewer({
-                        container: bpmnDiv,
-                        additionalModules: modules,
-                        textRenderer: textRenderer
-                    }) :
-                    new BpmnViewer({
-                        container: bpmnDiv,
-                        additionalModules: modules,
-                        textRenderer: textRenderer
-                    });
-                const p_zoom = parameters.zoom;
-                const p_x = parameters.x;
-                const p_y = parameters.y;
-                bpmn.importXML(xml).then(function (result: { warnings: any; }) {
-                    const canvas = bpmn.get('canvas');
-                    if (p_zoom === undefined) {
-                        canvas.zoom('fit-viewport');
-                    } else {
-                        canvas.zoom(p_zoom, {x: p_x, y: p_y});
-                    }
-                }).catch(function (err: { warnings: any; message: any; }) {
-                    const {warnings, message} = err;
-                    console.error('something went wrong:', warnings, message);
-                    bpmn.destroy();
-                    rootDiv.createEl("h3", {text: warnings + " " + message});
-                });
-                if (parameters.showzoom && parameters.enablepanzoom) {
-                    const zoomDiv = rootDiv.createEl("div");
-                    const zoomInBtn = zoomDiv.createEl("button", {"text": "+"});
-                    zoomInBtn.addEventListener("click", (e: Event) => bpmn.get('zoomScroll').stepZoom(0.5));
-                    const zoomOutBtn = zoomDiv.createEl("button", {"text": "-"});
-                    zoomOutBtn.addEventListener("click", (e: Event) => bpmn.get('zoomScroll').stepZoom(-0.5));
-                    setIcon(zoomInBtn, "zoom-in");
-                    setIcon(zoomOutBtn, "zoom-out");
-                }
-            } catch (error) {
-                el.createEl("h3", {text: error});
-                console.error(error);
-            }
+            this.renderBPMNBlock(parameters, el, ctx);
         });
+        // Add ![[]] embedding
+        this.registerMarkdownPostProcessor((el: HTMLElement, ctx: MarkdownPostProcessorContext) => {
+            const embeds = el.querySelectorAll(".internal-embed");
+            embeds.forEach(async (embed: HTMLElement) => {
+                console.log("Hello!");
+                const src = embed.getAttribute("src");
+                if (!src || !src.endsWith(".bpmn")) return;
+                const file = this.app.vault.getAbstractFileByPath(src);
+                if (!(file instanceof TFile)) return;
+                let parameters: BpmnNodeParameters | null = null;
+                try {
+                    parameters = this.readParameters("url: "+ file.path);
+                } catch (e) {
+                    embed.createEl("h3", {text: "BPMN parameters invalid: \n" + e.message});
+                    return;
+                }
+                embed.innerHTML = "";
+                this.renderBPMNBlock(parameters, el, ctx);
+                embed.addClass("bpmn-embed");
+            });
+        });
+
         // Add icon
         this.addRibbonIcon("file-input", "New BPMN", async () => {
             let path = "/";
@@ -180,9 +111,102 @@ export default class ObsidianBPMNPlugin extends Plugin {
             }
         });
     }
+    private async renderBPMNBlock(parameters: BpmnNodeParameters, el, ctx) {
+        console.log("Try to render a BPMN");
+        try {
+            if (parameters.url.startsWith("./")) {
+                const filePath = ctx.sourcePath;
+                const folderPath = filePath.substring(0, filePath.lastIndexOf("/"));
+                parameters.url = folderPath + "/" + parameters.url.substring(2, parameters.url.length);
+            }
+
+            const rootDiv = el.createEl("div");
+
+            if (parameters.opendiagram) {
+                const href = rootDiv.createEl("a", {text: "Open diagram"});
+                href.href = parameters.url;
+                href.className = "internal-link";
+                setIcon(href, "file-edit");
+            }
+            let bpmn_view_classes = "bpmn-view"
+            const bpmnDiv = rootDiv.createEl("div", {cls: bpmn_view_classes});
+            if (parameters.forcewhitebackground) {
+                bpmnDiv.addClass("bpmn-view-white-background");
+            } else {
+                // @ts-ignore
+                const theme = this.app.getTheme();
+                if (theme === 'obsidian') {
+                    bpmnDiv.addClass("bpmn-view-obsidian-theme");
+                } else if (theme === 'moonstone') {
+                    bpmnDiv.addClass("bpmn-view-moonstone-theme");
+                }
+            }
+            const xml = await this.app.vault.adapter.read(parameters.url);
+            bpmnDiv.setAttribute("style", "height: " + parameters.height + "px;");
+            let modules = [];
+            if (this.settings.enable_sketchy) {
+                modules.push(sketchyRendererModule);
+            }
+            let textRenderer = undefined;
+            if (this.settings.enable_sketchy) {
+                modules.push(sketchyRendererModule);
+                textRenderer = {
+                    defaultStyle: {
+                        fontFamily: '"Comic Sans MS"',
+                        fontWeight: 'normal',
+                        fontSize: 14,
+                        lineHeight: 1.1
+                    },
+                    externalStyle: {
+                        fontSize: 14,
+                        lineHeight: 1.1
+                    }
+                };
+            }
+            const bpmn = parameters.enablepanzoom ?
+                new NavigatedViewer({
+                    container: bpmnDiv,
+                    additionalModules: modules,
+                    textRenderer: textRenderer
+                }) :
+                new BpmnViewer({
+                    container: bpmnDiv,
+                    additionalModules: modules,
+                    textRenderer: textRenderer
+                });
+            const p_zoom = parameters.zoom;
+            const p_x = parameters.x;
+            const p_y = parameters.y;
+            bpmn.importXML(xml).then(function (result: { warnings: any; }) {
+                const canvas = bpmn.get('canvas');
+                if (p_zoom === undefined) {
+                    canvas.zoom('fit-viewport');
+                } else {
+                    canvas.zoom(p_zoom, {x: p_x, y: p_y});
+                }
+            }).catch(function (err: { warnings: any; message: any; }) {
+                const {warnings, message} = err;
+                console.error('something went wrong:', warnings, message);
+                bpmn.destroy();
+                rootDiv.createEl("h3", {text: warnings + " " + message});
+            });
+            if (parameters.showzoom && parameters.enablepanzoom) {
+                const zoomDiv = rootDiv.createEl("div");
+                const zoomInBtn = zoomDiv.createEl("button", {"text": "+"});
+                zoomInBtn.addEventListener("click", (e: Event) => bpmn.get('zoomScroll').stepZoom(0.5));
+                const zoomOutBtn = zoomDiv.createEl("button", {"text": "-"});
+                zoomOutBtn.addEventListener("click", (e: Event) => bpmn.get('zoomScroll').stepZoom(-0.5));
+                setIcon(zoomInBtn, "zoom-in");
+                setIcon(zoomOutBtn, "zoom-out");
+            }
+        } catch (error) {
+            el.createEl("h3", {text: error});
+            console.error(error);
+        }
+    }
 
     private readParameters(yamlString: string) {
-        if (yamlString.contains("[[") && !jsonString.contains('"[[')) {
+        if (yamlString.contains("[[") && !yamlString.contains('"[[')) {
             yamlString = yamlString.replace("[[", '"[[');
             yamlString = yamlString.replace("]]", ']]"');
         }
