@@ -2,6 +2,16 @@
 
 All changes to this plugin are listed here.
 
+## Unreleased
+
+### Fixed
+
+- Keyboard shortcuts (e.g. `e` edit, `r` replace) now work inside Obsidian: the diagram canvas is focused when the mouse enters it, so bpmn-js receives key events
+
+### New
+
+- Added the bpmn-js "create/append anything" feature: press `a` to append a new node to the selected element, `n` to create a new node (both open a searchable popup menu)
+
 ## 7.3.3 (2025-10-06)
 
 ### Updated
