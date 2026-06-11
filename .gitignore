@@ -9,3 +9,9 @@ package-lock.json
 # build
 main.js
 *.js.map
+/styles.css
+/bpmn-*.eot
+/bpmn-*.svg
+/bpmn-*.ttf
+/bpmn-*.woff
+/bpmn-*.woff2
