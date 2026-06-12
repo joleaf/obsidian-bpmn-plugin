@@ -111,7 +111,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
             }
         });
     }
-    private async renderBPMNBlock(parameters: BpmnNodeParameters, el, ctx) {
+    private async renderBPMNBlock(parameters: BpmnNodeParameters, el: HTMLElement, ctx: MarkdownPostProcessorContext) {
         console.log("Try to render a BPMN");
         try {
             if (parameters.url.startsWith("./")) {

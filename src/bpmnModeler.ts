@@ -10,6 +10,8 @@ import TokenSimulationModule from "bpmn-js-token-simulation";
 import SimulationSupportModule from 'bpmn-js-token-simulation/lib/simulation-support';
 import BpmnColorPickerModule from "bpmn-js-color-picker";
 // @ts-ignore
+import {CreateAppendAnythingModule} from 'bpmn-js-create-append-anything';
+// @ts-ignore
 import gridModule from 'diagram-js-grid';
 import minimapModule from 'diagram-js-minimap';
 import sketchyRendererModule from 'bpmn-js-sketchy';
@@ -67,6 +69,7 @@ export class BpmnModelerView extends TextFileView {
             BpmnPropertiesPanelModule,
             BpmnPropertiesProviderModule,
             BpmnColorPickerModule,
+            CreateAppendAnythingModule,
         ];
         if (this.settings.enable_token_simulator) {
             modules.push(TokenSimulationModule);
@@ -101,6 +104,9 @@ export class BpmnModelerView extends TextFileView {
             },
             additionalModules: modules,
             textRenderer: textRenderer,
+            canvas: {
+                autoFocus: true
+            },
         });
         if (this.settings.force_white_background_by_default) {
             this.bpmnDiv.addClass("bpmn-view-white-background");
@@ -109,6 +115,24 @@ export class BpmnModelerView extends TextFileView {
         const bpmnModeler = this.bpmnModeler;
         const canvas = bpmnModeler.get('canvas');
         const thisRef = this;
+        // bpmn-js binds its keyboard shortcuts (a, n, e, r, h, l, s, ...) to the
+        // canvas SVG element, which only receives key events while focused.
+        // Obsidian keeps focus on its own workspace elements, so the built-in
+        // autoFocus (which requires document.body to be focused) never kicks in.
+        // Focus the canvas when the mouse enters the diagram, unless the user is
+        // typing somewhere else (e.g. the properties panel or a note).
+        this.registerDomEvent(this.bpmnDiv, "mouseenter", function () {
+            const active = document.activeElement;
+            if (active instanceof HTMLElement &&
+                (active.isContentEditable ||
+                    active.tagName === "INPUT" ||
+                    active.tagName === "TEXTAREA" ||
+                    active.tagName === "SELECT")) {
+                return;
+            }
+            // @ts-ignore
+            canvas.focus();
+        });
         this.bpmnModeler.on("commandStack.changed", function () {
             bpmnModeler.saveXML({format: true}).then(function (data: any) {
                 const {xml} = data;
