@@ -12,6 +12,10 @@ All changes to this plugin are listed here.
 
 - Added the bpmn-js "create/append anything" feature: press `a` to append a new node to the selected element, `n` to create a new node (both open a searchable popup menu)
 
+### Updated
+
+- Bump bpmn-js-token-simulation to 0.39.3: 0.38.x imports the removed default export of ids v3, which breaks the esbuild bundling on a fresh install
+
 ## 7.3.3 (2025-10-06)
 
 ### Updated
