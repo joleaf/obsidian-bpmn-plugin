@@ -1,6 +1,6 @@
 {
   "name": "bpmn",
-  "version": "7.3.3",
+  "version": "7.4.0",
   "description": "This plugin enables viewing/editing/simulating BPMNs using bpmn-js.",
   "main": "main.js",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@bpmn-io/properties-panel": "^3.34.0",
-    "bpmn-js": "^18.8.0",
+    "bpmn-js": "^18.18.0",
     "bpmn-js-color-picker": "^0.7.2",
     "bpmn-js-create-append-anything": "^1.2.0",
     "bpmn-js-properties-panel": "^5.43.0",

@@ -2,7 +2,7 @@
 
 All changes to this plugin are listed here.
 
-## Unreleased
+## 7.4.0 (2026-06-12)
 
 ### Fixed
 
@@ -15,6 +15,7 @@ All changes to this plugin are listed here.
 ### Updated
 
 - Bump bpmn-js-token-simulation to 0.39.3: 0.38.x imports the removed default export of ids v3, which breaks the esbuild bundling on a fresh install
+- Bump bpmn-js to 18.18.0
 
 ## 7.3.3 (2025-10-06)
 
