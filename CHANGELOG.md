@@ -2,6 +2,12 @@
 
 All changes to this plugin are listed here.
 
+## Unreleased
+
+### Fixed
+
+- Popup menus (create/append/replace element, also via the `n`/`a`/`r` shortcuts) now open at the right place — anchored to the element being appended to, or at the mouse cursor when creating — instead of at the top-left corner of the view. The popup no longer jumps around while opening and always stays inside the diagram view, even when triggered near its edge
+
 ## 7.4.0 (2026-06-12)
 
 ### Fixed

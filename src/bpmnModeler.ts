@@ -19,6 +19,132 @@ import HeatMap, {DataPoint} from "heatmap-ts";
 
 export const VIEW_TYPE_BPMN = "bpmn-view";
 
+// bpmn-js positions its popup menus (create/append/replace, also via the
+// keyboard shortcuts n/a/r) with position: fixed in viewport coordinates.
+// Obsidian's workspace panes and this plugin's dark-mode filter establish
+// CSS containing blocks, so those viewport coordinates resolve relative to
+// an ancestor element instead: the popup lands in the wrong place, and
+// focusing its search field then auto-scrolls the pane to reach it, which
+// makes the popup visibly jump around. Fix it at the source: right before
+// the popup renders, rewrite the position bpmn-js is about to use so that
+// the very first paint is already correct. The popup is placed at the
+// element being appended to (append menu) or at the position bpmn-js chose
+// (e.g. the mouse cursor), translated into the containing block's
+// coordinate space and clamped so it stays inside the diagram view. A
+// second pass after rendering refines the clamping with the popup's actual
+// size, still before the browser paints.
+export function installPopupMenuRepositioning(
+    // @ts-ignore
+    bpmnModeler: Modeler,
+    containerEl: HTMLElement,
+) {
+    const popupMenu = bpmnModeler.get("popupMenu");
+    const canvas = bpmnModeler.get("canvas");
+    let popupObserver: MutationObserver | null = null;
+    let desired: { x: number, y: number } | null = null;
+
+    // Where the popup should appear, in real viewport coordinates.
+    const getDesiredPosition = function (current: any): { x: number, y: number } {
+        const target = current.target;
+        if (current.providerId === "bpmn-append" &&
+            target && typeof target.x === "number" && typeof target.width === "number") {
+            // Anchor the append menu to the element it appends to, at its
+            // top-right corner, keeping clear of the context pad icons.
+            const viewbox = canvas.viewbox();
+            const canvasRect = canvas.getContainer().getBoundingClientRect();
+            let x = canvasRect.left + (target.x + target.width - viewbox.x) * viewbox.scale + 12;
+            const y = canvasRect.top + (target.y - viewbox.y) * viewbox.scale;
+            const pad = containerEl.querySelector(".djs-context-pad.open");
+            if (pad !== null) {
+                x = Math.max(x, pad.getBoundingClientRect().right + 5);
+            }
+            return {x: x, y: y};
+        }
+        return {x: current.position.x, y: current.position.y};
+    };
+
+    // Keep the popup inside the diagram view; Obsidian clips anything that
+    // sticks out of the pane, and a popup outside the pane makes the search
+    // field's focus auto-scroll the workspace.
+    const clampToView = function (x: number, y: number, width: number, height: number) {
+        const bounds = containerEl.getBoundingClientRect();
+        return {
+            x: Math.max(Math.min(x, bounds.right - width), bounds.left),
+            y: Math.max(Math.min(y, bounds.bottom - height), bounds.top),
+        };
+    };
+
+    // Viewport coordinates of the popup's containing block origin, i.e.
+    // where `position: fixed; left: 0; top: 0` actually ends up. Zero when
+    // fixed positioning works normally.
+    const getContainingBlockOrigin = function (parentEl: HTMLElement): { x: number, y: number } {
+        const probe = document.createElement("div");
+        probe.style.cssText = "position: fixed; left: 0; top: 0; width: 0; height: 0; pointer-events: none;";
+        parentEl.appendChild(probe);
+        const rect = probe.getBoundingClientRect();
+        probe.remove();
+        return {x: rect.left, y: rect.top};
+    };
+
+    // Second pass, after the popup rendered: re-clamp with its actual size.
+    // Also runs when a popup re-render resets the inline position.
+    const refine = function () {
+        const popupEl = containerEl.querySelector(".djs-popup-parent .djs-popup") as HTMLElement | null;
+        if (desired === null || popupEl === null) {
+            return;
+        }
+        const styleLeft = parseFloat(popupEl.style.left);
+        const styleTop = parseFloat(popupEl.style.top);
+        if (isNaN(styleLeft) || isNaN(styleTop)) {
+            return;
+        }
+        const rect = popupEl.getBoundingClientRect();
+        const originX = rect.left - styleLeft;
+        const originY = rect.top - styleTop;
+        const clamped = clampToView(desired.x, desired.y, rect.width, rect.height);
+        const newLeft = clamped.x - originX;
+        const newTop = clamped.y - originY;
+        if (Math.abs(newLeft - styleLeft) >= 0.5 || Math.abs(newTop - styleTop) >= 0.5) {
+            popupEl.style.left = newLeft + "px";
+            popupEl.style.top = newTop + "px";
+        }
+    };
+
+    bpmnModeler.on("popupMenu.open", function () {
+        const current = popupMenu._current;
+        if (!current || !current.position || !current.container) {
+            return;
+        }
+        // Rewrite the position before the popup renders. The popup's size is
+        // not known yet, so clamp with its configured width and a generous
+        // height estimate; the refine pass fixes the estimate.
+        const origin = getContainingBlockOrigin(current.container);
+        desired = getDesiredPosition(current);
+        const width = (current.options && current.options.width) || 300;
+        const clamped = clampToView(desired.x, desired.y, width, 400);
+        current.position = Object.assign({}, current.position, {
+            x: clamped.x - origin.x,
+            y: clamped.y - origin.y,
+        });
+        // The popup renders synchronously right after this event fires;
+        // refining in a microtask still happens before the next paint.
+        queueMicrotask(function () {
+            refine();
+            const popupEl = containerEl.querySelector(".djs-popup-parent .djs-popup");
+            if (popupEl !== null && popupObserver === null) {
+                popupObserver = new MutationObserver(refine);
+                popupObserver.observe(popupEl, {attributes: true, attributeFilter: ["style"]});
+            }
+        });
+    });
+    bpmnModeler.on("popupMenu.close", function () {
+        if (popupObserver !== null) {
+            popupObserver.disconnect();
+            popupObserver = null;
+        }
+    });
+}
+
 export class BpmnModelerView extends TextFileView {
     bpmnXml: string;
     bpmnDiv: HTMLElement;
@@ -133,6 +259,7 @@ export class BpmnModelerView extends TextFileView {
             // @ts-ignore
             canvas.focus();
         });
+        installPopupMenuRepositioning(this.bpmnModeler, this.bpmnDiv);
         this.bpmnModeler.on("commandStack.changed", function () {
             bpmnModeler.saveXML({format: true}).then(function (data: any) {
                 const {xml} = data;

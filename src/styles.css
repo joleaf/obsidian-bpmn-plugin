@@ -72,11 +72,6 @@
   display: inline-table;
 }
 
-.bpmn-view .djs-popup {
-  top: 0px !important;
-  left: 0px !important;
-}
-
 .bpmn-properties-panel {
   width: 400px;
   position: absolute;
