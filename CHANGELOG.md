@@ -2,6 +2,16 @@
 
 All changes to this plugin are listed here.
 
+## 7.5.0 (2026-08-28)
+
+### Updated
+
+- Bump bpmn-js to 18.25.1
+
+### Fixed
+
+- Fix CSS url import #208
+
 ## 7.4.0 (2026-06-12)
 
 ### Fixed

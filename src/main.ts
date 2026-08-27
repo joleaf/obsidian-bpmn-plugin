@@ -57,7 +57,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
                 el.createEl("h3", {text: "BPMN parameters invalid: \n" + e.message});
                 return;
             }
-            this.renderBPMNBlock(parameters, el, ctx);
+            await this.renderBPMNBlock(parameters, el, ctx);
         });
         // Add ![[]] embedding
         this.registerMarkdownPostProcessor((el: HTMLElement, ctx: MarkdownPostProcessorContext) => {
