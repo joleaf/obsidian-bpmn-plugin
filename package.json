@@ -1,6 +1,6 @@
 {
   "name": "bpmn",
-  "version": "7.5.0",
+  "version": "8.0.0",
   "description": "Viewing / editing / simulating BPMNs.",
   "main": "main.js",
   "scripts": {
@@ -16,7 +16,6 @@
     "@types/node": "^22.13.5",
     "@typescript-eslint/eslint-plugin": "8.46.0",
     "@typescript-eslint/parser": "8.46.0",
-    "builtin-modules": "5.0.0",
     "esbuild": "0.25.10",
     "eslint": "^9.39.5",
     "eslint-plugin-obsidianmd": "^0.4.2",
@@ -26,6 +25,8 @@
   },
   "dependencies": {
     "@bpmn-io/properties-panel": "^3.34.0",
+    "@codemirror/autocomplete": "^6.20.3",
+    "@codemirror/state": "^6.5.0",
     "bpmn-js": "^18.25.1",
     "bpmn-js-color-picker": "^0.7.2",
     "bpmn-js-create-append-anything": "^1.2.0",

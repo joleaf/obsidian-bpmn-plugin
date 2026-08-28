@@ -3,28 +3,25 @@ import {
     BpmnPropertiesPanelModule,
     BpmnPropertiesProviderModule
 } from 'bpmn-js-properties-panel';
-import {setIcon, TextFileView, WorkspaceLeaf} from "obsidian";
+import {setIcon, TextFileView, WorkspaceLeaf } from "obsidian";
 import {ObsidianBpmnPluginSettings} from "./settings";
-import {SaveSVGResult} from "bpmn-js/lib/BaseViewer";
-import TokenSimulationModule from "bpmn-js-token-simulation";
+import TokenSimulationModule, {SimulationSupport, SimulationTrace} from "bpmn-js-token-simulation";
 import SimulationSupportModule from 'bpmn-js-token-simulation/lib/simulation-support';
 import BpmnColorPickerModule from "bpmn-js-color-picker";
-// @ts-ignore
 import {CreateAppendAnythingModule} from 'bpmn-js-create-append-anything';
-// @ts-ignore
 import gridModule from 'diagram-js-grid';
 import minimapModule from 'diagram-js-minimap';
 import sketchyRendererModule from 'bpmn-js-sketchy';
 import HeatMap, {DataPoint} from "heatmap-ts";
+import type {Canvas, CommandStack, ElementRegistry} from "diagram-js";
 
 export const VIEW_TYPE_BPMN = "bpmn-view";
 
 export class BpmnModelerView extends TextFileView {
     bpmnXml: string;
     bpmnDiv: HTMLElement;
-    // @ts-ignore
     bpmnModeler: Modeler;
-    intervalId: NodeJS.Timeout;
+    intervalId: number;
 
     constructor(
         public leaf: WorkspaceLeaf,
@@ -39,14 +36,14 @@ export class BpmnModelerView extends TextFileView {
 
     setViewData(data: string, clear: boolean) {
         this.bpmnXml = data;
-        this.bpmnModeler.importXML(this.bpmnXml).catch(function (err: { warnings: any; message: string; }) {
+        this.bpmnModeler.importXML(this.bpmnXml).catch((err) => {
             console.error(err);
         });
     }
 
     async onOpen() {
-        let contentEl = this.contentEl.createEl("div", {cls: "bpmn-content"});
-        let buttonbar = contentEl.createEl("div");
+        let contentEl = this.contentEl.createDiv({cls: "bpmn-content"});
+        let buttonbar = contentEl.createDiv();
         let bpmnSave = buttonbar.createEl("button", {text: "Save", attr: {"aria-label": "Save"}});
         let bpmnUndo = buttonbar.createEl("button", {text: "Undo", attr: {"aria-label": "Undo"}});
         let bpmnRedo = buttonbar.createEl("button", {text: "Redo", attr: {"aria-label": "Redo"}});
@@ -62,9 +59,9 @@ export class BpmnModelerView extends TextFileView {
             text: "Export PNG",
             attr: {"aria-label": "Export as PNG"}
         });
-        let bpmn_view_classes = "bpmn-view bpmn-view-modeler"
-        this.bpmnDiv = contentEl.createEl("div", {cls: bpmn_view_classes});
-        let propertyPanel = contentEl.createEl("div", {cls: "bpmn-properties-panel hide"});
+        let bpmn_view_classes = "bpmn-view bpmn-view-modeler";
+        this.bpmnDiv = contentEl.createDiv({cls: bpmn_view_classes});
+        let propertyPanel = contentEl.createDiv({cls: "bpmn-properties-panel hide"});
         let modules = [
             BpmnPropertiesPanelModule,
             BpmnPropertiesProviderModule,
@@ -112,16 +109,28 @@ export class BpmnModelerView extends TextFileView {
             this.bpmnDiv.addClass("bpmn-view-white-background");
         }
 
+        const popupMenu = this.bpmnModeler.get<{
+            _createContainer(config: {provider: string}): HTMLElement;
+        }>("popupMenu");
+        // Function.prototype.bind is typed to return `any`, so re-assert the
+        // known signature to keep the no-unsafe-* rules happy.
+        const originalCreateContainer =
+            popupMenu._createContainer.bind(popupMenu) as typeof popupMenu._createContainer;
+        popupMenu._createContainer = function(config) {
+            const container = originalCreateContainer(config);
+            document.body.appendChild(container);
+            return container;
+        };
+
         const bpmnModeler = this.bpmnModeler;
-        const canvas = bpmnModeler.get('canvas');
-        const thisRef = this;
+        const canvas = bpmnModeler.get<Canvas>('canvas');
         // bpmn-js binds its keyboard shortcuts (a, n, e, r, h, l, s, ...) to the
         // canvas SVG element, which only receives key events while focused.
         // Obsidian keeps focus on its own workspace elements, so the built-in
         // autoFocus (which requires document.body to be focused) never kicks in.
         // Focus the canvas when the mouse enters the diagram, unless the user is
         // typing somewhere else (e.g. the properties panel or a note).
-        this.registerDomEvent(this.bpmnDiv, "mouseenter", function () {
+        this.registerDomEvent(this.bpmnDiv, "mouseenter", () => {
             const active = document.activeElement;
             if (active instanceof HTMLElement &&
                 (active.isContentEditable ||
@@ -130,18 +139,19 @@ export class BpmnModelerView extends TextFileView {
                     active.tagName === "SELECT")) {
                 return;
             }
-            // @ts-ignore
             canvas.focus();
         });
-        this.bpmnModeler.on("commandStack.changed", function () {
-            bpmnModeler.saveXML({format: true}).then(function (data: any) {
+        this.bpmnModeler.on("commandStack.changed", () => {
+            void bpmnModeler.saveXML({format: true}).then((data) => {
                 const {xml} = data;
-                thisRef.data = xml;
+                if (xml !== undefined) {
+                    this.data = xml;
+                }
             });
         });
         // Heatmap for token simulation
         if (this.settings.enable_token_simulator && this.settings.enable_simulation_heatmap) {
-            const currentHistory: Map<String, number> = new Map();
+            const currentHistory: Map<string, number> = new Map();
             let last_index = 0;
             const heatMap = new HeatMap({
                 container: this.bpmnDiv,
@@ -153,15 +163,15 @@ export class BpmnModelerView extends TextFileView {
             });
 
 
-            const simulationTrace = bpmnModeler.get('simulationTrace');
-            const registry = bpmnModeler.get('elementRegistry');
-            const simulationSupport = bpmnModeler.get('simulationSupport');
+            const simulationTrace = bpmnModeler.get<SimulationTrace>('simulationTrace');
+            const registry = bpmnModeler.get<ElementRegistry>('elementRegistry');
+            const simulationSupport = bpmnModeler.get<SimulationSupport>('simulationSupport');
 
             simulationTrace.start();
-            this.intervalId = setInterval(updateHeatmap, 1000);
+            this.intervalId = window.setInterval(updateHeatmap, 1000);
 
             function updateHeatmap() {
-                let history: Array<String> = simulationSupport.getHistory();
+                const history = simulationSupport.getHistory();
                 for (let i = last_index; i < history.length; i++) {
                     if (!history[i].startsWith("Flow")) {
                         currentHistory.set(history[i], (currentHistory.get(history[i]) || 0) + 1);
@@ -188,7 +198,7 @@ export class BpmnModelerView extends TextFileView {
                 });
             }
 
-            this.bpmnModeler.on("tokenSimulation.toggleMode", function () {
+            this.bpmnModeler.on("tokenSimulation.toggleMode", () => {
                 simulationTrace.stop();
                 simulationTrace._events = [];
                 let data: Array<DataPoint> = [];
@@ -203,39 +213,45 @@ export class BpmnModelerView extends TextFileView {
         }
 
         // Button Controller
-        bpmnSave.addEventListener("click", function (e: Event) {
-            thisRef.requestSave();
+        bpmnSave.addEventListener("click", () => {
+            this.requestSave();
         });
         setIcon(bpmnSave, "save");
-        bpmnUndo.addEventListener("click", function (e: Event) {
-            bpmnModeler.get("commandStack").undo();
+        bpmnUndo.addEventListener("click", () => {
+            bpmnModeler.get<CommandStack>("commandStack").undo();
         });
         setIcon(bpmnUndo, "undo");
-        bpmnRedo.addEventListener("click", function (e: Event) {
-            bpmnModeler.get("commandStack").redo();
+        bpmnRedo.addEventListener("click", () => {
+            bpmnModeler.get<CommandStack>("commandStack").redo();
         });
         setIcon(bpmnRedo, "redo");
         bpmnProperties.addEventListener("click", function (e: Event) {
             propertyPanel.classList.toggle("hide");
         });
         setIcon(bpmnProperties, "settings");
-        bpmnSaveSvg.addEventListener("click", async function (e: Event) {
-            let result: SaveSVGResult = await bpmnModeler.saveSVG();
-            await thisRef.saveImageFile(result.svg, "svg");
+        bpmnSaveSvg.addEventListener("click", () => {
+            void this.exportSvg();
         });
         setIcon(bpmnSaveSvg, "image");
 
         // PNG is not working for now
-        bpmnSavePng.addEventListener("click", async function (e: Event) {
-            const svg = (await bpmnModeler.saveSVG()).svg;
-            const pngString = undefined;
-            if (pngString !== undefined) {
-                await thisRef.saveImageFile(pngString, "png");
-            }
-
+        bpmnSavePng.addEventListener("click", () => {
+            void this.exportPng();
         });
         // HIDE PNG BUTTON, as it is not working right now...
         bpmnSavePng.hide();
+    }
+
+    async exportSvg() {
+        const result = await this.bpmnModeler.saveSVG();
+        await this.saveImageFile(result.svg, "svg");
+    }
+
+    async exportPng() {
+        const pngString = undefined;
+        if (pngString !== undefined) {
+            await this.saveImageFile(pngString, "png");
+        }
     }
 
     async saveImageFile(data: string, format: string) {
@@ -244,9 +260,10 @@ export class BpmnModelerView extends TextFileView {
         if (currentFile != null) {
             path = currentFile.path.replace(".bpmn", "." + format);
         }
-        const existingFile = await this.app.vault.getAbstractFileByPath(path);
+        // getAbstractFileByPath is synchronous
+        const existingFile = this.app.vault.getAbstractFileByPath(path);
         if (existingFile !== null) {
-            await this.app.vault.delete(existingFile);
+            await this.app.fileManager.trashFile(existingFile);
         }
         let newFile = await this.app.vault.create(path, data);
         let leaf = this.app.workspace.getMostRecentLeaf();
@@ -258,7 +275,7 @@ export class BpmnModelerView extends TextFileView {
     async onClose() {
         await this.save();
         this.contentEl.empty();
-        clearInterval(this.intervalId);
+        window.clearInterval(this.intervalId);
     }
 
     clear() {

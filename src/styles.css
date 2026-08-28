@@ -26,27 +26,28 @@
   border: 1px dashed #212121;
 }
 
-/* Dark mode from system */
-@media (prefers-color-scheme: dark) {
-  .bpmn-view {
-    filter: invert(85%);
-    color: black !important;
-  }
+/* Dark mode: Obsidian signals the active theme with the theme-dark class
+   on <body> (which also covers "system" mode), so key the dark styling
+   off that instead of prefers-color-scheme, which only reflects the OS
+   and disagrees with a theme the user has forced light or dark. */
+.theme-dark .bpmn-view {
+  filter: invert(85%);
+  color: black !important;
+}
 
-  .bio-properties-panel-input,
-  .bpmn-view textarea,
-  .bpmn-view input.metadata-input-text,
-  .bpmn-view input[type='date'],
-  .bpmn-view input[type='datetime-local'],
-  .bpmn-view input[type='text'],
-  .bpmn-view input[type='search'],
-  .bpmn-view input[type='email'],
-  .bpmn-view input[type='password'],
-  .bpmn-view input[type='number'],
-  .bpmn-view .bio-properties-panel-input {
-    background-color: white !important;
-    color: black !important;
-  }
+/* Inputs drawn inside the (inverted) canvas need to be forced back to
+   white/black so they stay legible on the inverted surface. */
+.theme-dark .bpmn-view textarea,
+.theme-dark .bpmn-view input.metadata-input-text,
+.theme-dark .bpmn-view input[type='date'],
+.theme-dark .bpmn-view input[type='datetime-local'],
+.theme-dark .bpmn-view input[type='text'],
+.theme-dark .bpmn-view input[type='search'],
+.theme-dark .bpmn-view input[type='email'],
+.theme-dark .bpmn-view input[type='password'],
+.theme-dark .bpmn-view input[type='number'] {
+  background-color: white !important;
+  color: black !important;
 }
 
 
@@ -72,9 +73,48 @@
   display: inline-table;
 }
 
-.bpmn-view .djs-popup {
-  top: 0px !important;
-  left: 0px !important;
+/* The popup menu ("Change element") is rendered into <body> (see
+   bpmnModeler.ts), so the --popup-* variables diagram-js defines on
+   .djs-parent don't reach it and it would end up transparent. Define
+   them here, mapped to Obsidian's theme variables, so the popup follows
+   the active theme (white in light mode, dark in dark mode). */
+.djs-popup {
+  color: var(--text-normal, hsl(225, 10%, 15%));
+
+  --popup-font-family: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+  --popup-font-size: 14px;
+  --popup-secondary-font-size: .9em;
+
+  --popup-background-color: var(--background-secondary, #ffffff);
+  --popup-border-color: var(--background-modifier-border, hsl(225, 10%, 85%));
+  --popup-shadow-color: hsla(225, 10%, 15%, 30%);
+
+  --popup-disabled-color: var(--text-faint, hsl(225, 10%, 35%));
+  --popup-description-color: var(--text-muted, hsl(225, 10%, 45%));
+  --popup-no-results-color: var(--text-muted, hsl(225, 10%, 55%));
+  --popup-entry-title-color: var(--text-muted, hsl(225, 10%, 55%));
+  --popup-entry-hover-color: var(--background-modifier-hover, hsl(225, 10%, 95%));
+
+  --popup-search-border-color: var(--background-modifier-border, hsl(225, 10%, 75%));
+  --popup-search-focus-border-color: var(--interactive-accent, hsl(205, 100%, 50%));
+  --popup-search-focus-background-color: var(--background-primary, #ffffff);
+
+  --popup-header-entry-selected-color: var(--interactive-accent, hsl(205, 100%, 50%));
+  --popup-header-group-divider-color: var(--background-modifier-border, hsl(225, 10%, 75%));
+
+  --popup-tab-color: var(--text-muted, hsl(225, 10%, 55%));
+  --popup-tab-hover-color: var(--text-normal, hsl(225, 10%, 15%));
+  --popup-tab-active-color: var(--text-normal, hsl(225, 10%, 15%));
+  --popup-tab-active-border-color: var(--interactive-accent, hsl(205, 100%, 50%));
+  --popup-tab-strip-border-color: var(--background-modifier-border, hsl(225, 10%, 90%));
+  --popup-tab-focus-border-color: var(--interactive-accent, hsl(205, 100%, 50%));
+}
+
+/* keep the search field transparent on the themed popup surface, with
+   theme-colored text, regardless of ambient input styles */
+.djs-popup-search input {
+  background-color: transparent;
+  color: inherit;
 }
 
 .bpmn-properties-panel {
@@ -82,10 +122,96 @@
   position: absolute;
   bottom: 30px;
   right: 20px;
-  border: black 2px dashed;
+  border: 2px dashed var(--background-modifier-border-strong, #212121);
   border-radius: 4px;
 }
 
+/* ------------------------------------------------------------------------
+   Properties panel dark theme
+   @bpmn-io/properties-panel ships a fixed light theme: every surface,
+   border, text and icon color is expressed as a CSS custom property on
+   .bio-properties-panel (see its "Theming" block). Obsidian's own theme
+   is signalled by the theme-dark class on <body> (which also covers
+   "system" mode), so remap the panel's variables to Obsidian's theme
+   tokens there.
+   ------------------------------------------------------------------------ */
+body.theme-dark .bio-properties-panel {
+  /* text & links */
+  --text-base-color: var(--text-normal);
+  --link-color: var(--interactive-accent);
+  --description-color: var(--text-muted);
+  --description-code-background-color: var(--background-modifier-form-field);
+  --description-code-border-color: var(--background-modifier-border);
+  --description-list-item-color: var(--text-muted);
+  --tooltip-underline-color: var(--text-faint);
+  --placeholder-color: var(--text-muted);
+
+  /* panel sections */
+  --placeholder-background-color: var(--background-secondary);
+  --header-background-color: var(--background-secondary);
+  --header-icon-fill-color: var(--text-muted);
+  --header-bottom-border-color: var(--background-modifier-border);
+  --group-background-color: var(--background-primary);
+  --group-bottom-border-color: var(--background-modifier-border);
+  --sticky-group-background-color: var(--background-secondary);
+  --sticky-group-bottom-border-color: var(--background-modifier-border);
+
+  /* group/list header buttons and their icons */
+  --add-entry-fill-color: var(--text-muted);
+  --add-entry-hover-background-color: var(--interactive-accent);
+  --arrow-fill-color: var(--text-muted);
+  --arrow-hover-background-color: var(--background-modifier-hover);
+  --dot-color: var(--text-faint);
+  --side-line-background-color: var(--background-modifier-border);
+  --side-line-extension-background-color: var(--background-modifier-border);
+  --list-entry-dot-background-color: var(--text-faint);
+  --list-entry-header-button-fill-color: var(--text-muted);
+  --list-entry-add-entry-background-color: var(--interactive-accent);
+  --list-entry-add-entry-empty-background-color: var(--interactive-accent);
+  --list-entry-add-entry-empty-hover-background-color: var(--interactive-accent);
+
+  /* inputs, checkboxes and toggles */
+  --input-background-color: var(--background-modifier-form-field);
+  --input-border-color: var(--background-modifier-border);
+  --input-focus-background-color: var(--background-modifier-form-field);
+  --input-error-background-color: var(--background-modifier-form-field);
+  --input-warning-background-color: var(--background-modifier-form-field);
+  --input-disabled-color: var(--text-faint);
+  --input-disabled-background-color: var(--background-modifier-form-field);
+  --input-disabled-border-color: var(--background-modifier-border);
+  --checkbox-checked-background-color: var(--interactive-accent);
+  --checkbox-checked-border-color: var(--interactive-accent);
+  --toggle-switch-on-background-color: var(--interactive-accent);
+  --toggle-switch-off-background-color: var(--background-modifier-border);
+
+  /* dropdowns */
+  --dropdown-item-background-color: var(--background-primary);
+  --dropdown-item-hover-background-color: var(--background-modifier-hover);
+  --dropdown-separator-background-color: var(--background-modifier-border);
+
+  /* FEEL expression inputs */
+  --feel-active-color: var(--interactive-accent);
+  --feel-inactive-color: var(--text-muted);
+  --feel-hover-color: var(--text-normal);
+  --feel-hover-background-color: var(--background-modifier-hover);
+  --feel-required-color: var(--text-faint);
+  --feel-open-popup-color: var(--text-muted);
+  --feel-open-popup-background-color: var(--background-primary);
+  --feel-open-popup-hover-color: var(--interactive-accent);
+  --feel-indicator-background-color: var(--background-modifier-border);
+}
+
+/* A few panel elements hardcode their light-theme value directly instead
+   of reading a custom property — override them explicitly. */
+body.theme-dark .bio-properties-panel-list-entry-header.sticky {
+  background-color: var(--background-primary);
+}
+
+body.theme-dark .bio-properties-panel-feelers-editor__open-popup-placeholder,
+body.theme-dark .bio-properties-panel-feel-editor__open-popup-placeholder,
+body.theme-dark .bio-properties-panel-textarea__open-popup-placeholder {
+  color: var(--text-muted);
+}
 .hide {
   display: none;
 }

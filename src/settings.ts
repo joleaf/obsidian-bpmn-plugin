@@ -1,4 +1,6 @@
-import {App, Component, MarkdownRenderer, Modal, Plugin, PluginSettingTab, Setting, TextComponent} from 'obsidian';
+import {App, Component, MarkdownRenderer, Modal, Plugin, PluginSettingTab} from 'obsidian';
+import type {SettingDefinitionItem} from 'obsidian';
+import {BPMN_BLOCK_PARAMETERS} from "./parameters";
 
 declare class ObsidianBpmnPlugin extends Plugin {
     settings: ObsidianBpmnPluginSettings;
@@ -18,31 +20,29 @@ export class ObsidianBpmnPluginSettings {
 }
 
 export class BPMNParameterInfoModal extends Modal {
+    // Owns the rendered markdown; unloaded when the modal closes.
+    private renderedComponent: Component;
+
     constructor(app: App) {
         super(app);
+        this.renderedComponent = new Component();
     }
 
     onOpen() {
         let {contentEl} = this;
         contentEl.createEl("h1", {text: "BPMN code block parameter"});
-        let table = contentEl.createEl("div")
+        let table = contentEl.createDiv()
 
-        MarkdownRenderer.render(this.app,
-            "| Parameter            | Description                                    | Values                                                    |\n" +
-            "|----------------------|------------------------------------------------|-----------------------------------------------------------|\n" +
-            "| url                  | The url of the *.bpmn file (required).         | Relative/Absolute path, or as \"\[\[*.bpmn\]\]\" markdown link. |\n" +
-            "| height               | The height of the rendered canvas.             | [200..1000]                                               |\n" +
-            "| opendiagram          | Show a link to the *.bpmn file.                | True/False                                                |\n" +
-            "| showzoom             | Show the zoom buttons below the canvas.        | True/False                                                |\n" +
-            "| enablepanzoom        | Enable pan and zoom.                           | True/False                                                |\n" +
-            "| zoom                 | Set the zoom level. Default is 'fit-viewport'. | 0.0 - 10.0                                                |\n" +
-            "| x                    | Set the x coordinate, if a zoom value is set.  | 0 - ... (default: 0)                                      |\n" +
-            "| y                    | Set the y coordinate, if a zoom value is set.  | 0 - ... (default: 0)                                      |\n" +
-            "| forcewhitebackground | Force a white background.                      | True/False                                                |",
-            table, ".", new Component());
+        const markdown = [
+            "| Parameter | Description | Values |",
+            "|---|---|---|",
+            ...BPMN_BLOCK_PARAMETERS.map((p) => `| ${p.name} | ${p.description} | ${p.values} |`),
+        ].join("\n");
+        void MarkdownRenderer.render(this.app, markdown, table, ".", this.renderedComponent);
     }
 
     onClose() {
+        this.renderedComponent.unload();
         let {contentEl} = this;
         contentEl.empty();
     }
@@ -56,126 +56,90 @@ export class ObsidianBpmnPluginSettingsTab extends PluginSettingTab {
         this.plugin = plugin;
     }
 
-    display(): void {
-        let {containerEl} = this;
-
-        containerEl.empty();
-        new Setting(containerEl)
-            .setName("General")
-            .setHeading();
-
-        new Setting(containerEl)
-            .setName("Default force white background")
-            .setDesc("Set the default for forcing a white background")
-            .setTooltip("forcewhitebackground: True/False", {delay: 200})
-            .addToggle(toggle => toggle.setValue(this.plugin.settings.force_white_background_by_default)
-                .onChange((value) => {
-                    this.plugin.settings.force_white_background_by_default = value;
-                    this.plugin.saveData(this.plugin.settings);
-                }));
-
-        new Setting(containerEl)
-            .setName("Use sketchy visualization")
-            .setDesc("The visualization of the BPMN is like a sketch.")
-            .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_sketchy)
-                .onChange((value) => {
-                    this.plugin.settings.enable_sketchy = value;
-                    this.plugin.saveData(this.plugin.settings);
-                }));
-
-        new Setting(containerEl)
-            .setName("BPMN Block")
-            .setHeading();
-
-
-        new Setting(containerEl)
-            .setName("Default height")
-            .setDesc("Set the default height of the rendered BPMN.")
-            .setTooltip("height: x", {delay: 200})
-            .addSlider(slider => slider.setValue(this.plugin.settings.height_by_default)
-                .onChange((value) => {
-                    this.plugin.settings.height_by_default = value;
-                    this.plugin.saveData(this.plugin.settings);
-                }).setLimits(200, 1000, 20)
-                .setDynamicTooltip()
-            );
-
-        new Setting(containerEl)
-            .setName("Default show open diagram")
-            .setTooltip("opendiagram: True/False", {delay: 200})
-            .setDesc("Set the default for showing the 'Open diagram' link")
-            .addToggle(toggle => toggle.setValue(this.plugin.settings.opendiagram_by_default)
-                .onChange((value) => {
-                    this.plugin.settings.opendiagram_by_default = value;
-                    this.plugin.saveData(this.plugin.settings);
-                }));
-
-        new Setting(containerEl)
-            .setName("Default show zoom buttons")
-            .setDesc("Set the default for showing the zoom buttons")
-            .setTooltip("showzoom: True/False", {delay: 200})
-            .addToggle(toggle => toggle.setValue(this.plugin.settings.showzoom_by_default)
-                .onChange((value) => {
-                    this.plugin.settings.showzoom_by_default = value;
-                    this.plugin.saveData(this.plugin.settings);
-                }));
-        new Setting(containerEl)
-            .setName("Default enable pan zoom")
-            .setDesc("Set the default for enable pan & zoom")
-            .setTooltip("enablepanzoom: True/False", {delay: 200})
-            .addToggle(toggle => toggle.setValue(this.plugin.settings.enablepanzoom_by_default)
-                .onChange((value) => {
-                    this.plugin.settings.enablepanzoom_by_default = value;
-                    this.plugin.saveData(this.plugin.settings);
-                }));
-
-        new Setting(containerEl)
-            .setName("BPMN block parameters")
-            .addButton(button => {
-                button.setButtonText("Show parameter")
-                button.onClick(evt => {
-                        new BPMNParameterInfoModal(this.app).open();
-                    }
-                )
-            });
-
-        new Setting(containerEl)
-            .setName("BPMN Modeler")
-            .setHeading();
-
-        new Setting(containerEl)
-            .setName("Enable token simulator")
-            .setDesc("Add a token simulator to the BPMN modeler.")
-            .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_token_simulator)
-                .onChange((value) => {
-                    this.plugin.settings.enable_token_simulator = value;
-                    this.plugin.saveData(this.plugin.settings);
-                }));
-
-        new Setting(containerEl)
-            .setName("Enable heatmap")
-            .setDesc("Add a heatmap to the token simulation (Attention: Beta feature!)")
-            .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_simulation_heatmap)
-                .onChange((value) => {
-                    this.plugin.settings.enable_simulation_heatmap = value;
-                    this.plugin.saveData(this.plugin.settings);
-                }));
-
-        new Setting(containerEl)
-            .setName("Enable minimap")
-            .setDesc("Add a minimap to the BPMN modeler.")
-            .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_minimap)
-                .onChange((value) => {
-                    this.plugin.settings.enable_minimap = value;
-                    this.plugin.saveData(this.plugin.settings);
-                }));
-        new Setting(containerEl)
-            .setName("Enable grid")
-            .setDesc("Add a grid to the BPMN modeler")
-            .addToggle(toggle => toggle.setValue(this.plugin.settings.enable_grid)
-                .onChange((value) => {
-                    this.plugin.settings.enable_grid = value;
-                    this.plugin.saveData(this.plugin.settings);
-                }));
+    getSettingDefinitions(): SettingDefinitionItem[] {
+        return [
+            {
+                type: "group",
+                heading: "Defaults",
+                items: [
+                    {
+                        name: "Default force white background",
+                        desc: "Set the default for forcing a white background",
+                        control: {type: "toggle", key: "force_white_background_by_default"},
+                    },
+                    {
+                        name: "Use sketchy visualization",
+                        desc: "The visualization of the BPMN is like a sketch.",
+                        control: {type: "toggle", key: "enable_sketchy"},
+                    },
+                ],
+            },
+            {
+                type: "group",
+                heading: "Code block",
+                items: [
+                    {
+                        name: "Default height",
+                        desc: "Set the default height of the rendered BPMN.",
+                        control: {
+                            type: "slider",
+                            key: "height_by_default",
+                            min: 200,
+                            max: 1000,
+                            step: 20,
+                            // 1.13.1+; ignored by older builds.
+                            displayFormat: (value) => String(value),
+                        },
+                    },
+                    {
+                        name: "Default show open diagram",
+                        desc: "Set the default for showing the 'Open diagram' link",
+                        control: {type: "toggle", key: "opendiagram_by_default"},
+                    },
+                    {
+                        name: "Default show zoom buttons",
+                        desc: "Set the default for showing the zoom buttons",
+                        control: {type: "toggle", key: "showzoom_by_default"},
+                    },
+                    {
+                        name: "Default enable pan zoom",
+                        desc: "Set the default for enable pan & zoom",
+                        control: {type: "toggle", key: "enablepanzoom_by_default"},
+                    },
+                    {
+                        name: "BPMN block parameters",
+                        action: () => {
+                            new BPMNParameterInfoModal(this.app).open();
+                        },
+                    },
+                ],
+            },
+            {
+                type: "group",
+                heading: "Modeler",
+                items: [
+                    {
+                        name: "Enable token simulator",
+                        desc: "Add a token simulator to the BPMN modeler.",
+                        control: {type: "toggle", key: "enable_token_simulator"},
+                    },
+                    {
+                        name: "Enable heatmap",
+                        desc: "Add a heatmap to the token simulation (Attention: Beta feature!)",
+                        control: {type: "toggle", key: "enable_simulation_heatmap"},
+                    },
+                    {
+                        name: "Enable minimap",
+                        desc: "Add a minimap to the BPMN modeler.",
+                        control: {type: "toggle", key: "enable_minimap"},
+                    },
+                    {
+                        name: "Enable grid",
+                        desc: "Add a grid to the BPMN modeler",
+                        control: {type: "toggle", key: "enable_grid"},
+                    },
+                ],
+            },
+        ];
     }
 }

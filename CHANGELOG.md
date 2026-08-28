@@ -2,6 +2,24 @@
 
 All changes to this plugin are listed here.
 
+## 8.0.0 (2026-08-29)
+
+### Breaking Change
+
+- Support only Obsidian >= 1.15.0
+
+### Fixed
+
+- Fixed ESLint issues in eslint-plugin-obsidianmd.
+- Fixed the BPMN popup positioning so it now appears beside the BPMN element.
+
+### New
+
+- Autocomplete for the code block parameters (`url`, `height`, `opendiagram`, `showzoom`, `enablepanzoom`, `zoom`, `x`, `y`, `forcewhitebackground`) while typing inside ```bpmn blocks
+- New command "Insert / Edit BPMN code block": create or edit a code block from a popup, with a `*.bpmn` file selector
+- New command "Create BPMN": creates a new `*.bpmn` file in the vault and opens it in the modeler (same as the "New BPMN" ribbon icon)
+- Show a readable error message when importing a `*.bpmn` file fails
+
 ## 7.5.0 (2026-08-28)
 
 ### Updated

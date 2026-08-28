@@ -34,6 +34,22 @@ You can customize the view with the following parameters:
 | y                    | Set the y coordinate, if a zoom value is set.  | 0 - ... (default: 0)                                      |
 | forcewhitebackground | Force a white background.                      | True/False                                                |
 
+While typing inside a `bpmn` code block, Obsidian autocompletes the parameter names (with a short value hint and the full description on hover).
+
+### Insert / Edit code block from a popup
+
+You don't have to type the code block manually:
+
+1. Open a markdown note and put the cursor where the diagram should be inserted (or inside an existing `bpmn` code block to edit it)
+2. Run the command **"Insert / Edit BPMN code block"** from the command palette (it is only enabled while a markdown file is active)
+3. Pick the file with **Browse...** (all `*.bpmn` files of the vault are listed) and adjust the other parameters
+4. Click **Insert** — the code block is created at the cursor position (or the block the cursor was in gets replaced)
+
+### Create a new BPMN
+
+The command **"Create BPMN"** creates a new `*.bpmn` file (in the folder of the active file) and opens it in the BPMN modeler.
+The **New BPMN** ribbon icon does the same.
+
 ### Example
 
 ![Example](example/bpmn-plugin.gif)
