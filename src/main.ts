@@ -76,7 +76,7 @@ export default class ObsidianBPMNPlugin extends Plugin {
                     return;
                 }
                 embed.innerHTML = "";
-                this.renderBPMNBlock(parameters, el, ctx);
+                this.renderBPMNBlock(parameters, embed, ctx);
                 embed.addClass("bpmn-embed");
             });
         });
