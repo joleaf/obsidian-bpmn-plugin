@@ -75,7 +75,6 @@ Just open the BPMN file in your obsidian vault and the BPMN will be editable in 
 or...
 
 [![Install BPMN Plugin](https://img.shields.io/badge/install-BPMN-8A2BE2?style=for-the-badge)](obsidian://show-plugin?id=bpmn-plugin)
-[![Install BPMN Plugin](https://img.shields.io/badge/install-BPMN-8A2BE2?style=for-the-badge)](obsidian://show-plugin?id=bpmn-plugin)
 
 ## How to dev
 
