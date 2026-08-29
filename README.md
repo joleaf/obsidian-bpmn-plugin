@@ -72,9 +72,6 @@ Just open the BPMN file in your obsidian vault and the BPMN will be editable in 
 2. Click on **Browse** and search for "[BPMN](obsidian://show-plugin?id=bpmn-plugin)"
 3. Click install
 4. Toggle the plugin on in the **Community Plugins** tab
-or...
-
-[![Install BPMN Plugin](https://img.shields.io/badge/install-BPMN-8A2BE2?style=for-the-badge)](obsidian://show-plugin?id=bpmn-plugin)
 
 ## How to dev
 
@@ -82,7 +79,6 @@ or...
 2. `npm i`
 3. `npm run dev`
 4. Toggle the plugin on in the **Community Plugins** tab
-
 
 ## Donate
 
