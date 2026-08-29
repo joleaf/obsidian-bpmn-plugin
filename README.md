@@ -64,7 +64,7 @@ Just open the BPMN file in your obsidian vault and the BPMN will be editable in 
 - Update properties
 - Export SVG
 
-## Install ..
+## Install
 
 ### .. automatically in Obsidian
 
@@ -73,17 +73,16 @@ Just open the BPMN file in your obsidian vault and the BPMN will be editable in 
 3. Click install
 4. Toggle the plugin on in the **Community Plugins** tab
 
-### .. manually from this repo
-
-1. Download the latest [release](https://github.com/joleaf/obsidian-bpmn-plugin/releases) `*.zip` file.
-2. Unpack the zip in the `.obsidan/plugins` folder of your obsidian vault
-
 ## How to dev
 
 1. Clone this repo into the plugin folder of a (non-productive) vault (`.obsidian/plugins/`)
 2. `npm i`
 3. `npm run dev`
 4. Toggle the plugin on in the **Community Plugins** tab
+
+or...
+
+[![Install BPMN Plugin](https://img.shields.io/badge/install-BPMN-8A2BE2?style=for-the-badge)](obsidian://show-plugin?id=bpmn-plugin)
 
 ## Donate
 
