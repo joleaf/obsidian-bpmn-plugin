@@ -1,6 +1,21 @@
 import esbuild from "esbuild";
 import process from "process";
 import { builtinModules as builtins } from "node:module";
+import { readFile } from "node:fs/promises";
+
+// Obsidian plugins may only ship main.js, manifest.json and styles.css,
+// so drop the file-based @font-face rules from the bpmn icon font and
+// keep only the base64-embedded copy, which styles.css carries itself.
+const embeddedFontOnly = {
+    name: "embedded-font-only",
+    setup(build) {
+        build.onLoad({ filter: /bpmn-font\/css\/bpmn-embedded\.css$/ }, async (args) => {
+            let css = await readFile(args.path, "utf8");
+            css = css.replace(/@font-face\s*\{[^}]*#iefix[^}]*\}/g, "");
+            return { contents: css, loader: "css" };
+        });
+    },
+};
 
 const banner =
     `/*
@@ -38,13 +53,7 @@ const context = await esbuild.context({
     sourcemap: prod ? false : "inline",
     treeShaking: true,
     outdir: '.',
-    loader: {
-        '.woff': 'file',
-        '.woff2': 'file',
-        '.eot': 'file',
-        '.svg': 'file',
-        '.ttf': 'file'
-    }
+    plugins: [embeddedFontOnly]
 });
 
 if (prod) {
