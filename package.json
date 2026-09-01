@@ -14,7 +14,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.13.5",
-    "@typescript-eslint/eslint-plugin": "8.46.0",
+    "@typescript-eslint/eslint-plugin": "8.68.0",
     "@typescript-eslint/parser": "8.46.0",
     "@codemirror/autocomplete": "^6.5.0",
     "@codemirror/state": "^6.5.0",
