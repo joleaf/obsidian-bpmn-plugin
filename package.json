@@ -26,7 +26,7 @@
     "typescript": "5.9.3"
   },
   "dependencies": {
-    "@bpmn-io/properties-panel": "^3.34.0",
+    "@bpmn-io/properties-panel": "^3.53.0",
     "bpmn-js": "^18.25.1",
     "bpmn-js-color-picker": "^0.7.2",
     "bpmn-js-create-append-anything": "^1.2.0",
